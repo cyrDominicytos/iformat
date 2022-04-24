@@ -1,0 +1,36 @@
+.customBg {
+    background-color: #113e6a;
+}
+
+.customColor {
+    color: #113e6a;
+}
+
+.customBg2 {
+    background-color: #da5e26;
+}
+
+.customColor2 {
+    color: #da5e26;
+}
+
+.mySup {
+    color: red;
+    font-weight: bold;
+}
+
+.menu-title {
+    color: #fff;
+}
+
+
+/* Menu styles */
+
+.menu-item {
+    color: #fff;
+}
+
+div.menu-item,
+div.menu-item>span {
+    color: #fff;
+}
