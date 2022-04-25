@@ -7,14 +7,19 @@ RGB (17,62,106)
 CMYK (84,42,0,58)
 
 # pink color
-	
 Selected Color Code
 HEX #da5e26
 RGB (218,94,38)
 CMYK (0,57,83,15)
 
-#old blue color
+# old blue color
 #0f529C
 
-#old green color
+# old green color
 #03734e
+
+# blue real
+#005AAB
+
+# pink real
+#F36F21

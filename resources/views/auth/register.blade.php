@@ -1,6 +1,5 @@
-<?= $this->extend('authTempate') ?>
-<?php $this->section('title'); echo  getenv('APP_NAME')."| Inscription"; $this->endSection()?>
-<?= $this->section('content') ?>
+@extends('layouts.auth_layouts')
+@section('content')
 		<!--begin::Root-->
 		<div class="d-flex flex-column flex-root">
 			<!--begin::Authentication - Sign-in -->
@@ -13,15 +12,14 @@
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
 							<a href="../../demo12/dist/index.html" class="py-9 mb-5">
-								<img alt="Logo" src="<?= base_url(); ?>/public/assets/media/logos/logo-2.svg " class="h-60px" />
+								<img alt="Logo" src="http://www.win-africa.com/images/logo.png" class="h-60px" />
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
 							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #fff;">Bienvenue sur <?= getenv('APP_NAME') ?></h1>
 							<!--end::Title-->
 							<!--begin::Description-->
-							<p class="fw-bold fs-2" style="color: #fff;">Votre Application 
-							<br />de gestion de stock et de comptabilité</p>
+							<p class="fw-bold fs-2" style="color: #fff;">Votre Plateforme de suivi des formations</p>
 							<!--end::Description-->
 						</div>
 						<!--end::Content-->
@@ -29,11 +27,11 @@
 						<div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-350px">
                              <!-- Owl-Carousel -->
                              <div class="owl-carousel owl-theme">
-                                <img src="<?= base_url(); ?>/public/assets/media/presentation/pre1.png" alt="" class="login_img">
-                                <img src="<?= base_url(); ?>/public/assets/media/presentation/pre2.png" alt="" class="login_img">
-                                <img src="<?= base_url(); ?>/public/assets/media/presentation/pre3.png" alt="" class="login_img">
-                                <img src="<?= base_url(); ?>/public/assets/media/presentation/pre4.png" alt="" class="login_img">
-                                <img src="<?= base_url(); ?>/public/assets/media/presentation/pre5.png" alt="" class="login_img">                                
+                                <img src="{{ asset('assets/media/presentation/pre1.png') }}" alt="" class="login_img">
+                                <img src="{{ asset('assets/media/presentation/pre2.png') }}" alt="" class="login_img">
+                                <img src="{{ asset('assets/media/presentation/pre3.png') }}" alt="" class="login_img">
+                                <img src="{{ asset('assets/media/presentation/pre4.png') }}" alt="" class="login_img">
+                                <img src="{{ asset('assets/media/presentation/pre5.png') }}" alt="" class="login_img">                                
                             </div>
                             <!-- /Owl-Carousel --> 
                        </div>
@@ -49,7 +47,7 @@
 						<!--begin::Wrapper-->
 						<div class="w-lg-600px p-10 p-lg-15 mx-auto">
 							<!--begin::Form-->
-							<form class="form w-100" novalidate="novalidate" id="kt_sign_up_form" action="<?= base_url(); ?>/<?= isset($userGroup)? 'user/update/'. $user->id: 'sign_up'?>" method="post">
+							<form class="form w-100" novalidate="novalidate" id="kt_sign_up_form" action="/<?= isset($userGroup)? 'user/update/'. $user->id: 'sign_up'?>" method="post">
 								<?php if (isset($userGroup)): ?>
 								   <input type="hidden" name="id" value="<?=  $user->id ?>">
 								   <input type="hidden" name="oldgroup" value="<?=  $userGroup?>">
@@ -61,7 +59,7 @@
 									<!--end::Title-->
 									<!--begin::Link-->
 									<div class="text-gray-400 fw-bold fs-4">Retournez à votre
-									<a href="<?=base_url(); ?>/" class="link-primary fw-bolder"> espace de travail</a></div>
+									<a href="/" class="link-primary fw-bolder"> espace de travail</a></div>
 									<!--end::Link-->
 									<div id="infoMessage" style="color:red;"><?=  session()->has('message') ? (session()->get('message')) : ("")?></div>
 								</div>
@@ -82,41 +80,35 @@
 									<!--begin::Col-->
 									<div class="col-xl-6">
 										<label class="form-label fw-bolder text-dark fs-6">Noms <sup class="mySup">*</sup></label>
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="last_name" autocomplete="off" required="required" value="<?= (isset($user)? ($user->last_name) : (set_value("last_name")))?>"/>
+										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="last_name" autocomplete="off" required="required" value="<?= (isset($user)? ($user->last_name) : (""))?>"/>
 									</div>
 									<!--end::Col-->
 									<!--begin::Col-->
 									<div class="col-xl-6">
 										<label class="form-label fw-bolder text-dark fs-6">Prénoms <sup class="mySup">*</sup></label>
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="first_name" autocomplete="off" required="required" value="<?= (isset($user)? ($user->first_name) : (set_value("first_name")))?>"/>
+										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="first_name" autocomplete="off" required="required" value="<?= (isset($user)? ($user->first_name) : (""))?>"/>
 									</div>
 									<!--end::Col-->
 								</div>
 								<div class="row fv-row mb-7">
-									<!--begin::Col-->
-									<div class="col-xl-6">
-										<label class="form-label fw-bolder text-dark fs-6">Nom d'utilisateur <sup class="mySup">*</sup></label>
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="username" autocomplete="off" required="required" value="<?= (isset($user)? ($user->username) : (set_value("username")))?>"/>
-									</div>
-									<!--end::Col-->
 									<!--begin::Col-->
 									<div class="col-xl-6">
 										<label class="form-label fw-bolder text-dark fs-6">Email <sup class="mySup">*</sup></label>
-										<input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" autocomplete="off" rique="required" value="<?= (isset($user)? ($user->email) : (set_value("email")))?>"/>
+										<input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" autocomplete="off" rique="required" value="<?= (isset($user)? ($user->email) : (""))?>"/>
+									</div>
+									<!--end::Col-->
+									<!--begin::Col-->
+									<div class="col-xl-6">
+										<label class="form-label fw-bolder text-dark fs-6">Téléphone <sup class="mySup">*</sup></label>
+										<input class="form-control form-control-lg form-control-solid" type="tel" placeholder="" name="phone" autocomplete="off" required="required" value="<?= (isset($user)? ($user->phone) : (""))?>"/>
 									</div>
 									<!--end::Col-->
 								</div>
 								<div class="row fv-row mb-7">
 									<!--begin::Col-->
-									<div class="col-xl-6">
-										<label class="form-label fw-bolder text-dark fs-6">Téléphone <sup class="mySup">*</sup></label>
-										<input class="form-control form-control-lg form-control-solid" type="tel" placeholder="" name="phone" autocomplete="off" required="required" value="<?= (isset($user)? ($user->phone) : (set_value("phone")))?>"/>
-									</div>
-									<!--end::Col-->
-									<!--begin::Col-->
-									<div class="col-xl-6">
+									<div class="col-xl-12">
 										<label class="form-label fw-bolder text-dark fs-6">Adresse </sup></label>
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="address" autocomplete="off" value="<?= (isset($user)? ($user->address) : (set_value("address")))?>"/>
+										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="address" autocomplete="off" value="<?= (isset($user)? ($user->address) : (""))?>"/>
 									</div>
 									<!--end::Col-->
 								</div>
@@ -125,16 +117,29 @@
                                     <div class="fv-row mb-6">
                                         <label class="form-label fw-bolder text-dark fs-6">Profile <sup class="mySup">*</sup></label>
                                         <select name="group" aria-label="Selectionnez un profile" data-control="select2" data-placeholder="Attribuer un role..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="group">
-											<?php foreach ($groups as $group): ?>
-												<option value="<?= $group->id ?>" ><?= $group->name ?></option>									
-											<?php endforeach ?>
-											
+											@foreach($roles as $key=> $role)
+											<option value="{{$key}}">{{$role}}</option>
+											@endforeach
                                         </select>
                                       
                                     </div>
                                     <!--end::Input group-->
 								</div>
 								<!--end::Input group-->
+								<div class="row fv-row mb-7">
+									<!--begin::Col-->
+									<div class="col-xl-6">
+										<label class="form-label fw-bolder text-dark fs-6">Institution </label>
+										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="form" autocomplete="off" value=""/>
+									</div>
+									<!--end::Col-->
+									<!--begin::Col-->
+									<div class="col-xl-6">
+										<label class="form-label fw-bolder text-dark fs-6">Fonction </label>
+										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="fonction" autocomplete="off" required="required" value="<?= (isset($user)? ($user->phone) : (""))?>"/>
+									</div>
+									<!--end::Col-->
+								</div>
 								
 								<!--begin::Input group-->
 								<div class="mb-10 fv-row" data-kt-password-meter="true">
@@ -239,27 +244,7 @@
 			<!--end::Authentication - Sign-in-->
 		</div>
 		<!--end::Root-->
-		<?= $this->section('javascript') ?>
-			<script type="text/javascript">
 
-				var group = "<?= isset($userGroup)? $userGroup: ''?>";
-				if(group!=""){
-					document.getElementById('group').value = group;
-				}else{
-					document.getElementById('group').value = <?= set_value("group")	?>;
-				}
-
-				function toggleTerms() {
-					if(document.getElementById('terms').checked  ==  true)
-						document.getElementById('submit').disabled = false;
-					else
-						document.getElementById('submit').disabled = true;
-
-				}
-				toggleTerms() ;
-
-			</script>
-		<?= $this->endSection() ?>
- <?= $this->endSection() ?>
+	@endsection
 
  

@@ -23,7 +23,7 @@
     --bs-gray-900: #181C32;
     --bs-white: #ffffff;
     --bs-light: #F5F8FA;
-    --bs-primary: #113e6a;
+    --bs-primary: #005AAB;
     --bs-secondary: #E4E6EF;
     --bs-success: #50CD89;
     --bs-info: #7239EA;
@@ -238,7 +238,7 @@ sup {
 }
 
 a {
-    color: #113e6a;
+    color: #005AAB;
     text-decoration: none;
 }
 
@@ -2571,8 +2571,8 @@ textarea.form-control-lg {
 }
 
 .form-check-input:checked {
-    background-color: #113e6a;
-    border-color: #113e6a;
+    background-color: #005AAB;
+    border-color: #005AAB;
 }
 
 .form-check-input:checked[type=checkbox] {
@@ -2584,8 +2584,8 @@ textarea.form-control-lg {
 }
 
 .form-check-input[type=checkbox]:indeterminate {
-    background-color: #113e6a;
-    border-color: #113e6a;
+    background-color: #005AAB;
+    border-color: #005AAB;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
 }
 
@@ -2673,7 +2673,7 @@ textarea.form-control-lg {
     width: 1rem;
     height: 1rem;
     margin-top: -0.25rem;
-    background-color: #113e6a;
+    background-color: #005AAB;
     border: 0;
     box-shadow: 0 0.1rem 0.25rem rgba(0, 0, 0, 0.1);
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2703,7 +2703,7 @@ textarea.form-control-lg {
 .form-range::-moz-range-thumb {
     width: 1rem;
     height: 1rem;
-    background-color: #113e6a;
+    background-color: #005AAB;
     border: 0;
     box-shadow: 0 0.1rem 0.25rem rgba(0, 0, 0, 0.1);
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -3243,8 +3243,8 @@ fieldset:disabled .btn {
 
 .btn-primary {
     color: #000000;
-    background-color: #113e6a;
-    border-color: #113e6a;
+    background-color: #005AAB;
+    border-color: #005AAB;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
@@ -3283,8 +3283,8 @@ fieldset:disabled .btn {
 .btn-primary:disabled,
 .btn-primary.disabled {
     color: #000000;
-    background-color: #113e6a;
-    border-color: #113e6a;
+    background-color: #005AAB;
+    border-color: #005AAB;
 }
 
 .btn-secondary {
@@ -3644,14 +3644,14 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-primary {
-    color: #113e6a;
-    border-color: #113e6a;
+    color: #005AAB;
+    border-color: #005AAB;
 }
 
 .btn-outline-primary:hover {
     color: #000000;
-    background-color: #113e6a;
-    border-color: #113e6a;
+    background-color: #005AAB;
+    border-color: #005AAB;
 }
 
 .btn-check:focus+.btn-outline-primary,
@@ -3665,8 +3665,8 @@ fieldset:disabled .btn {
 .btn-outline-primary.active,
 .btn-outline-primary.dropdown-toggle.show {
     color: #000000;
-    background-color: #113e6a;
-    border-color: #113e6a;
+    background-color: #005AAB;
+    border-color: #005AAB;
 }
 
 .btn-check:checked+.btn-outline-primary:focus,
@@ -3679,7 +3679,7 @@ fieldset:disabled .btn {
 
 .btn-outline-primary:disabled,
 .btn-outline-primary.disabled {
-    color: #113e6a;
+    color: #005AAB;
     background-color: transparent;
 }
 
@@ -3925,7 +3925,7 @@ fieldset:disabled .btn {
 
 .btn-link {
     font-weight: 400;
-    color: #113e6a;
+    color: #005AAB;
     text-decoration: none;
 }
 
@@ -4268,7 +4268,7 @@ fieldset:disabled .btn {
 .dropdown-item:active {
     color: #FFFFFF;
     text-decoration: none;
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .dropdown-item.disabled,
@@ -4316,7 +4316,7 @@ fieldset:disabled .btn {
 .dropdown-menu-dark .dropdown-item.active,
 .dropdown-menu-dark .dropdown-item:active {
     color: #FFFFFF;
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .dropdown-menu-dark .dropdown-item.disabled,
@@ -4441,7 +4441,7 @@ fieldset:disabled .btn {
 .nav-link {
     display: block;
     padding: 0.5rem 1rem;
-    color: #113e6a;
+    color: #005AAB;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
 
@@ -4504,7 +4504,7 @@ fieldset:disabled .btn {
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #FFFFFF;
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .nav-fill>.nav-link,
@@ -5203,7 +5203,7 @@ fieldset:disabled .btn {
 }
 
 .accordion-button:not(.collapsed) {
-    color: #113e6a;
+    color: #005AAB;
     background-color: #F5F8FA;
     box-shadow: inset 0 -1px 0 #EFF2F5;
 }
@@ -5296,7 +5296,7 @@ fieldset:disabled .btn {
 }
 
 .breadcrumb-item.active {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .pagination {
@@ -5322,7 +5322,7 @@ fieldset:disabled .btn {
 
 .page-link:hover {
     z-index: 2;
-    color: #113e6a;
+    color: #005AAB;
     text-decoration: none;
     background-color: #ECF8FF;
     border-color: transparent;
@@ -5330,7 +5330,7 @@ fieldset:disabled .btn {
 
 .page-link:focus {
     z-index: 3;
-    color: #113e6a;
+    color: #005AAB;
     background-color: #ECF8FF;
     outline: 0;
     box-shadow: none;
@@ -5343,7 +5343,7 @@ fieldset:disabled .btn {
 .page-item.active .page-link {
     z-index: 3;
     color: #FFFFFF;
-    background-color: #113e6a;
+    background-color: #005AAB;
     border-color: transparent;
 }
 
@@ -5529,7 +5529,7 @@ fieldset:disabled .btn {
     color: #ffffff;
     text-align: center;
     white-space: nowrap;
-    background-color: #113e6a;
+    background-color: #005AAB;
     transition: width 0.6s ease;
 }
 
@@ -5609,8 +5609,8 @@ fieldset:disabled .btn {
 .list-group-item.active {
     z-index: 2;
     color: #FFFFFF;
-    background-color: #113e6a;
-    border-color: #113e6a;
+    background-color: #005AAB;
+    border-color: #005AAB;
 }
 
 .list-group-item+.list-group-item {
@@ -6792,7 +6792,7 @@ fieldset:disabled .btn {
 }
 
 .link-primary {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .link-primary:hover,
@@ -7308,7 +7308,7 @@ fieldset:disabled .btn {
 }
 
 .border-primary {
-    border-color: #113e6a !important;
+    border-color: #005AAB !important;
 }
 
 .border-secondary {
@@ -26392,12 +26392,12 @@ fieldset:disabled .btn {
 
 .bg-hover-primary:hover {
     --bg-color: 0, 158, 247;
-    background-color: #113e6a !important;
+    background-color: #005AAB !important;
 }
 
 .bg-active-primary.active {
     --bg-color: 0, 158, 247;
-    background-color: #113e6a !important;
+    background-color: #005AAB !important;
 }
 
 .bg-state-primary {
@@ -26407,7 +26407,7 @@ fieldset:disabled .btn {
 .bg-state-primary.active,
 .bg-state-primary:hover {
     --bg-color: 0, 158, 247;
-    background-color: #113e6a !important;
+    background-color: #005AAB !important;
 }
 
 .bg-secondary {
@@ -27171,11 +27171,11 @@ fieldset:disabled .btn {
 }
 
 .border-hover-primary:hover {
-    border-color: #113e6a !important;
+    border-color: #005AAB !important;
 }
 
 .border-active-primary.active {
-    border-color: #113e6a !important;
+    border-color: #005AAB !important;
 }
 
 .border-hover-secondary:hover {
@@ -27592,7 +27592,7 @@ fieldset:disabled .btn {
 }
 
 .text-primary {
-    color: #113e6a !important;
+    color: #005AAB !important;
 }
 
 .text-inverse-primary {
@@ -27613,17 +27613,17 @@ fieldset:disabled .btn {
 
 .text-hover-primary:hover {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a !important;
+    color: #005AAB !important;
 }
 
 .text-hover-primary:hover i {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a !important;
+    color: #005AAB !important;
 }
 
 .text-hover-primary:hover .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .text-hover-primary:hover .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -27667,17 +27667,17 @@ fieldset:disabled .btn {
 
 .text-active-primary.active {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a !important;
+    color: #005AAB !important;
 }
 
 .text-active-primary.active i {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a !important;
+    color: #005AAB !important;
 }
 
 .text-active-primary.active .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .text-active-primary.active .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -29344,7 +29344,7 @@ a:hover {
 .nav-line-tabs .nav-item .nav-link:hover:not(.disabled) {
     background-color: transparent;
     border: 0;
-    border-bottom: 1px solid #113e6a;
+    border-bottom: 1px solid #005AAB;
     transition: color 0.2s ease, background-color 0.2s ease;
 }
 
@@ -29514,12 +29514,12 @@ a:hover {
 }
 
 .page-item:focus:not(.disabled) .page-link i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .page-item:focus:not(.disabled) .page-link .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .page-item:focus:not(.disabled) .page-link .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -29541,12 +29541,12 @@ a:hover {
 }
 
 .page-item:hover:not(.disabled) .page-link i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .page-item:hover:not(.disabled) .page-link .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .page-item:hover:not(.disabled) .page-link .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -30793,20 +30793,20 @@ a:hover {
 }
 
 .menu-primary .menu-item .menu-link {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-primary .menu-item .menu-link .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-primary .menu-item .menu-link .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-primary .menu-item .menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-primary .menu-item .menu-link .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -30814,7 +30814,7 @@ a:hover {
 }
 
 .menu-primary .menu-item .menu-link .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-primary .menu-item .menu-link .menu-arrow:after {
@@ -30825,20 +30825,20 @@ a:hover {
 }
 
 .menu-title-primary .menu-item .menu-link {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-title-primary .menu-item .menu-link .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-icon-primary .menu-item .menu-link .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-icon-primary .menu-item .menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-icon-primary .menu-item .menu-link .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -30846,7 +30846,7 @@ a:hover {
 }
 
 .menu-bullet-primary .menu-item .menu-link .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-arrow-primary .menu-item .menu-link .menu-arrow:after {
@@ -31981,23 +31981,23 @@ a:hover {
 .menu-hover-primary .menu-item.hover>.menu-link:not(.disabled):not(.active),
 .menu-hover-primary .menu-item .menu-link:hover:not(.disabled):not(.active) {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-hover-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-title,
 .menu-hover-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-hover-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon i,
 .menu-hover-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-hover-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g),
 .menu-hover-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-hover-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -32007,7 +32007,7 @@ a:hover {
 
 .menu-hover-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-bullet .bullet,
 .menu-hover-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-hover-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-arrow:after,
@@ -32021,23 +32021,23 @@ a:hover {
 .menu-show-primary .menu-item.here>.menu-link,
 .menu-show-primary .menu-item.show>.menu-link {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-show-primary .menu-item.here>.menu-link .menu-title,
 .menu-show-primary .menu-item.show>.menu-link .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-show-primary .menu-item.here>.menu-link .menu-icon i,
 .menu-show-primary .menu-item.show>.menu-link .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-show-primary .menu-item.here>.menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g),
 .menu-show-primary .menu-item.show>.menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-show-primary .menu-item.here>.menu-link .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -32047,7 +32047,7 @@ a:hover {
 
 .menu-show-primary .menu-item.here>.menu-link .menu-bullet .bullet,
 .menu-show-primary .menu-item.show>.menu-link .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-show-primary .menu-item.here>.menu-link .menu-arrow:after,
@@ -32060,20 +32060,20 @@ a:hover {
 
 .menu-active-primary .menu-item .menu-link.active {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-active-primary .menu-item .menu-link.active .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-active-primary .menu-item .menu-link.active .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-active-primary .menu-item .menu-link.active .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-active-primary .menu-item .menu-link.active .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -32081,7 +32081,7 @@ a:hover {
 }
 
 .menu-active-primary .menu-item .menu-link.active .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-active-primary .menu-item .menu-link.active .menu-arrow:after {
@@ -32094,23 +32094,23 @@ a:hover {
 .menu-state-primary .menu-item.hover>.menu-link:not(.disabled):not(.active),
 .menu-state-primary .menu-item .menu-link:hover:not(.disabled):not(.active) {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-title,
 .menu-state-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon i,
 .menu-state-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g),
 .menu-state-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-state-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -32120,7 +32120,7 @@ a:hover {
 
 .menu-state-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-bullet .bullet,
 .menu-state-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-state-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-arrow:after,
@@ -32134,23 +32134,23 @@ a:hover {
 .menu-state-primary .menu-item.here>.menu-link,
 .menu-state-primary .menu-item.show>.menu-link {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-primary .menu-item.here>.menu-link .menu-title,
 .menu-state-primary .menu-item.show>.menu-link .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-primary .menu-item.here>.menu-link .menu-icon i,
 .menu-state-primary .menu-item.show>.menu-link .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-primary .menu-item.here>.menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g),
 .menu-state-primary .menu-item.show>.menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-state-primary .menu-item.here>.menu-link .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -32160,7 +32160,7 @@ a:hover {
 
 .menu-state-primary .menu-item.here>.menu-link .menu-bullet .bullet,
 .menu-state-primary .menu-item.show>.menu-link .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-state-primary .menu-item.here>.menu-link .menu-arrow:after,
@@ -32173,20 +32173,20 @@ a:hover {
 
 .menu-state-primary .menu-item .menu-link.active {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-primary .menu-item .menu-link.active .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-primary .menu-item .menu-link.active .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-primary .menu-item .menu-link.active .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-state-primary .menu-item .menu-link.active .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -32194,7 +32194,7 @@ a:hover {
 }
 
 .menu-state-primary .menu-item .menu-link.active .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-state-primary .menu-item .menu-link.active .menu-arrow:after {
@@ -32207,7 +32207,7 @@ a:hover {
 .menu-hover-bg-primary .menu-item.hover>.menu-link:not(.disabled):not(.active),
 .menu-hover-bg-primary .menu-item .menu-link:hover:not(.disabled):not(.active) {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: #113e6a;
+    background-color: #005AAB;
     color: #FFFFFF;
 }
 
@@ -32248,7 +32248,7 @@ a:hover {
 .menu-show-bg-primary .menu-item.here>.menu-link,
 .menu-show-bg-primary .menu-item.show>.menu-link {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: #113e6a;
+    background-color: #005AAB;
     color: #FFFFFF;
 }
 
@@ -32288,7 +32288,7 @@ a:hover {
 
 .menu-active-bg-primary .menu-item .menu-link.active {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: #113e6a;
+    background-color: #005AAB;
     color: #FFFFFF;
 }
 
@@ -32323,7 +32323,7 @@ a:hover {
 .menu-state-bg-primary .menu-item.hover>.menu-link:not(.disabled):not(.active),
 .menu-state-bg-primary .menu-item .menu-link:hover:not(.disabled):not(.active) {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: #113e6a;
+    background-color: #005AAB;
     color: #FFFFFF;
 }
 
@@ -32364,7 +32364,7 @@ a:hover {
 .menu-state-bg-primary .menu-item.here>.menu-link,
 .menu-state-bg-primary .menu-item.show>.menu-link {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: #113e6a;
+    background-color: #005AAB;
     color: #FFFFFF;
 }
 
@@ -32404,7 +32404,7 @@ a:hover {
 
 .menu-state-bg-primary .menu-item .menu-link.active {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: #113e6a;
+    background-color: #005AAB;
     color: #FFFFFF;
 }
 
@@ -32440,23 +32440,23 @@ a:hover {
 .menu-show-bg-light-primary .menu-item.show>.menu-link {
     transition: color 0.2s ease, background-color 0.2s ease;
     background-color: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-show-bg-light-primary .menu-item.here>.menu-link .menu-title,
 .menu-show-bg-light-primary .menu-item.show>.menu-link .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-show-bg-light-primary .menu-item.here>.menu-link .menu-icon i,
 .menu-show-bg-light-primary .menu-item.show>.menu-link .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-show-bg-light-primary .menu-item.here>.menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g),
 .menu-show-bg-light-primary .menu-item.show>.menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-show-bg-light-primary .menu-item.here>.menu-link .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -32466,7 +32466,7 @@ a:hover {
 
 .menu-show-bg-light-primary .menu-item.here>.menu-link .menu-bullet .bullet,
 .menu-show-bg-light-primary .menu-item.show>.menu-link .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-show-bg-light-primary .menu-item.here>.menu-link .menu-arrow:after,
@@ -32481,23 +32481,23 @@ a:hover {
 .menu-hover-bg-light-primary .menu-item .menu-link:hover:not(.disabled):not(.active) {
     transition: color 0.2s ease, background-color 0.2s ease;
     background-color: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-hover-bg-light-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-title,
 .menu-hover-bg-light-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-hover-bg-light-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon i,
 .menu-hover-bg-light-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-hover-bg-light-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g),
 .menu-hover-bg-light-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-hover-bg-light-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -32507,7 +32507,7 @@ a:hover {
 
 .menu-hover-bg-light-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-bullet .bullet,
 .menu-hover-bg-light-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-hover-bg-light-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-arrow:after,
@@ -32521,20 +32521,20 @@ a:hover {
 .menu-active-bg-light-primary .menu-item .menu-link.active {
     transition: color 0.2s ease, background-color 0.2s ease;
     background-color: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-active-bg-light-primary .menu-item .menu-link.active .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-active-bg-light-primary .menu-item .menu-link.active .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-active-bg-light-primary .menu-item .menu-link.active .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-active-bg-light-primary .menu-item .menu-link.active .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -32542,7 +32542,7 @@ a:hover {
 }
 
 .menu-active-bg-light-primary .menu-item .menu-link.active .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-active-bg-light-primary .menu-item .menu-link.active .menu-arrow:after {
@@ -32556,23 +32556,23 @@ a:hover {
 .menu-state-bg-light-primary .menu-item.show>.menu-link {
     transition: color 0.2s ease, background-color 0.2s ease;
     background-color: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item.here>.menu-link .menu-title,
 .menu-state-bg-light-primary .menu-item.show>.menu-link .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item.here>.menu-link .menu-icon i,
 .menu-state-bg-light-primary .menu-item.show>.menu-link .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item.here>.menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g),
 .menu-state-bg-light-primary .menu-item.show>.menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item.here>.menu-link .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -32582,7 +32582,7 @@ a:hover {
 
 .menu-state-bg-light-primary .menu-item.here>.menu-link .menu-bullet .bullet,
 .menu-state-bg-light-primary .menu-item.show>.menu-link .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item.here>.menu-link .menu-arrow:after,
@@ -32597,23 +32597,23 @@ a:hover {
 .menu-state-bg-light-primary .menu-item .menu-link:hover:not(.disabled):not(.active) {
     transition: color 0.2s ease, background-color 0.2s ease;
     background-color: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-title,
 .menu-state-bg-light-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon i,
 .menu-state-bg-light-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g),
 .menu-state-bg-light-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -32623,7 +32623,7 @@ a:hover {
 
 .menu-state-bg-light-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-bullet .bullet,
 .menu-state-bg-light-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-arrow:after,
@@ -32637,20 +32637,20 @@ a:hover {
 .menu-state-bg-light-primary .menu-item .menu-link.active {
     transition: color 0.2s ease, background-color 0.2s ease;
     background-color: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item .menu-link.active .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item .menu-link.active .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item .menu-link.active .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item .menu-link.active .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -32658,7 +32658,7 @@ a:hover {
 }
 
 .menu-state-bg-light-primary .menu-item .menu-link.active .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-state-bg-light-primary .menu-item .menu-link.active .menu-arrow:after {
@@ -32671,63 +32671,63 @@ a:hover {
 .menu-hover-title-primary .menu-item.hover>.menu-link:not(.disabled):not(.active),
 .menu-hover-title-primary .menu-item .menu-link:hover:not(.disabled):not(.active) {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-hover-title-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-title,
 .menu-hover-title-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-show-title-primary .menu-item.here>.menu-link,
 .menu-show-title-primary .menu-item.show>.menu-link {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-show-title-primary .menu-item.here>.menu-link .menu-title,
 .menu-show-title-primary .menu-item.show>.menu-link .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-active-title-primary .menu-item .menu-link.active {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-active-title-primary .menu-item .menu-link.active .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-title-primary .menu-item.hover>.menu-link:not(.disabled):not(.active),
 .menu-state-title-primary .menu-item .menu-link:hover:not(.disabled):not(.active) {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-title-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-title,
 .menu-state-title-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-title-primary .menu-item.here>.menu-link,
 .menu-state-title-primary .menu-item.show>.menu-link {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-title-primary .menu-item.here>.menu-link .menu-title,
 .menu-state-title-primary .menu-item.show>.menu-link .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-title-primary .menu-item .menu-link.active {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-title-primary .menu-item .menu-link.active .menu-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-hover-icon-primary .menu-item.hover>.menu-link:not(.disabled):not(.active),
@@ -32737,13 +32737,13 @@ a:hover {
 
 .menu-hover-icon-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon i,
 .menu-hover-icon-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-hover-icon-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g),
 .menu-hover-icon-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-hover-icon-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -32758,13 +32758,13 @@ a:hover {
 
 .menu-show-icon-primary .menu-item.here>.menu-link .menu-icon i,
 .menu-show-icon-primary .menu-item.show>.menu-link .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-show-icon-primary .menu-item.here>.menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g),
 .menu-show-icon-primary .menu-item.show>.menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-show-icon-primary .menu-item.here>.menu-link .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -32777,12 +32777,12 @@ a:hover {
 }
 
 .menu-active-icon-primary .menu-item .menu-link.active .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-active-icon-primary .menu-item .menu-link.active .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-active-icon-primary .menu-item .menu-link.active .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -32796,13 +32796,13 @@ a:hover {
 
 .menu-state-icon-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon i,
 .menu-state-icon-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-icon-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g),
 .menu-state-icon-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-state-icon-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -32817,13 +32817,13 @@ a:hover {
 
 .menu-state-icon-primary .menu-item.here>.menu-link .menu-icon i,
 .menu-state-icon-primary .menu-item.show>.menu-link .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-icon-primary .menu-item.here>.menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g),
 .menu-state-icon-primary .menu-item.show>.menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-state-icon-primary .menu-item.here>.menu-link .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -32836,12 +32836,12 @@ a:hover {
 }
 
 .menu-state-icon-primary .menu-item .menu-link.active .menu-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .menu-state-icon-primary .menu-item .menu-link.active .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .menu-state-icon-primary .menu-item .menu-link.active .menu-icon .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -32855,7 +32855,7 @@ a:hover {
 
 .menu-hover-bullet-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-bullet .bullet,
 .menu-hover-bullet-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-show-bullet-primary .menu-item.here>.menu-link,
@@ -32865,7 +32865,7 @@ a:hover {
 
 .menu-show-bullet-primary .menu-item.here>.menu-link .menu-bullet .bullet,
 .menu-show-bullet-primary .menu-item.show>.menu-link .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-active-bullet-primary .menu-item .menu-link.active {
@@ -32873,7 +32873,7 @@ a:hover {
 }
 
 .menu-active-bullet-primary .menu-item .menu-link.active .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-state-bullet-primary .menu-item.hover>.menu-link:not(.disabled):not(.active),
@@ -32883,7 +32883,7 @@ a:hover {
 
 .menu-state-bullet-primary .menu-item.hover>.menu-link:not(.disabled):not(.active) .menu-bullet .bullet,
 .menu-state-bullet-primary .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-state-bullet-primary .menu-item.here>.menu-link,
@@ -32893,7 +32893,7 @@ a:hover {
 
 .menu-state-bullet-primary .menu-item.here>.menu-link .menu-bullet .bullet,
 .menu-state-bullet-primary .menu-item.show>.menu-link .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-state-bullet-primary .menu-item .menu-link.active {
@@ -32901,7 +32901,7 @@ a:hover {
 }
 
 .menu-state-bullet-primary .menu-item .menu-link.active .menu-bullet .bullet {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .menu-hover-arrow-primary .menu-item.hover>.menu-link:not(.disabled):not(.active),
@@ -33006,7 +33006,7 @@ a:hover {
 }
 
 .anchor:hover a:hover {
-    color: #113e6a;
+    color: #005AAB;
     transition: all 0.2s ease;
 }
 
@@ -33866,8 +33866,8 @@ a:hover {
 
 .btn.btn-primary {
     color: #FFFFFF;
-    border-color: #113e6a;
-    background-color: #113e6a;
+    border-color: #005AAB;
+    background-color: #005AAB;
 }
 
 .btn.btn-primary i {
@@ -33946,18 +33946,18 @@ a:hover {
 }
 
 .btn.btn-light-primary {
-    color: #113e6a;
+    color: #005AAB;
     border-color: #ECF8FF;
     background-color: #ECF8FF;
 }
 
 .btn.btn-light-primary i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn.btn-light-primary .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .btn.btn-light-primary .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -33965,7 +33965,7 @@ a:hover {
 }
 
 .btn.btn-light-primary.dropdown-toggle:after {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn-check:checked+.btn.btn-light-primary,
@@ -33977,8 +33977,8 @@ a:hover {
 .btn.btn-light-primary.show,
 .show>.btn.btn-light-primary {
     color: #FFFFFF;
-    border-color: #113e6a;
-    background-color: #113e6a !important;
+    border-color: #005AAB;
+    background-color: #005AAB !important;
 }
 
 .btn-check:checked+.btn.btn-light-primary i,
@@ -34027,8 +34027,8 @@ a:hover {
 }
 
 .btn.btn-bg-primary {
-    border-color: #113e6a;
-    background-color: #113e6a;
+    border-color: #005AAB;
+    background-color: #005AAB;
 }
 
 .btn-check:checked+.btn.btn-active-primary,
@@ -34040,8 +34040,8 @@ a:hover {
 .btn.btn-active-primary.show,
 .show>.btn.btn-active-primary {
     color: #FFFFFF;
-    border-color: #113e6a;
-    background-color: #113e6a !important;
+    border-color: #005AAB;
+    background-color: #005AAB !important;
 }
 
 .btn-check:checked+.btn.btn-active-primary i,
@@ -34097,7 +34097,7 @@ a:hover {
 .btn.btn-active-light-primary.active,
 .btn.btn-active-light-primary.show,
 .show>.btn.btn-active-light-primary {
-    color: #113e6a;
+    color: #005AAB;
     border-color: #ECF8FF;
     background-color: #ECF8FF !important;
 }
@@ -34110,7 +34110,7 @@ a:hover {
 .btn.btn-active-light-primary.active i,
 .btn.btn-active-light-primary.show i,
 .show>.btn.btn-active-light-primary i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn-check:checked+.btn.btn-active-light-primary .svg-icon svg [fill]:not(.permanent):not(g),
@@ -34122,7 +34122,7 @@ a:hover {
 .btn.btn-active-light-primary.show .svg-icon svg [fill]:not(.permanent):not(g),
 .show>.btn.btn-active-light-primary .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .btn-check:checked+.btn.btn-active-light-primary .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -34144,11 +34144,11 @@ a:hover {
 .btn.btn-active-light-primary.active.dropdown-toggle:after,
 .btn.btn-active-light-primary.show.dropdown-toggle:after,
 .show>.btn.btn-active-light-primary.dropdown-toggle:after {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn.btn-active-light-primary.btn-outline:not(.btn-outline-default) {
-    border-color: #113e6a !important;
+    border-color: #005AAB !important;
 }
 
 .btn.btn-secondary {
@@ -35885,16 +35885,16 @@ a:hover {
 }
 
 .btn.btn-color-primary {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn.btn-color-primary i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn.btn-color-primary .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .btn.btn-color-primary .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -35902,7 +35902,7 @@ a:hover {
 }
 
 .btn.btn-color-primary.dropdown-toggle:after {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn-check:checked+.btn.btn-active-color-primary,
@@ -35913,7 +35913,7 @@ a:hover {
 .btn.btn-active-color-primary.active,
 .btn.btn-active-color-primary.show,
 .show>.btn.btn-active-color-primary {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn-check:checked+.btn.btn-active-color-primary i,
@@ -35924,7 +35924,7 @@ a:hover {
 .btn.btn-active-color-primary.active i,
 .btn.btn-active-color-primary.show i,
 .show>.btn.btn-active-color-primary i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn-check:checked+.btn.btn-active-color-primary .svg-icon svg [fill]:not(.permanent):not(g),
@@ -35936,7 +35936,7 @@ a:hover {
 .btn.btn-active-color-primary.show .svg-icon svg [fill]:not(.permanent):not(g),
 .show>.btn.btn-active-color-primary .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .btn-check:checked+.btn.btn-active-color-primary .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -35958,16 +35958,16 @@ a:hover {
 .btn.btn-active-color-primary.active.dropdown-toggle:after,
 .btn.btn-active-color-primary.show.dropdown-toggle:after,
 .show>.btn.btn-active-color-primary.dropdown-toggle:after {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn.btn-icon-primary i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn.btn-icon-primary .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .btn.btn-icon-primary .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -35975,7 +35975,7 @@ a:hover {
 }
 
 .btn.btn-icon-primary.dropdown-toggle:after {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn-check:checked+.btn.btn-active-icon-primary i,
@@ -35986,7 +35986,7 @@ a:hover {
 .btn.btn-active-icon-primary.active i,
 .btn.btn-active-icon-primary.show i,
 .show>.btn.btn-active-icon-primary i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn-check:checked+.btn.btn-active-icon-primary .svg-icon svg [fill]:not(.permanent):not(g),
@@ -35998,7 +35998,7 @@ a:hover {
 .btn.btn-active-icon-primary.show .svg-icon svg [fill]:not(.permanent):not(g),
 .show>.btn.btn-active-icon-primary .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .btn-check:checked+.btn.btn-active-icon-primary .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -36020,11 +36020,11 @@ a:hover {
 .btn.btn-active-icon-primary.active.dropdown-toggle:after,
 .btn.btn-active-icon-primary.show.dropdown-toggle:after,
 .show>.btn.btn-active-icon-primary.dropdown-toggle:after {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn.btn-text-primary {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn-check:checked+.btn.btn-active-text-primary,
@@ -36035,7 +36035,7 @@ a:hover {
 .btn.btn-active-text-primary.active,
 .btn.btn-active-text-primary.show,
 .show>.btn.btn-active-text-primary {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn.btn-color-secondary {
@@ -39365,7 +39365,7 @@ a:hover {
 .btn.btn-outline.btn-outline-dashed.active,
 .btn.btn-outline.btn-outline-dashed.show,
 .show>.btn.btn-outline.btn-outline-dashed {
-    border-color: #113e6a;
+    border-color: #005AAB;
 }
 
 .btn.btn-outline.btn-outline-dashed.btn-outline-default {
@@ -39400,8 +39400,8 @@ a:hover {
 .btn.btn-outline.btn-outline-dashed.btn-outline-default.active,
 .btn.btn-outline.btn-outline-dashed.btn-outline-default.show,
 .show>.btn.btn-outline.btn-outline-dashed.btn-outline-default {
-    color: #113e6a;
-    border-color: #113e6a;
+    color: #005AAB;
+    border-color: #005AAB;
     background-color: #ECF8FF !important;
 }
 
@@ -39413,7 +39413,7 @@ a:hover {
 .btn.btn-outline.btn-outline-dashed.btn-outline-default.active i,
 .btn.btn-outline.btn-outline-dashed.btn-outline-default.show i,
 .show>.btn.btn-outline.btn-outline-dashed.btn-outline-default i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .btn-check:checked+.btn.btn-outline.btn-outline-dashed.btn-outline-default .svg-icon svg [fill]:not(.permanent):not(g),
@@ -39425,7 +39425,7 @@ a:hover {
 .btn.btn-outline.btn-outline-dashed.btn-outline-default.show .svg-icon svg [fill]:not(.permanent):not(g),
 .show>.btn.btn-outline.btn-outline-dashed.btn-outline-default .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .btn-check:checked+.btn.btn-outline.btn-outline-dashed.btn-outline-default .svg-icon svg:hover [fill]:not(.permanent):not(g),
@@ -39447,7 +39447,7 @@ a:hover {
 .btn.btn-outline.btn-outline-dashed.btn-outline-default.active.dropdown-toggle:after,
 .btn.btn-outline.btn-outline-dashed.btn-outline-default.show.dropdown-toggle:after,
 .show>.btn.btn-outline.btn-outline-dashed.btn-outline-default.dropdown-toggle:after {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 code:not([class*=language-]) {
@@ -39646,7 +39646,7 @@ code:not([class*=language-]) {
 }
 
 .form-check.form-check-solid .form-check-input:checked {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .form-check.form-check-success .form-check-input:checked {
@@ -41474,7 +41474,7 @@ code:not([class*=language-]) {
 }
 
 .popover .popover-dismiss:hover i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .popover .popover-dismiss+.popover-header {
@@ -41589,12 +41589,12 @@ code:not([class*=language-]) {
 }
 
 .accordion.accordion-icon-toggle .accordion-icon i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .accordion.accordion-icon-toggle .accordion-icon .svg-icon svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .accordion.accordion-icon-toggle .accordion-icon .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -44784,7 +44784,7 @@ code:not([class*=language-]) {
 }
 
 .pulse.pulse-primary .pulse-ring {
-    border-color: #113e6a;
+    border-color: #005AAB;
 }
 
 .pulse.pulse-secondary .pulse-ring {
@@ -44875,7 +44875,7 @@ code:not([class*=language-]) {
     left: 20px;
     cursor: pointer;
     z-index: 100;
-    background-color: #113e6a;
+    background-color: #005AAB;
     box-shadow: 0 0.5rem 1.5rem 0.5rem rgba(0, 0, 0, 0.075);
     opacity: 0;
     transition: color 0.2s ease, background-color 0.2s ease;
@@ -44971,7 +44971,7 @@ code:not([class*=language-]) {
 
 .svg-icon.svg-icon-primary svg [fill]:not(.permanent):not(g) {
     transition: fill 0.3s ease;
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .svg-icon.svg-icon-primary svg:hover [fill]:not(.permanent):not(g) {
@@ -46066,11 +46066,11 @@ code:not([class*=language-]) {
 
 .badge-primary {
     color: #FFFFFF;
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .badge-light-primary {
-    color: #113e6a;
+    color: #005AAB;
     background-color: #ECF8FF;
 }
 
@@ -46652,7 +46652,7 @@ label.rating-label:hover~.rating-label>.svg-icon svg:hover [fill]:not(.permanent
 
 .stepper.stepper-pills .stepper-item .stepper-icon .stepper-number {
     font-weight: 600;
-    color: #113e6a !important;
+    color: #005AAB !important;
     font-size: 1.25rem;
 }
 
@@ -46679,11 +46679,11 @@ label.rating-label:hover~.rating-label>.svg-icon svg:hover [fill]:not(.permanent
 
 .stepper.stepper-pills .stepper-item.current .stepper-icon {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .stepper.stepper-pills .stepper-item.current .stepper-icon .stepper-check {
-    color: #113e6a;
+    color: #005AAB;
     display: none;
 }
 
@@ -46708,7 +46708,7 @@ label.rating-label:hover~.rating-label>.svg-icon svg:hover [fill]:not(.permanent
 
 .stepper.stepper-pills .stepper-item.current:last-child .stepper-icon .stepper-check,
 .stepper.stepper-pills .stepper-item.completed .stepper-icon .stepper-check {
-    color: #113e6a !important;
+    color: #005AAB !important;
     display: inline-block;
 }
 
@@ -46795,7 +46795,7 @@ label.rating-label:hover~.rating-label>.svg-icon svg:hover [fill]:not(.permanent
     padding: 5px 10px;
     position: absolute;
     z-index: 1;
-    background-color: #113e6a;
+    background-color: #005AAB;
     box-shadow: 0px -1px 5px 0px rgba(0, 0, 0, 0.1);
     color: #FFFFFF;
     top: 50%;
@@ -47133,11 +47133,11 @@ label.rating-label:hover~.rating-label>.svg-icon svg:hover [fill]:not(.permanent
 }
 
 .stepper.stepper-links .stepper-nav .stepper-item.current .stepper-title {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .stepper.stepper-links .stepper-nav .stepper-item.current:after {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .stepper.stepper-links .stepper-nav .stepper-item.completed .stepper-title {
@@ -47298,7 +47298,7 @@ label.rating-label:hover~.rating-label>.svg-icon svg:hover [fill]:not(.permanent
 }
 
 [data-kt-sticky-landing-header=on] .landing-header .menu .menu-link.active {
-    color: #113e6a;
+    color: #005AAB;
     background-color: rgba(239, 242, 245, 0.4);
 }
 
@@ -47338,7 +47338,7 @@ body[data-kt-sticky-landing-header=on] {
         height: 70px;
     }
     .landing-header .menu .menu-link.active {
-        color: #113e6a;
+        color: #005AAB;
         background-color: rgba(239, 242, 245, 0.4);
     }
     body[data-kt-sticky-landing-header=on] {
@@ -47506,7 +47506,7 @@ body {
         left: 0;
         right: 0;
         z-index: 100;
-        background-color: #113e6a;
+        background-color: #005AAB;
         box-shadow: 0px 10px 30px 0px rgba(82, 63, 105, 0.05);
         height: 65px;
         padding: 0;
@@ -47667,7 +47667,7 @@ body {
         z-index: 100;
         height: 55px;
         min-height: 55px;
-        background-color: #113e6a;
+        background-color: #005AAB;
         box-shadow: 0px 10px 30px 0px rgba(82, 63, 105, 0.05);
     }
     .header-tablet-and-mobile-fixed.toolbar-tablet-and-mobile-fixed .header {
@@ -47784,7 +47784,7 @@ body {
     flex-direction: column;
     box-shadow: 0 0 28px 0 rgba(82, 63, 105, 0.05);
     padding: 0;
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .aside .aside-logo {
@@ -48455,7 +48455,7 @@ body {
 .highlight .highlight-copy:hover {
     transition: all 0.2s ease;
     background-color: #323268;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .highlight:hover .highlight-copy {
@@ -48742,12 +48742,12 @@ body {
 
 .select2-container--bootstrap5 .select2-dropdown .select2-results__option.select2-results__option--highlighted {
     background-color: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
     transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .select2-container--bootstrap5 .select2-dropdown .select2-results__option.select2-results__option--selected {
-    background-color: #113e6a;
+    background-color: #005AAB;
     color: #FFFFFF;
     transition: color 0.2s ease, background-color 0.2s ease;
 }
@@ -48867,12 +48867,12 @@ body {
 
 .daterangepicker .ranges li:hover {
     background-color: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
     transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .daterangepicker .ranges li.active {
-    background-color: #113e6a;
+    background-color: #005AAB;
     color: #FFFFFF;
     transition: color 0.2s ease, background-color 0.2s ease;
 }
@@ -49006,7 +49006,7 @@ body {
 .daterangepicker .drp-calendar th.available:hover,
 .daterangepicker .drp-calendar td.available:hover {
     background-color: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .daterangepicker .drp-calendar th {
@@ -49027,7 +49027,7 @@ body {
 
 .daterangepicker .drp-calendar th.prev.available:hover span,
 .daterangepicker .drp-calendar th.next.available:hover span {
-    border-color: #113e6a;
+    border-color: #005AAB;
 }
 
 .daterangepicker .drp-calendar th.next span {
@@ -49047,7 +49047,7 @@ body {
 }
 
 .daterangepicker .drp-calendar td.active {
-    background-color: #113e6a !important;
+    background-color: #005AAB !important;
     color: #FFFFFF !important;
 }
 
@@ -49064,17 +49064,17 @@ body {
 .daterangepicker .drp-calendar td.today,
 .daterangepicker .drp-calendar td.today.active {
     background: #ECF8FF !important;
-    color: #113e6a !important;
+    color: #005AAB !important;
 }
 
 .daterangepicker .drp-calendar td.in-range.available:not(.active):not(.off):not(.today) {
     background-color: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .daterangepicker .drp-calendar td:hover {
     background-color: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .daterangepicker select.ampmselect,
@@ -49338,7 +49338,7 @@ span.flatpickr-weekday {
     cursor: pointer;
     outline: 0;
     background: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
     border-color: transparent;
 }
 
@@ -49373,7 +49373,7 @@ span.flatpickr-weekday {
 .flatpickr-day.selected.nextMonthDay,
 .flatpickr-day.startRange.nextMonthDay,
 .flatpickr-day.endRange.nextMonthDay {
-    background: #113e6a;
+    background: #005AAB;
     color: #FFFFFF;
     border-color: transparent;
 }
@@ -49393,7 +49393,7 @@ span.flatpickr-weekday {
     cursor: pointer;
     outline: 0;
     background: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
     border-color: transparent;
 }
 
@@ -49426,7 +49426,7 @@ span.flatpickr-weekday {
 .flatpickr-day.selected.nextMonthDay,
 .flatpickr-day.startRange.nextMonthDay,
 .flatpickr-day.endRange.nextMonthDay {
-    background: #113e6a;
+    background: #005AAB;
     color: #FFFFFF;
     border-color: transparent;
 }
@@ -49650,7 +49650,7 @@ span.flatpickr-weekday {
 .tagify__dropdown .tagify__dropdown__item:hover,
 .tagify__dropdown .tagify__dropdown__item.tagify__dropdown__item--active {
     background-color: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .tagify__dropdown.tagify__inline__suggestions {
@@ -49669,7 +49669,7 @@ span.flatpickr-weekday {
 .tagify__dropdown.tagify__inline__suggestions .tagify__dropdown__item:hover,
 .tagify__dropdown.tagify__inline__suggestions .tagify__dropdown__item.tagify__dropdown__item--active {
     background-color: #ECF8FF;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .bootstrap-maxlength {
@@ -49693,7 +49693,7 @@ span.flatpickr-weekday {
 }
 
 .ck-content.ck-focused {
-    border-color: #113e6a !important;
+    border-color: #005AAB !important;
     box-shadow: none !important;
 }
 
@@ -49703,7 +49703,7 @@ span.flatpickr-weekday {
 }
 
 .ck-body .ck-balloon-panel .ck-content.ck-focused {
-    border-color: #113e6a !important;
+    border-color: #005AAB !important;
 }
 
 table.dataTable {
@@ -49813,7 +49813,7 @@ div.dataTables_wrapper div.dataTables_processing {
     padding: 1.5rem 1.75rem;
     text-align: center;
     cursor: pointer;
-    border: 1px dashed #113e6a;
+    border: 1px dashed #005AAB;
     background-color: #ECF8FF;
     border-radius: 0 !important;
 }
@@ -49922,7 +49922,7 @@ div.dataTables_wrapper div.dataTables_processing {
 }
 
 .dropzone.dropzone-queue .dropzone-item .dropzone-file .dropzone-filename:hover {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .dropzone.dropzone-queue .dropzone-item .dropzone-file .dropzone-error {
@@ -49983,7 +49983,7 @@ div.dataTables_wrapper div.dataTables_processing {
 .dropzone.dropzone-queue .dropzone-item .dropzone-toolbar .dropzone-start:hover i,
 .dropzone.dropzone-queue .dropzone-item .dropzone-toolbar .dropzone-cancel:hover i,
 .dropzone.dropzone-queue .dropzone-item .dropzone-toolbar .dropzone-delete:hover i {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .dropzone.dropzone-queue .dropzone-item .dropzone-toolbar .dropzone-start {
@@ -50052,7 +50052,7 @@ div.dataTables_wrapper div.dataTables_processing {
 }
 
 .noUi-target .noUi-connect {
-    background: #113e6a;
+    background: #005AAB;
 }
 
 .noUi-target .noUi-handle {
@@ -50125,7 +50125,7 @@ div.dataTables_wrapper div.dataTables_processing {
 .ql-toolbar.ql-snow button:focus .ql-stroke,
 .ql-toolbar.ql-snow button:hover .ql-fill,
 .ql-toolbar.ql-snow button:hover .ql-stroke {
-    stroke: #113e6a;
+    stroke: #005AAB;
 }
 
 .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-fill,
@@ -50136,7 +50136,7 @@ div.dataTables_wrapper div.dataTables_processing {
 .ql-toolbar.ql-snow button.ql-active .ql-fill,
 .ql-toolbar.ql-snow button:focus .ql-fill,
 .ql-toolbar.ql-snow button:hover .ql-fill {
-    fill: #113e6a;
+    fill: #005AAB;
 }
 
 .ql-editor {
@@ -50161,7 +50161,7 @@ div.dataTables_wrapper div.dataTables_processing {
 
 .ql-snow .ql-picker .ql-picker-label.ql-active,
 .ql-snow .ql-picker .ql-picker-label:hover {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .ql-snow .ql-picker.ql-expanded {
@@ -50171,13 +50171,13 @@ div.dataTables_wrapper div.dataTables_processing {
 
 .ql-snow .ql-picker.ql-expanded .ql-picker-label {
     border-color: transparent !important;
-    color: #113e6a;
+    color: #005AAB;
     outline: none !important;
 }
 
 .ql-snow .ql-picker.ql-expanded .ql-picker-label.ql-active,
 .ql-snow .ql-picker.ql-expanded .ql-picker-label:hover {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .ql-snow .ql-picker.ql-expanded .ql-picker-options {
@@ -50195,7 +50195,7 @@ div.dataTables_wrapper div.dataTables_processing {
 .ql-snow .ql-picker.ql-expanded .ql-picker-options .ql-picker-item.ql-selected,
 .ql-snow .ql-picker.ql-expanded .ql-picker-options .ql-picker-item.ql-active,
 .ql-snow .ql-picker.ql-expanded .ql-picker-options .ql-picker-item:hover {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .ql-snow .ql-tooltip {
@@ -50231,7 +50231,7 @@ div.dataTables_wrapper div.dataTables_processing {
 
 .ql-snow .ql-tooltip .ql-action:hover {
     transition: color 0.3s ease;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .modal .ql-snow .ql-tooltip.ql-editing {
@@ -50375,8 +50375,8 @@ body.swal2-height-auto {
 }
 
 .swal2-icon.swal2-question {
-    border-color: #113e6a;
-    color: #113e6a;
+    border-color: #005AAB;
+    color: #005AAB;
 }
 
 .tox-target {
@@ -50600,7 +50600,7 @@ body.swal2-height-auto {
 }
 
 .apexcharts-bar-hover-primary .apexcharts-bar-area:hover {
-    fill: #113e6a !important;
+    fill: #005AAB !important;
 }
 
 .apexcharts-bar-hover-secondary .apexcharts-bar-area:hover {
@@ -50714,7 +50714,7 @@ body.swal2-height-auto {
     border: 0;
     margin: 0 0.25rem;
     padding: 0.5rem 0.75rem;
-    background-color: #113e6a;
+    background-color: #005AAB;
     color: #FFFFFF;
 }
 
@@ -50741,7 +50741,7 @@ body.swal2-height-auto {
 }
 
 .tns .tns-nav button.tns-nav-active {
-    background-color: #113e6a;
+    background-color: #005AAB;
 }
 
 .tns.tns-initiazlied [data-tns=true] {
@@ -50783,8 +50783,8 @@ body.swal2-height-auto {
 }
 
 body {
-    --fc-event-border-color: #113e6a;
-    --fc-event-bg-color: #113e6a;
+    --fc-event-border-color: #005AAB;
+    --fc-event-bg-color: #005AAB;
     --fc-event-text-color: #FFFFFF;
 }
 
@@ -50897,7 +50897,7 @@ body {
 .fc .fc-daygrid-dot-event:hover,
 .fc .fc-daygrid-dot-event.fc-event-mirror {
     background-color: #F5F8FA;
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .fc .fc-daygrid-event-dot {
@@ -50928,7 +50928,7 @@ body {
 }
 
 .fc .fc-popover .fc-popover-header .fc-popover-close:hover {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .fc .fc-popover .fc-popover-body {
@@ -51057,7 +51057,7 @@ body {
 }
 
 .kanban-container .kanban-board .kanban-board-header.primary {
-    background-color: #113e6a;
+    background-color: #005AAB;
     box-shadow: none;
 }
 
@@ -51071,7 +51071,7 @@ body {
 }
 
 .kanban-container .kanban-board .kanban-board-header.light-primary .kanban-title-board {
-    color: #113e6a;
+    color: #005AAB;
 }
 
 .kanban-container .kanban-board .kanban-board-header.secondary {
@@ -51212,14 +51212,14 @@ body {
 }
 
 .kanban-container .kanban-board .kanban-drag .kanban-item[data-class=primary] {
-    background-color: #113e6a;
+    background-color: #005AAB;
     color: #FFFFFF;
     box-shadow: none;
 }
 
 .kanban-container .kanban-board .kanban-drag .kanban-item[data-class=light-primary] {
     background-color: rgba(0, 158, 247, 0.1);
-    color: #113e6a;
+    color: #005AAB;
     box-shadow: none;
 }
 
@@ -51419,7 +51419,7 @@ body {
 .vakata-context ul li a:hover {
     margin: 0;
     background-color: #F5F8FA;
-    color: #113e6a;
+    color: #005AAB;
     box-shadow: none;
 }
 

@@ -27,7 +27,7 @@
             <!--begin::Menu-->
             <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true">
                 <div class="menu-item menu-accordion">
-                    <a class="menu-link" href="{{route('/')}}">
+                    <a class="menu-link" href="">
                         <span class="menu-icon">
                             <i class="bi bi-bar-chart-steps fs-3"></i>
                         </span>
@@ -110,7 +110,7 @@
                         </span>
                         <div class="menu-sub menu-sub-accordion menu-active-bg">
                             <div class="menu-item menu-accordion">
-                                <a class="menu-link" href="">
+                                <a class="menu-link" href="{{ route('register') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>

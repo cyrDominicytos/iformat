@@ -24,6 +24,17 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+     /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        $data['roles'] = roles_list();
+        return view('auth.register', $data);
+    }
+
     /**
      * Where to redirect users after registration.
      *

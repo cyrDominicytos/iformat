@@ -5,14 +5,14 @@
 			<!--begin::Authentication - Sign-in -->
 			<div class="d-flex flex-column flex-lg-row flex-column-fluid">
 				<!--begin::Aside-->
-				<div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative customBg" >
+				<div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative custo" style="background-color:#005AAB">
 					<!--begin::Wrapper-->
 					<div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
 						<!--begin::Content-->
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
 							<a href="../../demo12/dist/index.html" class="py-9 mb-5">
-								<img alt="Logo" src="{{ asset('assets/media/logos/logo-2.svg') }}" class="h-60px" />
+								<img alt="Logo" src="http://www.win-africa.com/images/logo.png" class="h-60px" />
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->

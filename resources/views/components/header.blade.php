@@ -26,16 +26,56 @@
 					<div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch" id="#kt_header_menu" data-kt-menu="true">
 						<div class="menu-item menu-lg-down-accordion me-lg-1">
 							<span class="menu-link py-3">
-								<a class="menu-link bg-color hover-overlay br-dark" href="" style="hover{backhround-color:black}"> 
-									<span class="menu-title" style="color: #fff;">Nouvelle vente</span>
+								<a class="menu-link bg-color hover-overlay br-dark" href="" style="hover:background-color:black"> 
+									<span class="menu-title" style="color: #fff;">Mes formations</span>
 									<span class="menu-arrow d-lg-none"></span>
 								</a>
 							</span>
 						</div>
 						<div class="menu-item menu-lg-down-accordion me-lg-1">
 							<span class="menu-link py-3">
-								<a class="menu-link bg-color hover-overlay br-dark" href="" style="hover{backhround-color:black}"> 
-									<span class="menu-title" style="color: #fff;">Nouvelle Commande</span>
+								<a class="menu-link bg-color hover-overlay br-dark" href="" style="hover:background-color:black"> 
+									<span class="menu-title" style="color: #fff;">Mes évaluations</span>
+									<span class="menu-arrow d-lg-none"></span>
+								</a>
+							</span>
+						</div>
+						<div class="menu-item menu-lg-down-accordion me-lg-1">
+							<span class="menu-link py-3">
+								<a class="menu-link bg-color hover-overlay br-dark" href="" style="hover:background-color:black"> 
+									<span class="menu-title" style="color: #fff;">Salles de formation</span>
+									<span class="menu-arrow d-lg-none"></span>
+								</a>
+							</span>
+						</div>
+						<div class="menu-item menu-lg-down-accordion me-lg-1">
+							<span class="menu-link py-3">
+								<a class="menu-link bg-color hover-overlay br-dark" href="" style="hover:background-color:black"> 
+									<span class="menu-title" style="color: #fff;">Gestion de la présence</span>
+									<span class="menu-arrow d-lg-none"></span>
+								</a>
+							</span>
+						</div>
+						<div class="menu-item menu-lg-down-accordion me-lg-1">
+							<span class="menu-link py-3">
+								<a class="menu-link bg-color hover-overlay br-dark" href="" style="hover:background-color:black"> 
+									<span class="menu-title" style="color: #fff;">Mes évaluations</span>
+									<span class="menu-arrow d-lg-none"></span>
+								</a>
+							</span>
+						</div>
+						<div class="menu-item menu-lg-down-accordion me-lg-1">
+							<span class="menu-link py-3">
+								<a class="menu-link bg-color hover-overlay br-dark" href="" style="hover:background-color:black"> 
+									<span class="menu-title" style="color: #fff;">Gestion des utilisateurs</span>
+									<span class="menu-arrow d-lg-none"></span>
+								</a>
+							</span>
+						</div>
+						<div class="menu-item menu-lg-down-accordion me-lg-1">
+							<span class="menu-link py-3">
+								<a class="menu-link bg-color hover-overlay br-dark" href="" style="hover:background-color:black"> 
+									<span class="menu-title" style="color: #fff;">Gestion des formateurs</span>
 									<span class="menu-arrow d-lg-none"></span>
 								</a>
 							</span>
@@ -625,8 +665,16 @@
 						<!--end::Menu item-->
 						<!--begin::Menu item-->
 						<div class="menu-item px-5">
-							<a href="{{route('logout')}}" class="menu-link px-5">Déconnexion</a>
-						</div>
+							<a class="dropdown-item" href="{{ route('logout') }}"
+								onclick="event.preventDefault();
+												document.getElementById('logout-form').submit();">
+								{{ __('Déconnexion') }}
+							</a>
+
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+								@csrf
+							</form>
+						</div>	
 						<!--end::Menu item-->
 					</div>
 					<!--end::User account menu-->
