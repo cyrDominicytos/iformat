@@ -22,7 +22,6 @@ return new class extends Migration
 
             $table->foreignId("classrooms_user_created_by")->nullable()->constrained("users","id");
             $table->integer("classrooms_user_updated_by")->nullable();
-            $table->timestamps();
             $table->timestamp('classrooms_created_at');
             $table->timestamp('classrooms_updated_at');
         });

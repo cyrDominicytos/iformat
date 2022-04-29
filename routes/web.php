@@ -40,5 +40,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/rooms/store', [Room::class, 'store'])->name('rooms.store');
     Route::post('/rooms/edit', [Room::class, 'edit'])->name('rooms.edit');
+    Route::get('/rooms/delete/{id}', [Room::class, 'destroy'])->name('rooms.delete');
    
 });

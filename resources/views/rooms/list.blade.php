@@ -150,7 +150,7 @@
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#create_modal" onclick="edit(<?= $room->classrooms_id .','. $room->classrooms_countries_id .','. $i?> )" class="menu-link px-3"><i class="fa fa-edit text-primary py-2"> Editer</i></a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#create_modal" onclick="edit(<?= $room->classrooms_id .','. $room->classrooms_countries_id .','. $i?> )" class="menu-link px-3 text-primary"> Editer</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
@@ -184,6 +184,7 @@
     @section('javascript') ?>
     <script type="text/javascript">
         var showModal = "<?= Route::currentRouteName() == '' ? (Route::currentRouteName()) : (Route::currentRouteName()) ?>";
+        var base_url = "<?=URL::to('/') ?>";
         var mes = "Etes-vous sûr de vouloir supprimer ce site de formation ?";
         function deleted(id) {
              Swal.fire({
@@ -201,7 +202,7 @@
                 {
                     if(result.value) 
                         {
-
+                            document.location.href=base_url+"/rooms/delete/"+id;
                         }
                 });  
             

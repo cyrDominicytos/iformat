@@ -42,7 +42,7 @@ class Room extends Controller
 
     public function list()
     {
-        $data['rooms'] = $this->modelRoom->get_rooms_list();
+        $data['rooms'] = $this->modelRoom->get_rooms_list(1);
         $data['countries_list'] = countries_list();
         return view('rooms.list', $data);
     }
@@ -157,6 +157,15 @@ class Room extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response = ClassRoomModel::where("classrooms_id",$id)->update([
+            "classrooms_status"=>-1,
+            'classrooms_user_updated_by' => Auth::user()->id,
+
+        ]);
+        if($response){
+            return redirect('/listRooms')->with('success_message', "Le site de formation a été supprimé avec succès !");
+        }else{
+            return redirect('/listRooms')->with('error_message', "Une erreur s'est produite lors de la suppression du site de formation !");
+        }
     }
 }
