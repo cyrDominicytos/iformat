@@ -645,9 +645,9 @@
 								<!--end::Avatar-->
 								<!--begin::Username-->
 								<div class="d-flex flex-column">
-									<div class="fw-bolder d-flex align-items-center fs-5 text-dark">Nom prénom
-									<span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Admin</span></div>
-									<a href="#" class="fw-bold text-muted text-hover-primary fs-7">admin@gmail.com</a>
+									<div class="fw-bolder d-flex align-items-center fs-5 text-dark">{{Auth::user()->first_name.' '.Auth::user()->last_name}}
+									</div>
+									<a href="#" class="fw-bold text-muted text-hover-primary fs-7"><span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">{{roles_list()[Auth::user()->user_role_id]}}</span></a>
 								</div>
 								<!--end::Username-->
 							</div>
@@ -658,14 +658,14 @@
 						<!--end::Menu separator-->
 						<!--begin::Menu item-->
 						<div class="menu-item px-5">
-							<a href="" class="menu-link px-5">Mon Profile</a>
+							<a href="{{route('register')}}" class="menu-link px-5">Mon Profile</a>
 						</div>
 						<!--end::Menu item-->
 
 						<!--end::Menu item-->
 						<!--begin::Menu item-->
 						<div class="menu-item px-5">
-							<a class="dropdown-item" href="{{ route('logout') }}"
+							<a class="dropdown-item text-black" href="{{ route('logout') }}"
 								onclick="event.preventDefault();
 												document.getElementById('logout-form').submit();">
 								{{ __('Déconnexion') }}

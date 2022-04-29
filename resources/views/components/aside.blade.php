@@ -40,23 +40,24 @@
                         <span class="menu-sectio text-muted text-uppercase fs-8 ls-1"  style="color: #fff;">Fonctionnalités</span>
                     </div>
                 </div>
+                <!-- Classrooms -->
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <i class="bi bi-cash-coin fs-3"></i>
                         </span>
-                        <span class="menu-title">Ventes</span>
+                        <span class="menu-title">Salles de formation</span>
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item menu-accordion">
-                            <a class="menu-link" href="">
+                            <a class="menu-link" href="{{ route('addRoom') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Ajouter</span>
                             </a>
-                            <a class="menu-link" href="">
+                            <a class="menu-link" href="{{ route('listRooms') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -65,7 +66,33 @@
                         </div>
                     </div>
                 </div>
-                
+                <!-- Actions de formation -->
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <i class="bi bi-cash-coin fs-3"></i>
+                        </span>
+                        <span class="menu-title">Actions de formation</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item menu-accordion">
+                            <a class="menu-link" href="{{ route('addLearning') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Ajouter</span>
+                            </a>
+                            <a class="menu-link" href="{{ route('listLearnings') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Consulter liste</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <!-- Admin -->
                     <div class="menu-item">
@@ -79,18 +106,18 @@
                             <span class="menu-icon">
                                 <i class="bi bi-person-plus fs-3"></i>
                             </span>
-                            <span class="menu-title">Cabinet</span>
+                            <span class="menu-title">Commanditaires</span>
                             <span class="menu-arrow"></span>
                         </span>
                         <div class="menu-sub menu-sub-accordion menu-active-bg">
                             <div class="menu-item menu-accordion">
-                                <a class="menu-link" href="">
+                                <a class="menu-link" href="{{ route('addSponsor') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
                                     <span class="menu-title" >Ajouter</span>
                                 </a>
-                                <a class="menu-link" href="">
+                                <a class="menu-link" href="{{ route('users_list',[2]) }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -99,6 +126,58 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Participants -->
+                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <span class="menu-link">
+                            <span class="menu-icon">
+                                <i class="fa fa-user fs-3"></i>
+                            </span>
+                            <span class="menu-title">Participants</span>
+                            <span class="menu-arrow"></span>
+                        </span>
+                        <div class="menu-sub menu-sub-accordion menu-active-bg">
+                            <div class="menu-item menu-accordion">
+                                <a class="menu-link" href="{{ route('addParticipant') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title" >Ajouter</span>
+                                </a>
+                                <a class="menu-link" href="{{ route('users_list',[4]) }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Liste</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>							
+                    <!-- Teachers -->
+                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <span class="menu-link">
+                            <span class="menu-icon">
+                                <i class="fa fa-user fs-3"></i>
+                            </span>
+                            <span class="menu-title">Formateurs</span>
+                            <span class="menu-arrow"></span>
+                        </span>
+                        <div class="menu-sub menu-sub-accordion menu-active-bg">
+                            <div class="menu-item menu-accordion">
+                                <a class="menu-link" href="{{ route('addTeacher') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title" >Ajouter</span>
+                                </a>
+                                <a class="menu-link" href="{{ route('users_list',[3]) }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Liste</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>							
                     <!-- Utilisateur -->
                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                         <span class="menu-link">

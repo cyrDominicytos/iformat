@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'IFORMAT') }}</title>
     <!-- Scripts -->
+	<link rel="shortcut icon" type="text/css" href="http://www.win-africa.com/images/logo.png" />
     <script src="{{ asset('assets/js/app.js') }}" defer></script>
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -43,6 +44,47 @@
             });
         });
     </script>
+    <!--end::Javascript-->
+		<script type="text/javascript">
+			var success_message = "<?= Session::get('success_message') ? Session::get('success_message') : 0 ?>";
+			var error_message = "<?= Session::get('error_message') ? Session::get('error_message') : 0 ?>";
+				window.onload = function ()
+			{
+				if(success_message!="0" || error_message!="0")
+				{
+						var toastMixin = Swal.mixin({
+							toast: true,
+							icon: 'success',
+							title: 'General Title',
+							animation: false,
+							position: 'top-right',
+							showConfirmButton: false,
+							timer: 5000,
+							timerProgressBar: true,
+							didOpen: (toast) => {
+							toast.addEventListener('mouseenter', Swal.stopTimer)
+							toast.addEventListener('mouseleave', Swal.resumeTimer)
+							}
+						});
+						
+						//success toast
+						if(success_message!="0")
+							toastMixin.fire({
+							animation: true,
+							title: success_message
+							});
+                            
+						//error toast
+						if(error_message!= "0")
+						toastMixin.fire({
+						title: error_message,
+						icon: 'error'
+						});
+
+				}
+						
+			};
+		</script>
 	@yield('js')
 	</body>
 	<!--end::Body-->

@@ -155,6 +155,71 @@ if (!function_exists('roles_list')) {
     }
 
 }
+if (!function_exists('roles_routes')) {
+    function roles_routes() {
+        
+        return  [
+            "1"=>"register",
+            "2"=>"addSponsor",
+            "3"=>"addTeacher",
+            "4"=>"addParticipant",
+            "5"=>"register",
+        ];
+    }
+
+}
+if (!function_exists('countries_list')) {
+    function countries_list() {
+        
+        return  [
+            "1"=>"Cotonou",
+            "2"=>"Porto-Novo",
+            "3"=>"Parakou",
+        ];
+    }
+}
+
+if (!function_exists("deleteUser")) {
+	function deleteUser()
+	{
+		return ("<span class='text-danger'>Supprimer</span>") ; 
+        // if (!function_exists("deleteUser")) {
+    }
+}
+// 	function deleteUser($statusId)
+// 	{
+// 		return ($statusId== 1) ? ("<span class='text-danger'>Bannir</span>") : ("<span class='text-success'>Activer</span>"); 
+// 	}
+
+
+// Function: used to convert a string to revese in order
+if (!function_exists("status")) {
+	function status($statusId)
+	{
+		switch ($statusId) {
+			case 0:
+				return ("<div class='badge badge-danger fw-bolder'>InActif</div>"); 
+			case 1:
+				return ("<div class='badge badge-success fw-bolder'>Actif</div>"); 
+			case 2:
+				return ("<div class='badge badge-info fw-bolder'>Réglée</div>"); 
+			case 3:
+				return ("<div class='badge badge-warning fw-bolder'>Facturée</div>"); 
+			case 4:
+				return  ("<div class='badge badge-success fw-bolder'>Normalisée</div>"); 
+			default:
+				return ("<div class='badge badge-danger fw-bolder'>Default status</div>") ; 
+		}
+	}
+}
+
+if (!function_exists("format_date")) {
+    function format_date($text, $format)
+        {
+            $date=date_create($text);
+            return  date_format($date,$format);
+        }
+    }
 if (!function_exists('disponibilite')) {
 
     function  disponibilite( $dispo=0)

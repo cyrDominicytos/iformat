@@ -8,7 +8,7 @@
     <title>{{ config('app.name', 'IFORMAT') }}</title>
     <link href="{{ asset('assets/custom/css/style.css') }}" rel="stylesheet" type="text/css" />
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-    <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
+    <link rel="shortcut icon" type="text/css" href="http://www.win-africa.com/images/logo.png" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -19,7 +19,6 @@
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle--><!--end::Global Stylesheets Bundle-->
-
     @yield('css')
 </head>
 <body id="kt_body"   class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
@@ -3773,11 +3772,11 @@
 		@yield('javascript')
 		<!--end::Javascript-->
 		<script type="text/javascript">
-			var message = 0;
-			var code = 0;
+			var success_message = "<?= Session::get('success_message') ? Session::get('success_message') : 0 ?>";
+			var error_message = "<?= Session::get('error_message') ? Session::get('error_message') : 0 ?>";
 				window.onload = function ()
 			{
-				if(message!="" && code!="")
+				if(success_message!="0" || error_message!="0")
 				{
 						var toastMixin = Swal.mixin({
 							toast: true,
@@ -3795,19 +3794,21 @@
 						});
 						
 						//success toast
-						if(code==1)
+						if(success_message!="0")
 							toastMixin.fire({
 							animation: true,
-							title: message
+							title: success_message
 							});
+                            
 						//error toast
-						if(code==0)
+						if(error_message!= "0")
 						toastMixin.fire({
-						title: message,
+						title: error_message,
 						icon: 'error'
 						});
 
 				}
+						
 			};
 		</script>
 

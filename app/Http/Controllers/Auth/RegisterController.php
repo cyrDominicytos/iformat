@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+
 
 class RegisterController extends Controller
 {
@@ -49,7 +51,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+       $this->middleware('auth');
     }
 
     /**
@@ -60,10 +62,20 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+       // dd($data);
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'user_role_id' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ],[
+            'first_name.required' => 'Renseignez le prénom',
+            'last_name.required' => 'Renseignez le nom',
+            'user_role_id.required' => 'Renseignez le rôle de l\'utilisateur',
+            'email' => 'Renseignez une adresse email valid',
+            'email.required' => 'Renseignez une adresse email valid',
+            'password.required' => 'Renseignez le mot de passe',
         ]);
     }
 
@@ -76,8 +88,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'phone_number' => $data['phone_number'],
+            'address' => $data['address'],
+            'user_role_id' => $data['user_role_id'],
             'email' => $data['email'],
+            'status' => 1,
+            'user_created_by' => Auth::user()->id,
             'password' => Hash::make($data['password']),
         ]);
     }
