@@ -9,7 +9,7 @@
                 <!--begin::Page title-->
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                     <!--begin::Title-->
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Liste des {{$role_name}}s</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Liste des groupes de participant</h1>
                     <!--end::Title-->
                     <!--begin::Separator-->
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
@@ -22,7 +22,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">{{$role_name}}s</li>
+                        <li class="breadcrumb-item text-muted">Groups de participant</li>
                         <!--end::Item-->
                         <!--begin::Item-->
                         <li class="breadcrumb-item">
@@ -30,7 +30,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-dark">Liste des {{$role_name}}s</li>
+                        <li class="breadcrumb-item text-dark">Liste des groupes</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -43,8 +43,8 @@
                         
                     </div>
                     <!--end::Wrapper-->
-                    <!--begin::Button-->
-                    <a href="{{ route(roles_routes()[$role_id]) }}" class="btn btn-sm btn-primary">Ajouter</a>
+                   <!--begin::Button-->
+                    <button class="btn btn-sm btn-primary"  id="kt_toolbar_primary_button"  data-bs-toggle="modal" data-bs-target="#create_modal">Ajouter</button>
                     <!--end::Button-->
                 </div>
                 <!--end::Actions-->
@@ -78,31 +78,32 @@
                         </div>
                         <!--begin::Card title-->
                         <!--begin::Card toolbar-->
-										<div class="card-toolbar">
-											<!--begin::Toolbar-->
-											<div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-												<!--begin::Add user-->
-                                                <a href="{{ route(roles_routes()[$role_id]) }}" class="btn btn-primary">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
-                                                <span class="svg-icon svg-icon-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
-                                                        <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->Ajouter</a>
-												<!--end::Add user-->
-											</div>
-											<!--end::Toolbar-->
-											<!--begin::Group actions-->
-											<div class="d-flex justify-content-end align-items-center d-none" data-kt-user-table-toolbar="selected">
-												<div class="fw-bolder me-5">
-												<span class="me-2" data-kt-user-table-select="selected_count"></span>Selected</div>
-												<button type="button" class="btn btn-danger" data-kt-user-table-select="delete_selected">Delete Selected</button>
-											</div>
-											<!--end::Group actions-->
-										</div>
-										<!--end::Card toolbar-->
+                        <div class="card-toolbar">
+                            <!--begin::Toolbar-->
+                            <div class="d-flex justify-content-end" data-bs-toggle="modal" data-bs-target="#create_modal" data-kt-user-table-toolbar="base">
+                                                               
+                                <!--begin::Add user-->
+                                <button  class="btn btn-primary">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
+                                        <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->Ajouter</button>
+                                <!--end::Add user-->
+                            </div>
+                            <!--end::Toolbar-->                           
+                        </div>
+                        <!--end::Card toolbar-->
+                        <!--begin::Group actions-->
+                        <div class="d-flex justify-content-end align-items-center d-none" data-kt-user-table-toolbar="selected">
+                            <div class="fw-bolder me-5">
+                            <span class="me-2" data-kt-user-table-select="selected_count"></span>Selected</div>
+                            <button type="button" class="btn btn-danger" data-kt-user-table-select="delete_selected">Delete Selected</button>
+                        </div>
+                        <!--end::Group actions-->
                     </div>
                     <!--end::Card header-->
                     <!--begin::Card body-->
@@ -114,12 +115,11 @@
                                 <!--begin::Table row-->
                                 <tr class="text-center text-muted fw-bolder fs-7 text-uppercase gs-0">
                                     <th class="text-en min-w-100px">Actions</th>
-                                    <th class="min-w-125px">Noms et Prénoms</th>
-                                    <th class="min-w-125px">Email</th>
-                                    <th class="min-w-125px">Téléphone</th>
-                                    <th class="min-w-125px">Adresse</th>
-                                    <th class="min-w-125px">Institution</th>
-                                    <th class="min-w-125px">Fonction</th>
+                                    <th class="min-w-125px">Désignation</th>
+                                    <th class="min-w-125px">Participant</th>
+                                    <th class="min-w-125px">Détail</th>
+                                    <th class="min-w-125px">Détail</th>
+                                    <th class="min-w-125px">Créé par</th>
                                     <th class="min-w-125px">Créé le</th>
                                 </tr>
                                 <!--end::Table row-->
@@ -128,7 +128,7 @@
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-bold">
                                 <!--begin::Table row-->
-                                @foreach($users as $user)
+                                @foreach($groups as $user)
                                     <!--begin::Table row-->
                                         <tr>
                                         <td class="text-cente">
@@ -145,7 +145,7 @@
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a href="<?= route('users_update',['role'=>$role_id,'id'=>$user->id]) ?>" class="menu-link px-3 text-primary">Editer</a>
+                                                        <a href="<?= route('users_update',['role'=>1,'id'=>$user->id]) ?>" class="menu-link px-3 text-primary">Editer</a>
                                                     </div>
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
@@ -162,9 +162,8 @@
                                             </td>
                                             <td><?= $user->email?></td>
                                             <td><?= $user->phone_number?></td>
+                                            <td><?= $user->phone_number?></td>
                                             <td class="text-capitalize">{{$user->address}}</td>
-                                            <td class="text-capitalize">{{$user->from}}</td>
-                                            <td class="text-capitalize">{{$user->fonction}}</td>
                                             <td><?= format_date($user->created_at, "d/m/Y à H:i:s")?></td>
                                         </tr>
                                         <!--end::Table row-->	
@@ -182,6 +181,7 @@
         </div>
         <!--end::Post-->
     </div>
+    @include('groups.create');
     <!--end::Content-->
     @section('javascript')
     <script type="text/javascript">
@@ -208,6 +208,7 @@
                 });  
             
         }
+       // var table = document.getElementById(#)
     </script>
     @endsection
 @endsection

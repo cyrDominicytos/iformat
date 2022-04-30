@@ -78,31 +78,33 @@
                         </div>
                         <!--begin::Card title-->
                         <!--begin::Card toolbar-->
-										<div class="card-toolbar">
-											<!--begin::Toolbar-->
-											<div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-												<!--begin::Add user-->
-                                                <a href="{{ route(roles_routes()[$role_id]) }}" class="btn btn-primary">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
-                                                <span class="svg-icon svg-icon-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
-                                                        <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->Ajouter</a>
-												<!--end::Add user-->
-											</div>
-											<!--end::Toolbar-->
-											<!--begin::Group actions-->
-											<div class="d-flex justify-content-end align-items-center d-none" data-kt-user-table-toolbar="selected">
-												<div class="fw-bolder me-5">
-												<span class="me-2" data-kt-user-table-select="selected_count"></span>Selected</div>
-												<button type="button" class="btn btn-danger" data-kt-user-table-select="delete_selected">Delete Selected</button>
-											</div>
-											<!--end::Group actions-->
-										</div>
-										<!--end::Card toolbar-->
+                        <div class="card-toolbar">
+                            <!--begin::Toolbar-->
+                            <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                                                               
+                                <!--begin::Add user-->
+                                <a href="{{ route(roles_routes()[$role_id]) }}" class="btn btn-primary">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
+                                        <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->Ajouter</a>
+                                <!--end::Add user-->
+                            </div>
+                            <!--end::Toolbar-->
+                            <!--begin::Group actions-->
+                            <div class="d-flex justify-content-end align-items-center d-none" data-kt-user-table-toolbar="selected">
+                                <div class="fw-bolder me-5">
+                                <span class="me-2" data-kt-user-table-select="selected_count"></span>Sélection</div>
+                                <button type="button" class="btn btn-danger" data-kt-user-table-select="delete_selected">Supprimer la sélection</button>
+                            </div>
+                            <!--end::Group actions-->
+                                                      
+                        </div>
+                        <!--end::Card toolbar-->
                     </div>
                     <!--end::Card header-->
                     <!--begin::Card body-->
@@ -112,8 +114,12 @@
                             <!--begin::Table head-->
                             <thead>
                                 <!--begin::Table row-->
-                                <tr class="text-center text-muted fw-bolder fs-7 text-uppercase gs-0">
-                                    <th class="text-en min-w-100px">Actions</th>
+                                <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                    <th class="w-10px pe-2">
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                            <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_table_users .form-check-input" value="1" />
+                                        </div>
+                                    </th>
                                     <th class="min-w-125px">Noms et Prénoms</th>
                                     <th class="min-w-125px">Email</th>
                                     <th class="min-w-125px">Téléphone</th>
@@ -121,6 +127,7 @@
                                     <th class="min-w-125px">Institution</th>
                                     <th class="min-w-125px">Fonction</th>
                                     <th class="min-w-125px">Créé le</th>
+                                    <th class="text-end min-w-100px">Actions</th>
                                 </tr>
                                 <!--end::Table row-->
                             </thead>
@@ -128,10 +135,26 @@
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-bold">
                                 <!--begin::Table row-->
-                                @foreach($users as $user)
+                                <?php foreach ($users as $user): ?>
                                     <!--begin::Table row-->
                                         <tr>
-                                        <td class="text-cente">
+                                            <!--begin::Checkbox-->
+                                            <td>
+                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" value="1" />
+                                                </div>
+                                            </td>
+                                            <!--end::Checkbox-->
+                                            <td class="d-flex align-items-center">
+                                                <?= $user->first_name." ".$user->last_name ?>
+                                            </td>
+                                            <td><?= $user->email?></td>
+                                            <td><?= $user->phone_number?></td>
+                                            <td class="text-capitalize">{{$user->address}}</td>
+                                            <td class="text-capitalize">{{$user->from}}</td>
+                                            <td class="text-capitalize">{{$user->fonction}}</td>
+                                            <td><?= format_date($user->created_at, "d/m/Y à H:i:s")?></td>
+                                            <td class="text-end">
                                                 <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                                 <span class="svg-icon svg-icon-5 m-0">
@@ -157,18 +180,9 @@
                                                 <!--end::Menu-->
                                             </td>
                                             <!--end::Action=-->
-                                            <td class="d-flex align-items-center">
-                                                <?= $user->first_name." ".$user->last_name ?>
-                                            </td>
-                                            <td><?= $user->email?></td>
-                                            <td><?= $user->phone_number?></td>
-                                            <td class="text-capitalize">{{$user->address}}</td>
-                                            <td class="text-capitalize">{{$user->from}}</td>
-                                            <td class="text-capitalize">{{$user->fonction}}</td>
-                                            <td><?= format_date($user->created_at, "d/m/Y à H:i:s")?></td>
                                         </tr>
                                         <!--end::Table row-->	
-                                        @endforeach								
+                                    <?php endforeach ?>							
                             </tbody>
                             <!--end::Table body-->
                         </table>
@@ -185,7 +199,7 @@
     <!--end::Content-->
     @section('javascript')
     <script type="text/javascript">
-        var base_url = "<?=URL::to('/') ?>";
+         var base_url = "<?=URL::to('/') ?>";
         var mes = "Etes-vous sûr de vouloir supprimer cet utilisateur ?";
         function deleted(id) {
              Swal.fire({

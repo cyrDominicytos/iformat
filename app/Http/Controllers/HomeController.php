@@ -54,6 +54,12 @@ class HomeController extends Controller
         $data['role_id'] = 2;
         return view('auth.register', $data);
     }
+    public function addAdmin()
+    {
+        $data['roles'] = roles_list();
+        $data['role_id'] = 1;
+        return view('auth.register', $data);
+    }
 
     public function users_list($role=null)
     {
@@ -111,19 +117,26 @@ class HomeController extends Controller
                             ->with('error_message', "Une erreur est survenue lors de la mise à jour de l'utilisateur !");
             }else{
                 //validation okay
-                $updated_user = User::where("id",$request->id)->update([
+                $field = [
                     'first_name' => $request->first_name,
                     'last_name' =>$request->last_name,
                     'phone_number' => $request->phone_number,
                     'address' => $request->address,
                     'user_role_id' => $request->user_role_id,
                     'email' => $request->email,
+                    'from' => $request->from,
+                    'fonction' => $request->fonction,
                     'status' => 1,
                     'user_created_by' => Auth::user()->id,
-                ]);
+                ];
+                /*if(!empty($request->from) && $request->from!= null )
+                    $field['from'] = $request->from;
+                if(!empty($request->fonction) && $request->fonction!= null )
+                    $field['fonction'] = $request->fonction;*/
+                $updated_user = User::where("id",$request->id)->update($field);
 
                // dd(  $updated_user);
-                return redirect(route('users_list',[$request->user_role_id]))->with('success_message', "Le profile".$request->last_name." ".$request->first_name." a été mise à jour avec succès !");
+                return redirect(route('users_list',[$request->user_role_id]))->with('success_message', "Le profile ".$request->last_name." ".$request->first_name." a été mise à jour avec succès !");
             }
 
       

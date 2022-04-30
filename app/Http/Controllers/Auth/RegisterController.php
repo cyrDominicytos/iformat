@@ -62,7 +62,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-       // dd($data);
+       // ($data);
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
@@ -89,6 +89,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+       //dd($data);
+      /*  $field = [
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'phone_number' =>$data['phone_number'],
+            'address' => $request->address,
+            'user_role_id' => $request->user_role_id,
+            'email' => $request->email,
+            'status' => 1,
+            'user_created_by' => Auth::user()->id,
+        ];
+
+        if(!empty($data['from']) && $data['from']!= null )
+            $data['from'] = $data['from'];
+        if(!empty($data['fonction']) && $data['fonction']!= null )
+            $data['fonction'] = $data['fonction'];
+*/
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -96,6 +114,8 @@ class RegisterController extends Controller
             'address' => $data['address'],
             'user_role_id' => $data['user_role_id'],
             'email' => $data['email'],
+            'from' => $data['from'],
+            'fonction' => $data['fonction'],
             'status' => 1,
             'user_created_by' => Auth::user()->id,
             'password' => Hash::make($data['password']),

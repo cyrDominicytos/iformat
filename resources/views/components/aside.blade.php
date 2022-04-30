@@ -46,7 +46,7 @@
                         <span class="menu-icon">
                             <i class="bi bi-cash-coin fs-3"></i>
                         </span>
-                        <span class="menu-title">Salles de formation</span>
+                        <span class="menu-title">Sites de formation</span>
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
@@ -58,6 +58,32 @@
                                 <span class="menu-title">Ajouter</span>
                             </a>
                             <a class="menu-link" href="{{ route('listRooms') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Consulter liste</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Groups -->
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <i class="bi bi-cash-coin fs-3"></i>
+                        </span>
+                        <span class="menu-title">Groupes de formation</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item menu-accordion">
+                            <a class="menu-link" href="{{ route('addGroup') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Ajouter</span>
+                            </a>
+                            <a class="menu-link" href="{{ route('listGroups') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -184,18 +210,18 @@
                             <span class="menu-icon">
                                 <i class="fa fa-user fs-3"></i>
                             </span>
-                            <span class="menu-title">Utilisateurs</span>
+                            <span class="menu-title">Administrateurs</span>
                             <span class="menu-arrow"></span>
                         </span>
                         <div class="menu-sub menu-sub-accordion menu-active-bg">
                             <div class="menu-item menu-accordion">
-                                <a class="menu-link" href="{{ route('register') }}">
+                                <a class="menu-link" href="{{ route('addAdmin') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
                                     <span class="menu-title" >Ajouter</span>
                                 </a>
-                                <a class="menu-link" href="">
+                                <a class="menu-link" href="{{ route('users_list',[1]) }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>

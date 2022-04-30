@@ -5,13 +5,13 @@
         <!--begin::Modal content-->
         <div class="modal-content">
             <!--begin::Form-->
-            <form class="form" action="{{ route('rooms.store')}}" method="post" id="create_modal_from">
+            <form class="form" action="{{ route('groups.store')}}" method="post" id="create_modal_from">
                 @csrf   
             <input type="hidden" name="id" id="old_id"  >   
             <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_new_address_header">
                     <!--begin::Modal title-->
-                    <h2 class="text-dark" id="modalTitle">Création de site de formation</h2>
+                    <h2 class="text-dark" id="modalTitle">Création de groupe de formation</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -34,29 +34,16 @@
                         <div id="infoMessage" style="color:red;">
                             <?=  session()->has('message2') ? (session()->get('message2')) : ("")?>
                         </div>
-                         <!--begin::Input group-->
-                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
-                            <label class="form-label fw-bolder text-dark fs-6 required">Villes</label>
-                            <select name="classrooms_countries_id" aria-label="Selectionnez un profile" data-control="select2" data-placeholder="Attribuer un role..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="classrooms_countries_id">
-                            @foreach($countries_list as $key=> $list)
-                                <option value="{{$key}}">{{$list}}</option>
-                            @endforeach
-                            </select>
-                            @if($errors->has('classrooms_countries_id'))
-                            <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('classrooms_countries_id')}}</div></div>
-                            @endif
-                        </div>
-                        <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
                             <!--begin::Label-->
                             <label class="fs-5 fw-bold mb-2 required">Désignation</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control form-control-solid" placeholder="" name="classrooms_name"  type="text" id="classrooms_name" value="<?= old("classrooms_name")	?>" />
+                            <input class="form-control form-control-solid" placeholder="" name="groups_name"  type="text" id="groups_name" value="<?= old("groups_name")	?>" />
                             <!--end::Input-->
-                            @if($errors->has('classrooms_name'))
-                            <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('classrooms_name')}}</div></div>
+                            @if($errors->has('groups_name'))
+                            <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('groups_name')}}</div></div>
                             @endif
                         </div>
                         <!--end::Input group-->
@@ -66,8 +53,21 @@
                              <label class="fw-bolder text-dark fs-6 mb-2">Description</label>
                             <!--end::Label-->
                             <!--end::Input-->
-                            <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="classrooms_detail" id="classrooms_detail" ><?= old("classrooms_detail")?></textarea>
+                            <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="groups_detail" id="groups_detail" ><?= old("groups_detail")?></textarea>
                             <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                         <!--begin::Input group-->
+                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
+                            <label class="form-label fw-bolder text-dark fs-6 required">Ajouter des participants</label>
+                            <select name="groups_participant[]" multiple aria-label="Selectionnez un profile" data-control="select2" data-placeholder="Attribuer un role..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="groups_participant">
+                            @foreach($users as $key=> $user)
+                                <option value="{{$user->id}}">{{$user->first_name.' '.$user->last_name}}</option>
+                            @endforeach
+                            </select>
+                            @if($errors->has('groups_participant'))
+                            <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('groups_participant')}}</div></div>
+                            @endif
                         </div>
                         <!--end::Input group-->
                     </div>

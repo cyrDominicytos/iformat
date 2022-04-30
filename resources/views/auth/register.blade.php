@@ -55,7 +55,7 @@
 								<!--begin::Heading-->
 								<div class="text-center mb-10">
 									<!--begin::Title-->
-									<h1 class="text-dark mb-3"><?= (isset($old_user)? ("Mise à jour d'un compte ".(isset($role_id) ? roles_list()[$role_id] : '')." sur ") : ("Créer un compte ".(isset($role_id) ? roles_list()[$role_id] : '')." sur ")) ?> <?= getenv('APP_NAME') ?></h1>
+									<h1 class="text-dark mb-3"><?= (isset($old_user)? ("Mise à jour d'un compte ".(isset($role_id) ? roles_list()[$role_id] : 'Participant')." sur ") : ("Créer un compte ".(isset($role_id) ? roles_list()[$role_id] : 'Participant')." sur ")) ?> <?= getenv('APP_NAME') ?></h1>
 									<!--end::Title-->
 									<!--begin::Link-->
 									<div class="text-gray-400 fw-bold fs-4">Retournez à votre
@@ -130,35 +130,20 @@
 								@isset($role_id)
 									<input type="hidden" name="user_role_id" value="{{$role_id}}" />
 								@else
-								<div class="row fv-row mb-7">
-									<!--begin::Input group-->
-                                    <div class="fv-row mb-6">
-                                        <label class="form-label fw-bolder text-dark fs-6">Profile <sup class="mySup">*</sup></label>
-                                        <select name="user_role_id" aria-label="Selectionnez un profile" data-control="select2" data-placeholder="Attribuer un role..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="group">
-
-											@foreach($roles as $key=> $role)
-											<option value="{{$key}}">{{$role}}</option>
-											@endforeach
-                                        </select>
-										@if($errors->has('user_role_id'))
-										<div class="fv-plugins-message-container invalid-feedback"><div data-field="last_name" data-validator="notEmpty">{{$errors->first('user_role_id')}}</div></div>
-										@endif
-                                    </div>
-                                    <!--end::Input group-->
-								</div>
+									<input type="hidden" name="user_role_id" value="4" />
 								@endisset
 								<!--end::Input group-->
 								<div class="row fv-row mb-7">
 									<!--begin::Col-->
 									<div class="col-xl-6">
-										<label class="form-label fw-bolder text-dark fs-6">Institution </label>
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="form" autocomplete="off" value="<?=old('form')?>"/>
+										<label class="form-label fw-bolder text-dark fs-6">Institution <sup class="mySup"><i class="fa fa-info text-primary" title="Ou travaille cet utilisateur ?"></i></sup></label>
+										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="from" autocomplete="on" value="<?= (isset($old_user)? ($old_user->from) : (old("from")))?>" title="Ou travaille cet utilisateur ?"/>
 									</div>
 									<!--end::Col-->
 									<!--begin::Col-->
 									<div class="col-xl-6">
-										<label class="form-label fw-bolder text-dark fs-6">Fonction </label>
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="fonction" autocomplete="off" required="required" value="<?= (isset($old_user)? ($old_user->fonction) : (old("fonction")))?>"/>
+										<label class="form-label fw-bolder text-dark fs-6">Fonction <sup class="mySup"><i class="fa fa-info text-primary" title="Quel poste occupe cet utilsateur ?"></i></sup></label>
+										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="fonction" autocomplete="on" required="required" value="<?= (isset($old_user)? ($old_user->fonction) : (old("fonction")))?>" title="Quel poste occupe cet utilsateur"/>
 									</div>
 									<!--end::Col-->
 								</div>
