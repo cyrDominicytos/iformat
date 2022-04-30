@@ -658,7 +658,7 @@
 						<!--end::Menu separator-->
 						<!--begin::Menu item-->
 						<div class="menu-item px-5">
-							<a href="{{route('register')}}" class="menu-link px-5">Mon Profile</a>
+							<a href="<?= route('users_update',['role'=>Auth::user()->user_role_id,'id'=>Auth::user()->id]) ?>" class="menu-link px-5">Mon Profile</a>
 						</div>
 						<!--end::Menu item-->
 

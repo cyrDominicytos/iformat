@@ -27,6 +27,7 @@ class User extends Authenticatable
         'fonction',
         'user_role_id',
         'user_created_by',
+        'user_updated_by',
         'status',
         'updated_at',
         'email',

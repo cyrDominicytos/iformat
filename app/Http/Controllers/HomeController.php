@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -57,7 +58,7 @@ class HomeController extends Controller
     public function users_list($role=null)
     {
         if($role >0){
-            $data['users'] = $this->modelUser->where("user_role_id", $role)->get();
+            $data['users'] = $this->modelUser->where("user_role_id", $role)->where("status", 1)->get();
             $data['role_name'] = roles_list()[$role];
             $data['role_id'] = $role;
             return view('users.list', $data);
@@ -65,6 +66,89 @@ class HomeController extends Controller
             echo "Unvalid routes";
         }
     }
+
+    public function users_update($role=null,$user_id=null)
+    {
+        if($role >0 && $user_id > 0){
+            $user = $this->modelUser->where("id", $user_id)->where("user_role_id", $role)->get();
+           if(count($user) <= 0)
+                return back()->with('error_message', "Le profile que vous désirez éditer n'existe pas !");
+
+            $data['roles'] = roles_list();
+            $data['old_user'] =  $user[0];
+            $data['role_id'] = $role;
+            return view('auth.register', $data);
+        }else{
+            return back()->with('error_message', "Tentative d'accès illégal à une réssource !");
+        }
+    }
+
+    //Edit user
+    public function edit_user(Request $request)
+    {
+        $old_user = $this->modelUser->where("id",$request->id)->get();
+        if(count($old_user) <= 0)
+             return back()->with('error_message', "Le profile que vous désirez éditer n'existe pas !");
+
+            $validator = Validator::make($request->all(), [
+                'first_name' => ['required', 'string', 'max:255'],
+                'last_name' => ['required', 'string', 'max:255'],
+                'user_role_id' => ['required'],
+                'email' => ['required', 'string', 'email', 'max:255', $request->email!=$old_user[0]->email? 'unique:users' :'' ],
+            ],[
+                'first_name.required' => 'Renseignez le prénom',
+                'last_name.required' => 'Renseignez le nom',
+                'user_role_id.required' => 'Renseignez le rôle de l\'utilisateur',
+                'email' => 'Renseignez une adresse email valid',
+                'email.required' => 'Renseignez une adresse email valid',                
+                'email.unique' => "L'adresse email existe déjà",                
+            ]);
+     
+            if ($validator->fails()) {
+                return       back()
+                            ->withErrors($validator)
+                            ->withInput()
+                            ->with('error_message', "Une erreur est survenue lors de la mise à jour de l'utilisateur !");
+            }else{
+                //validation okay
+                $updated_user = User::where("id",$request->id)->update([
+                    'first_name' => $request->first_name,
+                    'last_name' =>$request->last_name,
+                    'phone_number' => $request->phone_number,
+                    'address' => $request->address,
+                    'user_role_id' => $request->user_role_id,
+                    'email' => $request->email,
+                    'status' => 1,
+                    'user_created_by' => Auth::user()->id,
+                ]);
+
+               // dd(  $updated_user);
+                return redirect(route('users_list',[$request->user_role_id]))->with('success_message', "Le profile".$request->last_name." ".$request->first_name." a été mise à jour avec succès !");
+            }
+
+      
+    }
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $response = User::where("id",$id)->update([
+            "status"=>-1,
+            'user_updated_by' => Auth::user()->id,
+
+        ]);
+        if($response){
+            return back()->with('success_message', "Utilisateur supprimé avec succès !");
+        }else{
+            return  back()->with('error_message', "Une erreur s'est produite lors de la suppression de l'utilisateur !");
+        }
+    }
+
 
     public function dashboard()
     {

@@ -47,16 +47,15 @@
 						<!--begin::Wrapper-->
 						<div class="w-lg-600px p-10 p-lg-15 mx-auto">
 							<!--begin::Form-->
-							<form class="form w-100" novalidate="novalidate" id="kt_sign_up_form" action="{{ route('register') }}" method="post">
+							<form class="form w-100" novalidate="novalidate" id="kt_sign_up_form" action="<?= isset($old_user) ? route('user.edit') : route('register') ?>" method="post">
 							@csrf
-								<?php if (isset($userGroup)): ?>
-								   <input type="hidden" name="id" value="<?=  $user->id ?>">
-								   <input type="hidden" name="oldgroup" value="<?=  $userGroup?>">
+								<?php if (isset($old_user)): ?>
+								   <input type="hidden" name="id" value="<?=  $old_user->id ?>">
 								<?php endif ?>
 								<!--begin::Heading-->
 								<div class="text-center mb-10">
 									<!--begin::Title-->
-									<h1 class="text-dark mb-3"><?= (isset($user)? ("Mise à jour d'un compte ".(isset($role_id) ? roles_list()[$role_id] : '')." sur ") : ("Créer un compte ".(isset($role_id) ? roles_list()[$role_id] : '')." sur ")) ?> <?= getenv('APP_NAME') ?></h1>
+									<h1 class="text-dark mb-3"><?= (isset($old_user)? ("Mise à jour d'un compte ".(isset($role_id) ? roles_list()[$role_id] : '')." sur ") : ("Créer un compte ".(isset($role_id) ? roles_list()[$role_id] : '')." sur ")) ?> <?= getenv('APP_NAME') ?></h1>
 									<!--end::Title-->
 									<!--begin::Link-->
 									<div class="text-gray-400 fw-bold fs-4">Retournez à votre
@@ -81,7 +80,7 @@
 									<!--begin::Col-->
 									<div class="col-xl-6">
 										<label class="form-label fw-bolder text-dark fs-6">Noms <sup class="mySup">*</sup></label>
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="last_name" autocomplete="off" required="required" value="<?= (isset($user)? ($user->last_name) : (old("last_name")))?>"/>
+										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="last_name" autocomplete="off" required="required" value="<?= (isset($old_user)? ($old_user->last_name) : (old("last_name")))?>"/>
 										@if($errors->has('last_name'))
 										<div class="fv-plugins-message-container invalid-feedback"><div data-field="last_name" data-validator="notEmpty">{{$errors->first('last_name')}}</div></div>
 										@endif
@@ -90,7 +89,7 @@
 									<!--begin::Col-->
 									<div class="col-xl-6">
 										<label class="form-label fw-bolder text-dark fs-6">Prénoms <sup class="mySup">*</sup></label>
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="first_name" autocomplete="off" required="required" value="<?= (isset($user)? ($user->first_name) : (old("last_name")))?>"/>
+										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="first_name" autocomplete="off" required="required" value="<?= (isset($old_user)? ($old_user->first_name) : (old("last_name")))?>"/>
 										@if($errors->has('first_name'))
 										<div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('first_name')}}</div></div>
 										@endif
@@ -101,7 +100,7 @@
 									<!--begin::Col-->
 									<div class="col-xl-6">
 										<label class="form-label fw-bolder text-dark fs-6">Email <sup class="mySup">*</sup></label>
-										<input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" autocomplete="off" rique="required" value="<?= (isset($user)? ($user->email) : (old("email")))?>"/>
+										<input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" autocomplete="off" rique="required" value="<?= (isset($old_user)? ($old_user->email) : (old("email")))?>"/>
 										@if($errors->has('email'))
 										<div class="fv-plugins-message-container invalid-feedback"><div data-field="email" data-validator="notEmpty">{{$errors->first('email')}}</div></div>
 										@endif
@@ -109,8 +108,8 @@
 									<!--end::Col-->
 									<!--begin::Col-->
 									<div class="col-xl-6">
-										<label class="form-label fw-bolder text-dark fs-6">Téléphone <sup class="mySup">*</sup></label>
-										<input class="form-control form-control-lg form-control-solid" type="tel" placeholder="" name="phone_number" autocomplete="off" required="required" value="<?= (isset($user)? ($user->phone_number) : (old("phone_number")))?>"/>
+										<label class="form-label fw-bolder text-dark fs-6">Téléphone</label>
+										<input class="form-control form-control-lg form-control-solid" type="tel" placeholder="" name="phone_number" autocomplete="off" required="required" value="<?= (isset($old_user)? ($old_user->phone_number) : (old("phone_number")))?>"/>
 										@if($errors->has('phone_number'))
 										<div class="fv-plugins-message-container invalid-feedback"><div data-field="phone_number" data-validator="notEmpty">{{$errors->first('phone_number')}}</div></div>
 										@endif
@@ -121,7 +120,7 @@
 									<!--begin::Col-->
 									<div class="col-xl-12">
 										<label class="form-label fw-bolder text-dark fs-6">Adresse </sup></label>
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="address" autocomplete="off" value="<?= (isset($user)? ($user->address) : (old("address")))?>"/>
+										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="address" autocomplete="off" value="<?= (isset($old_user)? ($old_user->address) : (old("address")))?>"/>
 										@if($errors->has('address'))
 										<div class="fv-plugins-message-container invalid-feedback"><div data-field="last_name" data-validator="notEmpty">{{$errors->first('address')}}</div></div>
 										@endif
@@ -159,7 +158,7 @@
 									<!--begin::Col-->
 									<div class="col-xl-6">
 										<label class="form-label fw-bolder text-dark fs-6">Fonction </label>
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="fonction" autocomplete="off" required="required" value="<?= (isset($user)? ($user->fonction) : (old("fonction")))?>"/>
+										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="fonction" autocomplete="off" required="required" value="<?= (isset($old_user)? ($old_user->fonction) : (old("fonction")))?>"/>
 									</div>
 									<!--end::Col-->
 								</div>
@@ -194,7 +193,7 @@
 									</div>
 									<!--end::Wrapper-->
 									<!--begin::Hint-->
-									<div class="text-muted">Le mot de passe doit contenir au moins 8 caractères avec un mélange de lettres, numbres &amp; de symboles.</div>
+									<div class="text-muted">Un mot de passe sécurisé doit contenir au moins 8 caractères avec un mélange de lettres, numbres &amp; de symboles.</div>
 									<!--end::Hint-->
 								</div>
 								<!--end::Input group=-->
@@ -225,24 +224,24 @@
 									</div>
 									<!--end::Wrapper-->
 									<!--begin::Hint-->
-									<div class="text-muted">Le mot de passe doit contenir au moins 8 caractères avec un mélange de lettres, numbres &amp; de symboles.</div>
+									<div class="text-muted">Un mot de passe sécurisé doit contenir au moins 8 caractères avec un mélange de lettres, numbres &amp; de symboles.</div>
 									<!--end::Hint-->
 								</div>
 								<!--end::Input group=-->
 								<!--end::Input group-->
 								<!--begin::Input group-->
-								<div class="fv-row mb-10">
+								<!-- <div class="fv-row mb-10">
 									<label class="form-check form-check-custom form-check-solid form-check-inline">
 										<input class="form-check-input" type="checkbox" name="toc" value="1" id="terms" onclick="toggleTerms()"/>
 										<span class="form-check-label fw-bold text-gray-700 fs-6">J'accepte
 										<a href="#" class="ms-1 link-primary">Les termes et conditions</a>.</span>
 									</label>
-								</div>
+								</div> -->
 								<!--end::Input group-->
 								<!--begin::Actions-->
 								<div class="text-center">
 									<button type="submit" id="submit" class="btn btn-lg btn-primary"  >
-										<span class="indicator-label"><?= isset($userGroup)? 'Mettre à jour': 'Enregistrer'?></span>
+										<span class="indicator-label"><?= isset($old_user)? 'Mettre à jour': 'Enregistrer'?></span>
 										<span class="indicator-progress">Patientez...
 										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 									</button>

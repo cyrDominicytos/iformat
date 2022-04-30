@@ -29,7 +29,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/addSponsor/{id?}', [HomeController::class, 'addSponsor'])->name('addSponsor');
     Route::get('/addTeacher/{id?}', [HomeController::class, 'addTeacher'])->name('addTeacher');
     Route::get('/users_list/{role}', [HomeController::class, 'users_list'])->where('role', '[1-5]+')->name('users_list');
-    
+    Route::get('/users_update/{role}/{id}', [HomeController::class, 'users_update'])->where('role', '[1-5]+')->name('users_update');
+    Route::post('/user_edit', [HomeController::class, 'edit_user'])->name('user.edit');
+    Route::get('/user/delete/{id}', [HomeController::class, 'destroy'])->name('user.delete');
+
     //Learning
     Route::get('/addLearning', [Learning::class, 'add'])->name('addLearning');
     Route::get('/listLearnings', [Learning::class, 'list'])->name('listLearnings');

@@ -75,7 +75,9 @@ class RegisterController extends Controller
             'user_role_id.required' => 'Renseignez le rôle de l\'utilisateur',
             'email' => 'Renseignez une adresse email valid',
             'email.required' => 'Renseignez une adresse email valid',
+            'email.unique' => "L'adresse email existe déjà",                
             'password.required' => 'Renseignez le mot de passe',
+            'password.confirmed' => 'Les mots de passe ne correspondent pas !',
         ]);
     }
 
