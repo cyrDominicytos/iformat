@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+
 
 class HomeController extends Controller
 {
@@ -100,7 +102,13 @@ class HomeController extends Controller
                 'first_name' => ['required', 'string', 'max:255'],
                 'last_name' => ['required', 'string', 'max:255'],
                 'user_role_id' => ['required'],
-                'email' => ['required', 'string', 'email', 'max:255', $request->email!=$old_user[0]->email? 'unique:users' :'' ],
+                'email' => [
+                    'required',
+                    'string',
+                    'email',
+                    'max:255',
+                    'email' => Rule::unique('users')->ignore($request->id)->where(fn ($query) => $query->where('status', 1))
+                ],
             ],[
                 'first_name.required' => 'Renseignez le prénom',
                 'last_name.required' => 'Renseignez le nom',

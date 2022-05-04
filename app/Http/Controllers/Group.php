@@ -8,6 +8,7 @@ use App\Models\LearningModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -31,7 +32,27 @@ class Group extends Controller
     {
         $data['groups'] = $this->modelGroup->get_group_list(1);
         $data['users'] = $this->modelUser->where("user_role_id", 4)->where("status", 1)->get();
+        $data['user_to_offset'] = no_assign_participants_to_group();
         return view('groups.list', $data);
+    }
+
+    public function update($id)
+    {
+        if($id > 0){
+            $old_group = $this->modelGroup->where("groups_id", $id)->where("groups_status", 1)->get();
+            if(count($old_group) <= 0)
+                return back()->with('error_message', "Le groupe de formation que vous désirez éditer n'existe pas !");
+           
+            $data['users'] = $this->modelUser->where("user_role_id", 4)->where("status", 1)->get();
+            $data['groups'] = $this->modelGroup->get_group_list(1);
+            $data['user_to_offset'] = no_assign_participants_to_group_for_update($id);
+            $data['old_group'] = $old_group[0];
+            $data['old_participation'] = json_decode($old_group[0]->groups_participant);
+            return view('groups.list', $data);
+        }else{
+            return back()->with('error_message', "Accès illégal !");
+        }
+        
     }
 
     /**
@@ -43,11 +64,14 @@ class Group extends Controller
     public function store(Request $request)
     {
             $validator = Validator::make($request->all(), [
-                'groups_name' => 'required',
+                'groups_name' => [
+                                'required',
+                                'groups_name' => Rule::unique('groups')->where(fn ($query) => $query->where('groups_status', 1))
+                            ],
                 'groups_participant' => 'required',
-               // 'classrooms_name' => 'required|unique:posts|max:255',
             ],[
                 'groups_name.required' => 'Renseignez la désignation du groupe',
+                'groups_name.unique' => 'Le groupe '.$request->groups_name.' existe déjà',
                 'groups_participant.required' => 'Ajouter des participants au groupe',
             ]);
      
@@ -84,31 +108,43 @@ class Group extends Controller
     public function edit(Request $request)
     {
        
-            $validator = Validator::make($request->all(), [
-                'classrooms_countries_id' => 'required',
-                'classrooms_name' => 'required|max:255',
-               // 'classrooms_name' => 'required|unique:posts|max:255',
-            ],[
-                'classrooms_name.required' => 'Renseignez la désignation du site',
-                'classrooms_countries_id.required' => 'Renseignez la ville du site',
+      
+            $old_group = $this->modelGroup->where("groups_id", $request->id)->where("groups_status", 1)->get();
+            if(count($old_group) <= 0)
+                return back()->with('error_message', "Le groupe de formation que vous désirez éditer n'existe pas !");
+
+           $validator = Validator::make($request->all(), [
+                        'groups_name' => [
+                            'required',
+                            'groups_name' => Rule::unique('groups')->ignore($request->id, 'groups_id')->where(fn ($query) => $query->where('groups_status', 1))
+                        ]
+                        /*,
+                            'groups_name' => 'required'.($request->groups_name!= $old_group[0]->groups_name ? '|unique:groups' : ''),
+                            'groups_participant' => 'required',*/
+            ],
+            [
+                'groups_name.required' => 'Renseignez la désignation du groupe',
+                'groups_name.unique' => 'Le groupe '.$request->groups_name.' existe déjà',
+                'groups_participant.required' => 'Ajouter des participants au groupe',
             ]);
      
             if ($validator->fails()) {
-                return redirect('/listRooms')
+                return back()
                             ->withErrors($validator)
                             ->withInput()
-                            ->with('error_message', "Une erreur est survenue lors de la mise à jour du site de formation !");
-            }else{
+                            ->with('error_message', "Une erreur est survenue lors de la création du groupe de formation !");
+            }else
+            {
                 //validation okay
-                $classrooms = ClassRoomModel::where("classrooms_id",$request->id)->update([
-                    'classrooms_name' => $request->classrooms_name,
-                    'classrooms_countries_id' => $request->classrooms_countries_id,
-                    'classrooms_detail' => $request->classrooms_detail,
-                    'classrooms_user_updated_by' => Auth::user()->id,
+                $group = GroupModel::where("groups_id", $request->id)->update([
+                    'groups_name' => $request->groups_name,
+                    'groups_participant' => json_encode($request->groups_participant),
+                    'groups_detail' => $request->groups_detail,
+                    'groups_user_updated_by' => Auth::user()->id,
+                    'groups_status' =>1,
                 ]);
 
-                //dd($classrooms);
-                return redirect('/listRooms')->with('success_message', "Le site de formation a été mise à jour avec succès !");
+                return redirect('listGroups')->with('success_message', "Le groupe de formation est mise à jour avec succès !");
             }
 
       
@@ -123,15 +159,15 @@ class Group extends Controller
      */
     public function destroy($id)
     {
-        $response = ClassRoomModel::where("classrooms_id",$id)->update([
-            "classrooms_status"=>-1,
-            'classrooms_user_updated_by' => Auth::user()->id,
+        $response = GroupModel::where("groups_id",$id)->update([
+            "groups_status"=>-1,
+            'groups_user_updated_by' => Auth::user()->id,
 
         ]);
         if($response){
-            return redirect('/listRooms')->with('success_message', "Le site de formation a été supprimé avec succès !");
+            return back()->with('success_message', "Le groupe de formation a été supprimé avec succès !");
         }else{
-            return redirect('/listRooms')->with('error_message', "Une erreur s'est produite lors de la suppression du site de formation !");
+            return back()->with('error_message', "Une erreur s'est produite lors de la suppression du groupe de formation !");
         }
     }
 }

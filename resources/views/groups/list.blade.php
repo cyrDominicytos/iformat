@@ -113,11 +113,10 @@
                             <!--begin::Table head-->
                             <thead>
                                 <!--begin::Table row-->
-                                <tr class="text-center text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                                     <th class="text-en min-w-100px">Actions</th>
                                     <th class="min-w-125px">Désignation</th>
                                     <th class="min-w-125px">Participant</th>
-                                    <th class="min-w-125px">Détail</th>
                                     <th class="min-w-125px">Détail</th>
                                     <th class="min-w-125px">Créé par</th>
                                     <th class="min-w-125px">Créé le</th>
@@ -128,11 +127,12 @@
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-bold">
                                 <!--begin::Table row-->
-                                @foreach($groups as $user)
+                                <?= $i=1?>
+                                @foreach($groups as $group)
                                     <!--begin::Table row-->
-                                        <tr>
+                                    <tr>
                                         <td class="text-cente">
-                                                <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                            <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                                 <span class="svg-icon svg-icon-5 m-0">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -141,33 +141,32 @@
                                                 </span>
                                                 <!--end::Svg Icon-->
                                             </a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="<?= route('users_update',['role'=>1,'id'=>$user->id]) ?>" class="menu-link px-3 text-primary">Editer</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <p class="menu-link px-3"onclick="deleted(<?=$user->id ?>)" ><?= deleteUser(1) ?></p>
-                                                    </div>
-                                                    <!--end::Menu item-->
+                                            <!--begin::Menu-->
+                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="<?= route('groups.update',['id'=>$group->groups_id]) ?>" class="menu-link px-3 text-primary"> Editer</a>
                                                 </div>
-                                                <!--end::Menu-->
-                                            </td>
-                                            <!--end::Action=-->
-                                            <td class="d-flex align-items-center">
-                                                <?= $user->first_name." ".$user->last_name ?>
-                                            </td>
-                                            <td><?= $user->email?></td>
-                                            <td><?= $user->phone_number?></td>
-                                            <td><?= $user->phone_number?></td>
-                                            <td class="text-capitalize">{{$user->address}}</td>
-                                            <td><?= format_date($user->created_at, "d/m/Y à H:i:s")?></td>
-                                        </tr>
-                                        <!--end::Table row-->	
-                                        @endforeach								
+                                                <!--end::Menu item-->
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <p class="menu-link px-3"onclick="deleted(<?=$group->groups_id ?>)" ><?= deleteUser(1) ?></p>
+                                                </div>
+                                                <!--end::Menu item-->
+                                            </div>
+                                            <!--end::Menu-->
+                                        </td>
+                                        <!--end::Action=-->
+                                        <td class="text-capitalize">{{$group->groups_name}}</td>
+
+                                        <td class="text-capitalize">{{count(json_decode($group->groups_participant))}}</td>
+                                        <td class="text-capitalize">{{$group->groups_detail}}</td>
+                                        <td class="text-capitalize">{{ $group->first_name." ".$group->last_name }}</td>
+                                        <td><?= format_date($group->groups_created_at, "d/m/Y à H:i:s")?></td>
+                                    </tr>
+                                    <!--end::Table row-->	
+                                    <?= $i++?>
+                                @endforeach								
                             </tbody>
                             <!--end::Table body-->
                         </table>
@@ -186,7 +185,8 @@
     @section('javascript')
     <script type="text/javascript">
         var base_url = "<?=URL::to('/') ?>";
-        var mes = "Etes-vous sûr de vouloir supprimer cet utilisateur ?";
+        var old_group = "<?= isset($old_group) ? 1 : 0 ?>";
+        var mes = "Etes-vous sûr de vouloir supprimer ce groupe ?";
         function deleted(id) {
              Swal.fire({
                 html: mes,
@@ -203,11 +203,29 @@
                 {
                     if(result.value) 
                         {
-                            document.location.href=base_url+"/user/delete/"+id;
+                            document.location.href=base_url+"/group/delete/"+id;
                         }
                 });  
             
         }
+
+        function edit(id, rowId) {
+           let table = document.getElementById("kt_table_users");
+           document.getElementById("create_modal_from").action = "{{ route('groups.edit')}}";
+           document.getElementById("old_id").value = id;
+           document.getElementById("modalTitle").innerHTML = "Mise à jour du groupe";
+           document.getElementById("submitText").innerHTML = "Sauvegarder";
+           document.getElementById("groups_name").value = table.rows[rowId].cells[1].innerHTML.trim();
+           document.getElementById("groups_detail").value = table.rows[rowId].cells[3].innerHTML.trim();
+
+           document.getElementById("groups_participant").value = 1;
+           document.getElementById("groups_participant").dispatchEvent(new Event('change'));
+        }
+
+        $(window).on('load', function() {
+         if(old_group == 1)
+             $('#create_modal').modal('show');
+    });
        // var table = document.getElementById(#)
     </script>
     @endsection

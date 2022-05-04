@@ -5,13 +5,13 @@
         <!--begin::Modal content-->
         <div class="modal-content">
             <!--begin::Form-->
-            <form class="form" action="{{ route('groups.store')}}" method="post" id="create_modal_from">
+            <form class="form" action="{{ isset($old_group) ? route('groups.edit') : route('groups.store') }}" method="post" id="create_modal_from">
                 @csrf   
-            <input type="hidden" name="id" id="old_id"  >   
+            <input type="hidden" name="id" id="old_id" value="<?= isset($old_group) ? $old_group->groups_id : ''	?>" >   
             <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_new_address_header">
                     <!--begin::Modal title-->
-                    <h2 class="text-dark" id="modalTitle">Création de groupe de formation</h2>
+                    <h2 class="text-dark" id="modalTitle"><?= isset($old_group) ? 'Mise à jour d\'un' : 'Création d\'un '	?> groupe de formation </h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -31,16 +31,13 @@
                 <div class="modal-body py-10 px-lg-17">
                     <!--begin::Scroll-->
                     <div class="scroll-y me-n7 pe-7" id="kt_modal_new_address_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_new_address_header" data-kt-scroll-wrappers="#kt_modal_new_address_scroll" data-kt-scroll-offset="300px">
-                        <div id="infoMessage" style="color:red;">
-                            <?=  session()->has('message2') ? (session()->get('message2')) : ("")?>
-                        </div>
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
                             <!--begin::Label-->
                             <label class="fs-5 fw-bold mb-2 required">Désignation</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control form-control-solid" placeholder="" name="groups_name"  type="text" id="groups_name" value="<?= old("groups_name")	?>" />
+                            <input class="form-control form-control-solid" placeholder="" name="groups_name"  type="text" id="groups_name" value="<?= isset($old_group) ? $old_group->groups_name : old("groups_name")	?>" />
                             <!--end::Input-->
                             @if($errors->has('groups_name'))
                             <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('groups_name')}}</div></div>
@@ -53,7 +50,7 @@
                              <label class="fw-bolder text-dark fs-6 mb-2">Description</label>
                             <!--end::Label-->
                             <!--end::Input-->
-                            <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="groups_detail" id="groups_detail" ><?= old("groups_detail")?></textarea>
+                            <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="groups_detail" id="groups_detail" ><?= isset($old_group) ? $old_group->groups_detail : old("groups_detail") ?></textarea>
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -61,9 +58,19 @@
                          <div class="d-flex flex-column mb-5 fv-row  text-dark">
                             <label class="form-label fw-bolder text-dark fs-6 required">Ajouter des participants</label>
                             <select name="groups_participant[]" multiple aria-label="Selectionnez un profile" data-control="select2" data-placeholder="Attribuer un role..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="groups_participant">
-                            @foreach($users as $key=> $user)
-                                <option value="{{$user->id}}">{{$user->first_name.' '.$user->last_name}}</option>
-                            @endforeach
+                            @if(isset($old_group))
+                                @foreach($users as $key=> $user)
+                                    @if(!in_array($user->id, $user_to_offset))
+                                    <option value="{{$user->id}}" <?= in_array($user->id, $old_participation) ? 'selected' : ''?> >{{$user->first_name.' '.$user->last_name}}</option>
+                                    @endif
+                                @endforeach
+                            @else
+                                @foreach($users as $key=> $user)
+                                    @if(!in_array($user->id, $user_to_offset))
+                                    <option value="{{$user->id}}">{{$user->first_name.' '.$user->last_name}}</option>
+                                    @endif
+                                @endforeach
+                            @endif
                             </select>
                             @if($errors->has('groups_participant'))
                             <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('groups_participant')}}</div></div>

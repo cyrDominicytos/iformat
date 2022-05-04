@@ -40,46 +40,46 @@
 								</a>
 							</span>
 						</div>
-						<div class="menu-item menu-lg-down-accordion me-lg-1">
+						<!-- <div class="menu-item menu-lg-down-accordion me-lg-1">
 							<span class="menu-link py-3">
 								<a class="menu-link bg-color hover-overlay br-dark" href="" style="hover:background-color:black"> 
 									<span class="menu-title" style="color: #fff;">Salles de formation</span>
 									<span class="menu-arrow d-lg-none"></span>
 								</a>
 							</span>
-						</div>
+						</div> -->
 						<div class="menu-item menu-lg-down-accordion me-lg-1">
 							<span class="menu-link py-3">
 								<a class="menu-link bg-color hover-overlay br-dark" href="" style="hover:background-color:black"> 
-									<span class="menu-title" style="color: #fff;">Gestion de la présence</span>
+									<span class="menu-title" style="color: #fff;">Présence</span>
 									<span class="menu-arrow d-lg-none"></span>
 								</a>
 							</span>
 						</div>
-						<div class="menu-item menu-lg-down-accordion me-lg-1">
+						<!-- <div class="menu-item menu-lg-down-accordion me-lg-1">
 							<span class="menu-link py-3">
 								<a class="menu-link bg-color hover-overlay br-dark" href="" style="hover:background-color:black"> 
 									<span class="menu-title" style="color: #fff;">Mes évaluations</span>
 									<span class="menu-arrow d-lg-none"></span>
 								</a>
 							</span>
-						</div>
-						<div class="menu-item menu-lg-down-accordion me-lg-1">
+						</div> -->
+						<!-- <div class="menu-item menu-lg-down-accordion me-lg-1">
 							<span class="menu-link py-3">
 								<a class="menu-link bg-color hover-overlay br-dark" href="" style="hover:background-color:black"> 
 									<span class="menu-title" style="color: #fff;">Gestion des utilisateurs</span>
 									<span class="menu-arrow d-lg-none"></span>
 								</a>
 							</span>
-						</div>
-						<div class="menu-item menu-lg-down-accordion me-lg-1">
+						</div> -->
+						<!-- <div class="menu-item menu-lg-down-accordion me-lg-1">
 							<span class="menu-link py-3">
 								<a class="menu-link bg-color hover-overlay br-dark" href="" style="hover:background-color:black"> 
 									<span class="menu-title" style="color: #fff;">Gestion des formateurs</span>
 									<span class="menu-arrow d-lg-none"></span>
 								</a>
 							</span>
-						</div>
+						</div> -->
 					</div>
 					<!--end::Menu-->
 				</div>

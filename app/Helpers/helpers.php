@@ -1,6 +1,7 @@
 <?php
 use App\Mail\Contact;
 use App\Models\Chambre;
+use App\Models\GroupModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -176,6 +177,30 @@ if (!function_exists('countries_list')) {
             "2"=>"Porto-Novo",
             "3"=>"Parakou",
         ];
+    }
+}
+if (!function_exists('no_assign_participants_to_group')) {
+    function no_assign_participants_to_group() {
+        
+        $model = new GroupModel();
+        $gorups = $model->get_group_list(1);
+        $result = [];
+        foreach ($gorups as $group){
+            $result = array_merge($result, json_decode($group->groups_participant));
+        }
+    return $result;
+    }
+}
+if (!function_exists('no_assign_participants_to_group_for_update')) {
+    function no_assign_participants_to_group_for_update($id) {
+        
+        $model = new GroupModel();
+        $gorups = $model->get_group_list_for_update(1,$id);
+        $result = [];
+        foreach ($gorups as $group){
+            $result = array_merge($result, json_decode($group->groups_participant));
+        }
+    return $result;
     }
 }
 

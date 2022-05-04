@@ -50,10 +50,10 @@
 							<!--begin::Menu-->
 							<ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
 								<li class="menu-item">
-									<a href="<?= getenv('DEV_SITE_URL') ?>" target="_blank" class="menu-link px-2">A propos de nous</a>
+									<a href="http://www.win-africa.com/htdocs/home/" target="_blank" class="menu-link px-2">A propos de nous</a>
 								</li>
 								<li class="menu-item">
-									<a href="mailto:cyrdominicytos@gmail.com" target="_blank" class="menu-link px-2">Contactez l'entreprise</a>
+									<a href="mailto:cyrdominicytos@gmail.com" target="_blank" class="menu-link px-2">Equipe de développeur</a>
 								</li>
 								
 							</ul>

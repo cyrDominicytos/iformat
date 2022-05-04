@@ -31,9 +31,6 @@
                 <div class="modal-body py-10 px-lg-17">
                     <!--begin::Scroll-->
                     <div class="scroll-y me-n7 pe-7" id="kt_modal_new_address_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_new_address_header" data-kt-scroll-wrappers="#kt_modal_new_address_scroll" data-kt-scroll-offset="300px">
-                        <div id="infoMessage" style="color:red;">
-                            <?=  session()->has('message2') ? (session()->get('message2')) : ("")?>
-                        </div>
                          <!--begin::Input group-->
                          <div class="d-flex flex-column mb-5 fv-row  text-dark">
                             <label class="form-label fw-bolder text-dark fs-6 required">Villes</label>

@@ -4,7 +4,7 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="">
-            <img alt="Logo" src="http://www.win-africa.com/images/logo.png" class="h-50px logo" />
+            <img alt="Logo" src="http://www.win-africa.com/images/logo.png" class="h-50px logo rounded-circle" style="background-color:rgba(255,255,255,0.1);"/>
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
@@ -51,12 +51,12 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item menu-accordion">
-                            <a class="menu-link" href="{{ route('addRoom') }}">
+                            <!-- <a class="menu-link" href="{{ route('addRoom') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Ajouter</span>
-                            </a>
+                            </a> -->
                             <a class="menu-link" href="{{ route('listRooms') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -77,12 +77,12 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item menu-accordion">
-                            <a class="menu-link" href="{{ route('addGroup') }}">
+                            <!-- <a class="menu-link" href="{{ route('addGroup') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Ajouter</span>
-                            </a>
+                            </a> -->
                             <a class="menu-link" href="{{ route('listGroups') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -103,13 +103,13 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item menu-accordion">
-                            <a class="menu-link" href="{{ route('addLearning') }}">
+                            <a class="menu-link" href="">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Ajouter</span>
                             </a>
-                            <a class="menu-link" href="{{ route('listLearnings') }}">
+                            <a class="menu-link" href="">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>

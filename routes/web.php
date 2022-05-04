@@ -50,7 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/addGroup', [Group::class, 'add'])->name('addGroup');
     Route::get('/listGroups', [Group::class, 'list'])->name('listGroups');
     Route::post('/groups/store', [Group::class, 'store'])->name('groups.store');
+    Route::get('/groups/update/{id}', [Group::class, 'update'])->name('groups.update');
     Route::post('/groups/edit', [Group::class, 'edit'])->name('groups.edit');
-    Route::get('/groups/delete/{id}', [Group::class, 'destroy'])->name('groups.delete');
+    Route::get('/group/delete/{id}', [Group::class, 'destroy'])->name('group.delete');
    
 });

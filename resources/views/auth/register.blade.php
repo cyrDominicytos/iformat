@@ -11,8 +11,8 @@
 						<!--begin::Content-->
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
-							<a href="../../demo12/dist/index.html" class="py-9 mb-5">
-								<img alt="Logo" src="http://www.win-africa.com/images/logo.png" class="h-60px" />
+							<a href="{{ route('home')}}" class="py-9 mb-5">
+								<img alt="Logo" src="http://www.win-africa.com/images/logo.png" class="h-60px  rounded-circle" style="background-color:rgba(255,255,255,0.1)" />
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
@@ -24,14 +24,14 @@
 						</div>
 						<!--end::Content-->
 						<!--begin::Illustration-->
-						<div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-350px">
+						<div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-300px min-h-lg-350px">
                              <!-- Owl-Carousel -->
                              <div class="owl-carousel owl-theme">
-                                <img src="{{ asset('assets/media/presentation/pre1.png') }}" alt="" class="login_img">
-                                <img src="{{ asset('assets/media/presentation/pre2.png') }}" alt="" class="login_img">
-                                <img src="{{ asset('assets/media/presentation/pre3.png') }}" alt="" class="login_img">
-                                <img src="{{ asset('assets/media/presentation/pre4.png') }}" alt="" class="login_img">
-                                <img src="{{ asset('assets/media/presentation/pre5.png') }}" alt="" class="login_img">                                
+							 	<img src="{{ asset('assets/image/login/win1.jpg') }}" alt="" class="login_img">
+                                <img src="{{ asset('assets/image/login/win2.jpg') }}" alt="" class="login_img">
+                                <img src="{{ asset('assets/image/login/win3.jpg') }}" alt="" class="login_img">
+                                <img src="{{ asset('assets/image/login/win5.jpg') }}" alt="" class="login_img">
+                                <img src="{{ asset('assets/image/login/win6.jpg') }}" alt="" class="login_img">
                             </div>
                             <!-- /Owl-Carousel --> 
                        </div>
@@ -242,8 +242,8 @@
 					<div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
 						<!--begin::Links-->
 						<div class="d-flex flex-center fw-bold fs-6">
-							<a href="#" class="text-muted text-hover-primary px-2" target="_blank">A propos</a>
-							<a href="mailto:<?= getenv('DEV_MAIL') ?>" class="text-muted text-hover-primary px-2" target="_blank">Nous contacter</a>
+							<a href="http://www.win-africa.com/htdocs/home/" class="text-muted text-hover-primary px-2" target="_blank">A propos</a>
+							<a href="http://www.win-africa.com/htdocs/contacts/" class="text-muted text-hover-primary px-2" target="_blank">Nous contacter</a>
 						</div>
 						<!--end::Links-->
 					</div>
