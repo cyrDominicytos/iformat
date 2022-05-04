@@ -7,6 +7,7 @@ use App\Models\LearningModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 
 class Room extends Controller
@@ -58,10 +59,17 @@ class Room extends Controller
        
             $validator = Validator::make($request->all(), [
                 'classrooms_countries_id' => 'required',
-                'classrooms_name' => 'required|max:255',
-               // 'classrooms_name' => 'required|unique:posts|max:255',
+                'classrooms_name' => [
+                    'required',
+                    'max:255',
+                    'classrooms_name' => Rule::unique('classrooms')
+                        ->where(fn ($query) => $query->where('classrooms_countries_id', $request->classrooms_countries_id))
+                        ->where(fn ($query) => $query->where('classrooms_status', 1))
+                ],
             ],[
                 'classrooms_name.required' => 'Renseignez la désignation du site',
+                'classrooms_name.unique' => 'Ce site de formation est déjà créé dans cette ville',
+                'classrooms_name.max' => 'La désignation du site doit comporter maximum 255 caractères',
                 'classrooms_countries_id.required' => 'Renseignez la ville du site',
             ]);
      
@@ -108,11 +116,19 @@ class Room extends Controller
     {
        
             $validator = Validator::make($request->all(), [
-                'classrooms_countries_id' => 'required',
                 'classrooms_name' => 'required|max:255',
-               // 'classrooms_name' => 'required|unique:posts|max:255',
+                'classrooms_name' => [
+                    'required',
+                    'max:255',
+                    'classrooms_name' => Rule::unique('classrooms')
+                        ->ignore($request->id, 'classrooms_id')
+                        ->where(fn ($query) => $query->where('classrooms_countries_id', $request->classrooms_countries_id))
+                        ->where(fn ($query) => $query->where('classrooms_status', 1))
+                ],
             ],[
                 'classrooms_name.required' => 'Renseignez la désignation du site',
+                'classrooms_name.unique' => 'Ce site de formation est déjà créé dans cette ville',
+                'classrooms_name.max' => 'La désignation du site doit comporter maximum 255 caractères',
                 'classrooms_countries_id.required' => 'Renseignez la ville du site',
             ]);
      
