@@ -2,10 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassRoomModel;
+use App\Models\LearningModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class Learning extends Controller
 {
+
+    protected $modelRoom = null;
+    protected $modelLearning = null;
+
+    public function __construct(){
+        $this->modelRoom = new ClassRoomModel();
+        $this->modelLearning = new LearningModel();
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,11 +38,16 @@ class Learning extends Controller
      */
     public function add()
     {
-        //
+        $data['learning'] = $this->modelRoom->get_rooms_list(1);
+        $data['countries_list'] = countries_list();
+        $data['days_list'] = days_list();
+        return view('learnings.create', $data);
     }
     public function list()
     {
-        //
+        $data['learning'] = $this->modelRoom->get_rooms_list(1);
+        $data['countries_list'] = countries_list();
+        return view('learnings.list', $data);
     }
 
     /**

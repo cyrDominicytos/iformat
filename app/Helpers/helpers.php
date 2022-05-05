@@ -179,6 +179,20 @@ if (!function_exists('countries_list')) {
         ];
     }
 }
+if (!function_exists('days_list')) {
+    function days_list() {
+        
+        return  [
+            "0"=>"Dimanche",
+            "1"=>"Lundi",
+            "2"=>"Mardi",
+            "3"=>"Mercredi",
+            "4"=>"Jeudi",
+            "5"=>"Vendredi",
+            "6"=>"Samedi",
+        ];
+    }
+}
 if (!function_exists('no_assign_participants_to_group')) {
     function no_assign_participants_to_group() {
         
