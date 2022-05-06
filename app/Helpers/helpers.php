@@ -179,6 +179,14 @@ if (!function_exists('countries_list')) {
         ];
     }
 }
+if (!function_exists('cabinet_list')) {
+    function cabinet_list() {
+        
+        return  [
+            "1"=>"WIN AFRICA",
+        ];
+    }
+}
 if (!function_exists('days_list')) {
     function days_list() {
         

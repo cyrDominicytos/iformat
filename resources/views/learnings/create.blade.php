@@ -95,188 +95,211 @@
                 <!--begin::Card body-->
                 <div class="card-body py-4">
                     <div class="row">
-                        <form class="form" action="{{ route('rooms.store')}}" method="post" id="create_modal_from">
+                        <form class="form" action="<?= isset($old_learning) ? route('listLearnings.edit') : route('listLearnings.store') ?>" method="post" id="create_modal_from">
                             @csrf   
                             <input type="hidden" name="id" id="old_id"  >   
                             <div class="col-md-12">
-                                        
-                                                <div class="d-flex flex-column mb-5 fv-row  text-dark">
-                                                    <label class="form-label fw-bolder text-dark fs-6 required">Cabinet</label>
-                                                    <select name="classrooms_countries_id" aria-label="Selectionnez un profile" data-control="select2" data-placeholder="Attribuer un role..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="classrooms_countries_id">
-                                                    @foreach($countries_list as $key=> $list)
-                                                        <option value="{{$key}}">{{$list}}</option>
-                                                    @endforeach
-                                                    </select>
-                                                    @if($errors->has('classrooms_countries_id'))
-                                                    <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('classrooms_countries_id')}}</div></div>
-                                                    @endif
-                                                </div>
-                                                <!--end::Input group-->
-                                                <!--begin::Input group-->
-                                                <div class="d-flex flex-column mb-5 fv-row  text-dark">
-                                                    <!--begin::Label-->
-                                                    <label class="fs-5 fw-bold mb-2 required">Titre de la formation</label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Input-->
-                                                    <input class="form-control form-control-solid" placeholder="" name="classrooms_name"  type="text" id="classrooms_name" value="<?= old("classrooms_name")	?>" />
-                                                    <!--end::Input-->
-                                                    @if($errors->has('classrooms_name'))
-                                                    <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('classrooms_name')}}</div></div>
-                                                    @endif
-                                                </div>
-                                                <!--end::Input group-->
-                                                <!--begin::Input group-->
-                                                <div class="d-flex flex-column mb-5 fv-row  text-dark">
-                                                    <!--begin::Label-->
-                                                    <label class="fs-5 fw-bold mb-2 required">Sous titre de la formation</label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Input-->
-                                                    <input class="form-control form-control-solid" placeholder="" name="classrooms_name"  type="text" id="classrooms_name" value="<?= old("classrooms_name")	?>" />
-                                                    <!--end::Input-->
-                                                    @if($errors->has('classrooms_name'))
-                                                    <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('classrooms_name')}}</div></div>
-                                                    @endif
-                                                </div>
-                                                <!--end::Input group-->
-                                                <!--begin::Input group-->
-                                                <div class="d-flex flex-column mb-5 fv-row  text-dark">
-                                                    <!--end::Label-->
-                                                    <label class="fw-bolder text-dark fs-6 mb-2">Objectif</label>
-                                                    <!--end::Label-->
-                                                    <!--end::Input-->
-                                                    <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="classrooms_detail" id="classrooms_detail" ><?= old("classrooms_detail")?></textarea>
-                                                    <!--end::Input-->
-                                                </div>
-                                                <!--end::Input group-->
-                                                <!--begin::Input group-->
-                                                <div class="d-flex flex-column mb-5 fv-row  text-dark">
-                                                    <!--end::Label-->
-                                                    <label class="fw-bolder text-dark fs-6 mb-2">Cibles</label>
-                                                    <!--end::Label-->
-                                                    <!--end::Input-->
-                                                    <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="classrooms_detail" id="classrooms_detail" ><?= old("classrooms_detail")?></textarea>
-                                                    <!--end::Input-->
-                                                </div>
-                                                <!--end::Input group-->
-                                                <!--begin::Input group-->
-                                                <div class="d-flex flex-column mb-5 fv-row  text-dark">
-                                                    <!--end::Label-->
-                                                    <label class="fw-bolder text-dark fs-6 mb-2">Informations supplémentaires</label>
-                                                    <!--end::Label-->
-                                                    <!--end::Input-->
-                                                    <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="classrooms_detail" id="classrooms_detail" ><?= old("classrooms_detail")?></textarea>
-                                                    <!--end::Input-->
-                                                </div>
-                                                <!--end::Input group-->
-                                                <div class="d-flex flex-column mb-5 fv-row  text-dark">
-                                                    <label class="form-label fw-bolder text-dark fs-6 required">Jours de formation</label>
-                                                    <select name="learnings_days[]" aria-label="Selectionnez les jours de formation" multiple="multiple" data-control="select2" data-placeholder="Ajouter des jours de formaton" class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="classrooms_countries_id">
-                                                    @foreach($days_list as $key=> $list)
-                                                        <option value="{{$key}}">{{$list}}</option>
-                                                    @endforeach
-                                                    </select>
-                                                    @if($errors->has('classrooms_countries_id'))
-                                                    <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('classrooms_countries_id')}}</div></div>
-                                                    @endif
-                                                </div>
-                                                <!--begin::Row-->
-                                                <div class="row fv-row " data-select2-id="select2-data-126-fvxd">
-                                                    <!--begin::Col-->
-                                                    <div class="col-5" data-select2-id="select2-data-125-pfr6">
-                                                        <!--begin::Label-->
-                                                        <label class="fw-bolder text-dark fs-6 mb-2 required">Début</label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Input-->
-                                                        <input class="form-control form-control-solid" placeholder="" name="classrooms_name"  type="time" id="classrooms_name" value="<?= old("classrooms_name")	?>" />
-                                                        <!--end::Input-->
-                                                        @if($errors->has('classrooms_name'))
-                                                        <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('classrooms_name')}}</div></div>
-                                                        @endif
-                                                    </div>
-                                                    <!--end::Col-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-5" data-select2-id="select2-data-125-pfr6">
-                                                        <!--begin::Label-->
-                                                        <label class="fw-bolder text-dark fs-6 mb-2 required">Fin</label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Input-->
-                                                        <input class="form-control form-control-solid" placeholder="" name="classrooms_name"  type="time" id="classrooms_name" value="<?= old("classrooms_name")	?>" />
-                                                        <!--end::Input-->
-                                                        @if($errors->has('classrooms_name'))
-                                                        <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('classrooms_name')}}</div></div>
-                                                        @endif
-                                                    </div>
-                                                    <!--end::Col-->
-                                                    <!--begin::Col-->
-                                                    <div class="col-2">
-                                                        <!--begin::Label-->
-                                                        <label class="fw-bolder text-dark fs-6"></label>
-                                                        <!--end::Label-->
-                                                            <!--begin::Button-->
-                                                        <button type="button" id="addSlot" class="btn btn-primary mx-auto mt-5 align-bottom" >Ajouter</button>
-                                                        <!--end::Button--> 
-                                                        </div>
-                                                        <!--end::Col-->
-                                                </div>
-                                                <!--end::Row-->
-                                            <!--end::Scroll-->
-                                        </div>                                       
-                                        <!--begin::Modal footer-->
-                                        <div class="modal-footer flex-center">
-                                            <!--begin::Button-->
-                                            <button type="reset" id="kt_modal_new_address_cancel" class="btn btn-danger" >Quitter</button>
-                                            <!--end::Button-->
-                                            <!--begin::Button-->
-                                            <button type="submit" id="kt_modal_new_address_submit" class="btn btn-primary">
-                                                <span class="indicator-label" id="submitText">Enregistrer</span>
-                                                <span class="indicator-progress">Patientez...
-                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                            </button>
-                                            <!--end::Button-->
+                                <div class="row fv-row fv-plugins-icon-container" _mstvisible="11">
+                                    <!--begin::Col-->
+                                    <div class="col-md-6" _mstvisible="12">
+                                        <div class="d-flex flex-column mb-5 fv-row  text-dark">
+                                            <label class="form-label fw-bolder text-dark fs-6 required">Cabinet</label>
+                                            <select name="learnings_author_id" aria-label="Selectionnez un profile" data-control="select2" data-placeholder="Choisissez le cabinet..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="learnings_author_id">
+                                            @foreach($cabinet_list as $key=> $list)
+                                                <option value="{{$key}}">{{$list}}</option>
+                                            @endforeach
+                                            </select>
+                                            @if($errors->has('classrooms_countries_id'))
+                                            <div class="fv-plugins-message-container invalid-feedback"><div data-field="learnings_author_id" data-validator="notEmpty">{{$errors->first('learnings_author_id')}}</div></div>
+                                            @endif
                                         </div>
-                                        <!--end::Modal footer-->
-                                    
+                                    </div>
+                                    <div class="col-md-6" _mstvisible="12">
+                                         <!--begin::Input group-->
+                                        <div class="d-flex flex-column mb-5 fv-row  text-dark">
+                                            <!--begin::Label-->
+                                            <label class="fs-5 fw-bold mb-2 required">Titre de la formation</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input class="form-control form-control-solid" placeholder="" name="learnings_title"  type="text" id="learnings_title" value="<?= old("learnings_title")	?>" />
+                                            <!--end::Input-->
+                                            @if($errors->has('learnings_title'))
+                                            <div class="fv-plugins-message-container invalid-feedback"><div data-field="learnings_title" data-validator="notEmpty">{{$errors->first('learnings_title')}}</div></div>
+                                            @endif
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                </div>
+                                <div class="row fv-row fv-plugins-icon-container" _mstvisible="11">
+                                    <div class="col-md-6" _mstvisible="12">
+                                        <!--begin::Input group-->
+                                        <div class="d-flex flex-column mb-5 fv-row  text-dark">
+                                            <!--begin::Label-->
+                                            <label class="fs-5 fw-bold mb-2 required">Sous titre de la formation</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input class="form-control form-control-solid" placeholder="" name="learnings_title2"  type="text" id="learnings_title2" value="<?= old("learnings_title2")	?>" />
+                                            <!--end::Input-->
+                                            @if($errors->has('learnings_title2'))
+                                            <div class="fv-plugins-message-container invalid-feedback"><div data-field="learnings_title2" data-validator="notEmpty">{{$errors->first('learnings_title2')}}</div></div>
+                                            @endif
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                    <div class="col-md-6" _mstvisible="12">
+                                         <!--begin::Input group-->
+                                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
+                                            <!--begin::Label-->
+                                            <label class="fs-5 fw-bold mb-2 required">Durée de la formation (en Heure)</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input class="form-control form-control-solid" placeholder="" name="learnings_duration"  type="number" id="learnings_duration" min="1" value="<?= old("learnings_duration")	?>" />
+                                            <!--end::Input-->
+                                            @if($errors->has('learnings_title2'))
+                                            <div class="fv-plugins-message-container invalid-feedback"><div data-field="learnings_duration" data-validator="notEmpty">{{$errors->first('learnings_duration')}}</div></div>
+                                            @endif
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                </div>                               
+                                <div class="row fv-row fv-plugins-icon-container" _mstvisible="11">
+                                    <!--begin::Col-->
+                                    <div class="col-md-6" _mstvisible="12">
+                                         <!--begin::Input group-->
+                                        <div class="d-flex flex-column mb-5 fv-row  text-dark">
+                                            <!--end::Label-->
+                                            <label class="fw-bolder text-dark fs-6 mb-2">Objectif</label>
+                                            <!--end::Label-->
+                                            <!--end::Input-->
+                                            <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="learnings_goal" id="learnings_goal" ><?= old("learnings_goal")?></textarea>
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                    <div class="col-md-6" _mstvisible="12">
+                                        <!--begin::Input group-->
+                                        <div class="d-flex flex-column mb-5 fv-row  text-dark">
+                                            <!--end::Label-->
+                                            <label class="fw-bolder text-dark fs-6 mb-2">Cibles</label>
+                                            <!--end::Label-->
+                                            <!--end::Input-->
+                                            <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="learnings_target" id="learnings_target" ><?= old("learnings_target")?></textarea>
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                </div>                               
+                                <!--begin::Input group-->
+                                <div class="d-flex flex-column mb-5 fv-row  text-dark">
+                                    <!--end::Label-->
+                                    <label class="fw-bolder text-dark fs-6 mb-2">Informations supplémentaires</label>
+                                    <!--end::Label-->
+                                    <!--end::Input-->
+                                    <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="learnings_infos" id="learnings_infos" ><?= old("learnings_infos")?></textarea>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <div class="d-flex flex-column mb-5 fv-row  text-dark">
+                                    <label class="form-label fw-bolder text-dark fs-6 required">Jours de formation</label>
+                                    <select name="learnings_days[]" aria-label="Selectionnez les jours de formation" multiple="multiple" data-control="select2" data-placeholder="Ajouter des jours de formaton" class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="classrooms_countries_id">
+                                    @foreach($days_list as $key=> $list)
+                                        <option value="{{$key}}">{{$list}}</option>
+                                    @endforeach
+                                    </select>
+                                    @if($errors->has('classrooms_countries_id'))
+                                    <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('classrooms_countries_id')}}</div></div>
+                                    @endif
+                                </div>
+                                <!--begin::Row-->
+                                <div class="row fv-row " data-select2-id="select2-data-126-fvxd">
+                                    <!--begin::Col-->
+                                    <div class="col-5" data-select2-id="select2-data-125-pfr6">
+                                        <!--begin::Label-->
+                                        <label class="fw-bolder text-dark fs-6 mb-2 required">Début</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input class="form-control form-control-solid" placeholder="" name="learnings_time_slot1"  type="time" id="learnings_time_slot1"  />
+                                        <!--end::Input-->
+                                        @if($errors->has('learnings_time_slot1'))
+                                        <div class="fv-plugins-message-container invalid-feedback"><div data-field="learnings_time_slot1" data-validator="notEmpty">{{$errors->first('learnings_time_slot1')}}</div></div>
+                                        @endif
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-5" data-select2-id="select2-data-125-pfr6">
+                                        <!--begin::Label-->
+                                        <label class="fw-bolder text-dark fs-6 mb-2 required">Fin</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input class="form-control form-control-solid" placeholder="" name="learnings_time_slot2"  type="time" id="learnings_time_slot2" />
+                                        <!--end::Input-->
+                                        @if($errors->has('learnings_time_slot2'))
+                                        <div class="fv-plugins-message-container invalid-feedback"><div data-field="learnings_time_slot2" data-validator="notEmpty">{{$errors->first('learnings_time_slot2')}}</div></div>
+                                        @endif
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-2">
+                                        <!--begin::Label-->
+                                        <label class="fw-bolder text-dark fs-6"></label>
+                                        <!--end::Label-->
+                                        <!--begin::Button-->
+                                        <button type="button" id="addSlot" class="btn btn-primary mx-auto mt-5 pt-5 align-bottom" >
+                                            <span class="svg-icon svg-icon-2">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+													<rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black"></rect>
+													<rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black"></rect>
+												</svg>
+											</span>
+                                        </button>
+                                        <!--end::Button--> 
+                                        </div>
+                                        <!--end::Col-->
+                                    </div>
+                                    <!--end::Row-->
+                                    <!--end::Scroll-->
+                                </div> 
+                                <!--begin::Table-->
+                                <h4 class="fw-bolder text-dark text-center mt-5 mb-5">Liste des horaires ajoutés</h4>
+                                <table class="table align-middle table-row-dashed fs-6 gy-5" id="table_slot" >
+                                    <!--begin::Table head-->
+                                    <thead>
+                                        <!--begin::Table row-->
+                                        <tr class="text-center text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                            <th class="text-en min-w-100px">Actions</th>
+                                            <th class="min-w-125px">Heure de Début</th>
+                                            <th class="min-w-125px">Heure de Fin</th>
+                                        </tr>
+                                        <!--end::Table row-->
+                                    </thead>
+                                    <!--end::Table head-->
+                                    <!--begin::Table body-->
+                                    <tbody class="text-gray-600 fw-bold">
+                                        <!--begin::Table row-->
+                                            <!--begin::Table row-->
+                                            
+                                            <!--end::Table row-->	
+                                    </tbody>
+                                    <!--end::Table body-->
+                                </table>
+                                <!--end::Table--> 
+                <!--begin::Modal footer-->
+                <div class="modal-footer flex-center">
+                    <!--begin::Button-->
+                    <button type="reset" id="kt_modal_new_address_cancel" class="btn btn-danger me-3" data-bs-dismiss="modal">Quitter</button>
+                    <!--end::Button-->
+                    <!--begin::Button-->
+                    <button type="submit" id="submit" class="btn btn-primary">
+                        <span class="indicator-label" id="submitText">Enregistrer</span>
+                        <span class="indicator-progress">Patientez...
+                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                    </button>
+                    <!--end::Button-->
+                </div>
+                <!--end::Modal footer-->                               
                             </div>
                         </form>
                     </div>
-                    <!--begin::Table-->
-                    <table class="table align-middle table-row-dashed fs-6 gy-5" >
-                        <!--begin::Table head-->
-                        <thead>
-                            <!--begin::Table row-->
-                            <tr class="text-center text-muted fw-bolder fs-7 text-uppercase gs-0">
-                                <th class="text-en min-w-100px">Actions</th>
-                                <th class="min-w-125px">Heure de Début</th>
-                                <th class="min-w-125px">Heure de Fin</th>
-                            </tr>
-                            <!--end::Table row-->
-                        </thead>
-                        <!--end::Table head-->
-                        <!--begin::Table body-->
-                        <tbody class="text-gray-600 fw-bold">
-                            <!--begin::Table row-->
-                            <?= $i=1?>
-                            @foreach($learning as $room)
-                                <!--begin::Table row-->
-                                <tr class="text-center">
-                                    <td>
-                                        
-                                    </td>
-                                    <!--end::Action=-->
-                                    <td >
-                                        {{  $room->classrooms_name }}
-                                    </td>
-                                    <td>
-                                    {{  countries_list()[$room->classrooms_countries_id]  }}
-                                    </td>
-                                </tr>
-                                <!--end::Table row-->	
-                                <?= $i++?>
-                                @endforeach						
-                        </tbody>
-                        <!--end::Table body-->
-                    </table>
-                    <!--end::Table-->
                 </div>
                 <!--end::Card body-->
             </div>
@@ -293,49 +316,75 @@
         var showModal = "<?= Route::currentRouteName() == '' ? ('') : ('') ?>";
         var base_url = "<?=URL::to('/') ?>";
         var mes = "Etes-vous sûr de vouloir supprimer ce site de formation ?";
-        function deleted(id) {
-             Swal.fire({
+        var learnings_time_slot1 = document.getElementById("learnings_time_slot1");
+        var learnings_time_slot2 = document.getElementById("learnings_time_slot2");
+        var table_unique = [];
+        $(document).on('click', '#addSlot', function(){
+        if(!checkSelect()){
+            message_dialog("Veuillez choisir une heure de début et de fin !")
+            return;
+        }
+        var indexId =  learnings_time_slot1.value+learnings_time_slot2.value;
+        if(table_unique.includes(indexId)){
+            //row already exists
+        }else{
+            //new row
+            var val = learnings_time_slot1.value+' - '+learnings_time_slot2.value;
+            var html = '';
+            html += '<tr class="text-center">';
+            html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove" id="'+indexId+'"><span class="fa fa-minus"></span></button></td>';
+            html += '<td> <input hidden name="learnings_time_slot[]"  type="text" value="'+val+'">'+learnings_time_slot1.value+'</td>';
+            html += '<td>'+learnings_time_slot2.value+'</td></tr>';
+            $('#table_slot').append(html);
+            table_unique[table_unique.length] = indexId;
+            checkForm()
+        }
+        checkForm()
+       });
+
+       $(document).on('click', '.remove', function(){
+        var row_index =$(this).closest("tr").index();
+        var rowId =  $(this).attr("id");
+        table_unique.splice(row_index-1, 1);
+        $(this).closest('tr').remove();
+        checkForm()
+    });
+
+    function checkSelect() {
+        if(learnings_time_slot1.value!=="" && learnings_time_slot2.value!=="")
+            return true;
+            return false; 
+    }
+
+    function checkForm() {
+        if(table_unique.length > 0)
+            document.getElementById("submit").disabled = false;
+        else
+            document.getElementById("submit").disabled = true;
+    }
+
+    //Information dialog 
+        function message_dialog(mes) {
+            Swal.fire({
                 html: mes,
-                icon: "warning" ,
+                icon: "info",
                 buttonsStyling: false,
-                showCancelButton: true,
-                confirmButtonText: "J'en suis certain!",
-                cancelButtonText: "Non, J'abandonne.",
+                confirmButtonText: "C'est compris!",
                 customClass: {
                     confirmButton: "btn btn-primary",
-                    cancelButton: 'btn btn-danger'
                 }
             }).then((result)=>
                 {
                     if(result.value) 
-                        {
-                            document.location.href=base_url+"/rooms/delete/"+id;
-                        }
+                        console.log(result.value);                         
                 });  
-            
-        }
-
-        function edit(id, country,rowId) {
-          /* let table = document.getElementById("kt_table_users");
-           document.getElementById("create_modal_from").action = "{{ route('rooms.edit')}}";
-           document.getElementById("old_id").value = id;
-           document.getElementById("modalTitle").innerHTML = "Mise à jour de site de formation";
-           document.getElementById("submitText").innerHTML = "Sauvegarder";
-           document.getElementById("classrooms_name").value = table.rows[rowId].cells[1].innerHTML.trim();
-           document.getElementById("classrooms_detail").value = table.rows[rowId].cells[3].innerHTML.trim();
-
-           document.getElementById("classrooms_countries_id").value = country;
-           document.getElementById("classrooms_countries_id").dispatchEvent(new Event('change'));*/
         }
        
-        $(window).on('load', function() {
-            // if(showModal == 1)
-            //      $('#external_create_new').modal('show');
+    $(window).on('load', function()
+    {
+              checkForm()
     });
 
-    function updateCategory(category) {
-           
-    }
     </script>
     @endsection
 @endsection
