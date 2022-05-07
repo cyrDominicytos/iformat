@@ -114,9 +114,11 @@
                             <!--begin::Table row-->
                             <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                                 <th class="text-en min-w-100px">Actions</th>
-                                <th class="min-w-125px">Désignation</th>
-                                <th class="min-w-125px">Ville</th>
-                                <th class="min-w-125px">Description</th>
+                                <th class="min-w-125px">Titre</th>
+                                <th class="min-w-125px">Sous-Titre</th>
+                                <th class="min-w-125px">Durée</th>
+                                <th class="min-w-125px">Jour</th>
+                                <th class="min-w-125px">Horaire</th>
                                 <th class="min-w-125px">Crée par</th>
                                 <th class="min-w-125px">Créé le</th>
                             </tr>
@@ -127,10 +129,10 @@
                         <tbody class="text-gray-600 fw-bold">
                             <!--begin::Table row-->
                             <?= $i=1?>
-                            @foreach($learning as $room)
+                            @foreach($learning as $learn)
                                 <!--begin::Table row-->
                                     <tr>
-                                    <td class="text-cente">
+                                        <td class="">
                                             <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                             <span class="svg-icon svg-icon-5 m-0">
@@ -143,32 +145,56 @@
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#create_modal" onclick="edit(<?= $room->classrooms_id .','. $room->classrooms_countries_id .','. $i?> )" class="menu-link px-3 text-primary"> Editer</a>
+                                                    <a href="<?= route('listLearnings.edit',['id'=>$learn->learnings_id]) ?>"  class="menu-link px-3 text-primary"> Editer</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <p class="menu-link px-3"onclick="deleted(<?=$room->classrooms_id ?>)" ><?= deleteUser(1) ?></p>
+                                                    <p class="menu-link px-3"onclick="deleted(<?=$learn->learnings_id ?>)" ><?= deleteUser(1) ?></p>
                                                 </div>
                                                 <!--end::Menu item-->
                                             </div>
                                             <!--end::Menu-->
                                         </td>
                                         <!--end::Action=-->
-                                        <td class="d-flex align-items-center">
-                                           {{  $room->classrooms_name }}
+                                        <td class="">
+                                           {{ $learn->learnings_title }}
+                                        </td>
+                                       
+                                        <td class="">
+                                        {{  $learn->learnings_title2 }}
                                         </td>
                                         <td class="">
-                                        {{  countries_list()[$room->classrooms_countries_id]  }}
+                                        {{  $learn->learnings_duration.' H' }}
                                         </td>
                                         <td class="">
-                                        {{  $room->classrooms_detail }}
+                                            @if($learn->learnings_days)
+                                            <ul>
+                                                @foreach(json_decode($learn->learnings_days) as $value)
+                                                <li>
+                                                   {{days_list()[$value]}} 
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                            @endif
+                                        </td>
+                                        <td class="">
+                                        @if($learn->learnings_time_slot)
+                                            <ul>
+                                                @foreach(json_decode($learn->learnings_time_slot) as $value)
+                                                <li>
+                                                   {{$value}} 
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                            @endif
+                                       
                                         </td>
 
                                         <td> 
-                                        {{  $room->first_name.' '.$room->last_name }}
+                                        {{  $learn->first_name.' '.$learn->last_name }}
                                        </td>
-                                        <td><?= format_date($room->created_at , "d/m/Y à H:i:s")  ?></td>
+                                        <td><?= format_date($learn->learnings_created_at , "d/m/Y à H:i:s")  ?></td>
                                     </tr>
                                     <!--end::Table row-->	
                                     <?= $i++?>
@@ -186,14 +212,13 @@
     </div>
     <!--end::Post-->
 </div>
-@include('rooms.create');
  <!--end::Content-->
     @section('javascript')
     <script type="text/javascript">
       
         var showModal = "<?= Route::currentRouteName() == '' ? ('') : ('') ?>";
         var base_url = "<?=URL::to('/') ?>";
-        var mes = "Etes-vous sûr de vouloir supprimer ce site de formation ?";
+        var mes = "Etes-vous sûr de vouloir supprimer cette formation ?";
         function deleted(id) {
              Swal.fire({
                 html: mes,
@@ -210,24 +235,13 @@
                 {
                     if(result.value) 
                         {
-                            document.location.href=base_url+"/rooms/delete/"+id;
+                            document.location.href=base_url+"/listLearnings/delete/"+id;
                         }
                 });  
             
         }
 
-        function edit(id, country,rowId) {
-           let table = document.getElementById("kt_table_users");
-           document.getElementById("create_modal_from").action = "{{ route('rooms.edit')}}";
-           document.getElementById("old_id").value = id;
-           document.getElementById("modalTitle").innerHTML = "Mise à jour de site de formation";
-           document.getElementById("submitText").innerHTML = "Sauvegarder";
-           document.getElementById("classrooms_name").value = table.rows[rowId].cells[1].innerHTML.trim();
-           document.getElementById("classrooms_detail").value = table.rows[rowId].cells[3].innerHTML.trim();
-
-           document.getElementById("classrooms_countries_id").value = country;
-           document.getElementById("classrooms_countries_id").dispatchEvent(new Event('change'));
-        }
+      
        
         $(window).on('load', function() {
             // if(showModal == 1)

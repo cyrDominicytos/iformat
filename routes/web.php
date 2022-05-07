@@ -39,7 +39,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/addLearning', [Learning::class, 'add'])->name('addLearning');
     Route::get('/listLearnings', [Learning::class, 'list'])->name('listLearnings');
     Route::post('/listLearnings/store', [Learning::class, 'store'])->name('listLearnings.store');
-    Route::post('/listLearnings/edit', [Learning::class, 'edit'])->name('listLearnings.edit');
+    Route::get('/listLearnings/edit/{id}', [Learning::class, 'edit'])->name('listLearnings.edit');
+    Route::post('/listLearnings/update', [Learning::class, 'update'])->name('listLearnings.update');
     Route::get('/listLearnings/delete/{id}', [Learning::class, 'destroy'])->name('listLearnings.delete');
    
     //classrooms

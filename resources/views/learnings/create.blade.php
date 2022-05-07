@@ -70,8 +70,7 @@
                 <div class="card-header border-0 pt-6">
                     <!--begin::Card title-->
                     <div class="card-title">
-                        <h4 class="fw-bolder text-dark">Création de site de formation</h4>
-                       
+                        <h4 class="fw-bolder text-dark">{{ isset($old_learning) ? "Edition" : "Création"}} de site de formation</h4>
                     </div>
                     <!--begin::Card title-->
                     <!--begin::Card toolbar-->
@@ -95,21 +94,24 @@
                 <!--begin::Card body-->
                 <div class="card-body py-4">
                     <div class="row">
-                        <form class="form" action="<?= isset($old_learning) ? route('listLearnings.edit') : route('listLearnings.store') ?>" method="post" id="create_modal_from">
+                        <form class="form" action="<?= isset($old_learning) ? route('listLearnings.update') : route('listLearnings.store') ?>" method="post" id="create_modal_from">
                             @csrf   
-                            <input type="hidden" name="id" id="old_id"  >   
+                            @isset($old_learning):
+                                <input type="hidden" name="id" id="old_id" value="{{$old_learning->learnings_id}}">   
+                            @endisset
+                            
                             <div class="col-md-12">
                                 <div class="row fv-row fv-plugins-icon-container" _mstvisible="11">
                                     <!--begin::Col-->
                                     <div class="col-md-6" _mstvisible="12">
                                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
                                             <label class="form-label fw-bolder text-dark fs-6 required">Cabinet</label>
-                                            <select name="learnings_author_id" aria-label="Selectionnez un profile" data-control="select2" data-placeholder="Choisissez le cabinet..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="learnings_author_id">
+                                            <select name="learnings_author_id" data-value="{{ $old_learning ? $old_learning->learnings_author_id : old('learnings_author_id') }}" data-control="select2" data-placeholder="Choisissez le cabinet..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="learnings_author_id">
                                             @foreach($cabinet_list as $key=> $list)
                                                 <option value="{{$key}}">{{$list}}</option>
                                             @endforeach
                                             </select>
-                                            @if($errors->has('classrooms_countries_id'))
+                                            @if($errors->has('learnings_author_id'))
                                             <div class="fv-plugins-message-container invalid-feedback"><div data-field="learnings_author_id" data-validator="notEmpty">{{$errors->first('learnings_author_id')}}</div></div>
                                             @endif
                                         </div>
@@ -121,7 +123,7 @@
                                             <label class="fs-5 fw-bold mb-2 required">Titre de la formation</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input class="form-control form-control-solid" placeholder="" name="learnings_title"  type="text" id="learnings_title" value="<?= old("learnings_title")	?>" />
+                                            <input class="form-control form-control-solid" placeholder="" name="learnings_title"  type="text" id="learnings_title" value="<?= isset($old_learning) ? $old_learning->learnings_title :  old("learnings_title")	?>" />
                                             <!--end::Input-->
                                             @if($errors->has('learnings_title'))
                                             <div class="fv-plugins-message-container invalid-feedback"><div data-field="learnings_title" data-validator="notEmpty">{{$errors->first('learnings_title')}}</div></div>
@@ -138,7 +140,7 @@
                                             <label class="fs-5 fw-bold mb-2 required">Sous titre de la formation</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input class="form-control form-control-solid" placeholder="" name="learnings_title2"  type="text" id="learnings_title2" value="<?= old("learnings_title2")	?>" />
+                                            <input class="form-control form-control-solid" placeholder="" name="learnings_title2"  type="text" id="learnings_title2" value="<?= isset($old_learning) ? $old_learning->learnings_title2 : old("learnings_title2")	?>" />
                                             <!--end::Input-->
                                             @if($errors->has('learnings_title2'))
                                             <div class="fv-plugins-message-container invalid-feedback"><div data-field="learnings_title2" data-validator="notEmpty">{{$errors->first('learnings_title2')}}</div></div>
@@ -153,9 +155,9 @@
                                             <label class="fs-5 fw-bold mb-2 required">Durée de la formation (en Heure)</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input class="form-control form-control-solid" placeholder="" name="learnings_duration"  type="number" id="learnings_duration" min="1" value="<?= old("learnings_duration")	?>" />
+                                            <input class="form-control form-control-solid" placeholder="" name="learnings_duration"  type="number" id="learnings_duration" min="1" value="<?=   isset($old_learning) ? $old_learning->learnings_duration : old("learnings_duration")	?>" />
                                             <!--end::Input-->
-                                            @if($errors->has('learnings_title2'))
+                                            @if($errors->has('learnings_duration'))
                                             <div class="fv-plugins-message-container invalid-feedback"><div data-field="learnings_duration" data-validator="notEmpty">{{$errors->first('learnings_duration')}}</div></div>
                                             @endif
                                         </div>
@@ -171,7 +173,7 @@
                                             <label class="fw-bolder text-dark fs-6 mb-2">Objectif</label>
                                             <!--end::Label-->
                                             <!--end::Input-->
-                                            <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="learnings_goal" id="learnings_goal" ><?= old("learnings_goal")?></textarea>
+                                            <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="learnings_goal" id="learnings_goal" ><?=  isset($old_learning) ? $old_learning->learnings_goal : old("learnings_goal")?></textarea>
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -183,7 +185,7 @@
                                             <label class="fw-bolder text-dark fs-6 mb-2">Cibles</label>
                                             <!--end::Label-->
                                             <!--end::Input-->
-                                            <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="learnings_target" id="learnings_target" ><?= old("learnings_target")?></textarea>
+                                            <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="learnings_target" id="learnings_target" ><?=  isset($old_learning) ? $old_learning->learnings_target : old("learnings_target")?></textarea>
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -195,15 +197,15 @@
                                     <label class="fw-bolder text-dark fs-6 mb-2">Informations supplémentaires</label>
                                     <!--end::Label-->
                                     <!--end::Input-->
-                                    <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="learnings_infos" id="learnings_infos" ><?= old("learnings_infos")?></textarea>
+                                    <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="learnings_infos" id="learnings_infos" ><?= isset($old_learning) ? $old_learning->learnings_infos : old("learnings_infos")?></textarea>
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
                                 <div class="d-flex flex-column mb-5 fv-row  text-dark">
                                     <label class="form-label fw-bolder text-dark fs-6 required">Jours de formation</label>
-                                    <select name="learnings_days[]" aria-label="Selectionnez les jours de formation" multiple="multiple" data-control="select2" data-placeholder="Ajouter des jours de formaton" class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="classrooms_countries_id">
+                                    <select name="learnings_days[]" multiple="multiple" data-control="select2" data-placeholder="Ajouter des jours de formaton" class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="classrooms_countries_id">
                                     @foreach($days_list as $key=> $list)
-                                        <option value="{{$key}}">{{$list}}</option>
+                                        <option value="{{$key}}" <?= in_array($key, $old_days) ? 'selected' : ''?>>{{$list}}</option>
                                     @endforeach
                                     </select>
                                     @if($errors->has('classrooms_countries_id'))
@@ -275,10 +277,15 @@
                                     <!--end::Table head-->
                                     <!--begin::Table body-->
                                     <tbody class="text-gray-600 fw-bold">
-                                        <!--begin::Table row-->
-                                            <!--begin::Table row-->
-                                            
-                                            <!--end::Table row-->	
+                                        @isset($old_time_slot)
+                                            @foreach($old_time_slot as $value)
+                                            <tr class="text-center">
+                                                <td><button type="button" name="remove" class="btn btn-danger btn-sm remove" id="{{$value}}"><span class="fa fa-minus"></span></button></td>
+                                                <td> <input hidden name="learnings_time_slot[]"  type="text" value="{{$value}}">{{ explode( '-', $value )[0]}}</td>
+                                                <td>{{ explode( '-', $value )[1]}}</td>
+                                            </tr>
+                                            @endforeach
+                                        @endif                                            	
                                     </tbody>
                                     <!--end::Table body-->
                                 </table>
@@ -314,6 +321,7 @@
     <script type="text/javascript">
       
         var showModal = "<?= Route::currentRouteName() == '' ? ('') : ('') ?>";
+        var old_learning = <?php echo isset($old_learning) ? json_encode($old_learning) : (0)  ; ?>;
         var base_url = "<?=URL::to('/') ?>";
         var mes = "Etes-vous sûr de vouloir supprimer ce site de formation ?";
         var learnings_time_slot1 = document.getElementById("learnings_time_slot1");
@@ -324,7 +332,7 @@
             message_dialog("Veuillez choisir une heure de début et de fin !")
             return;
         }
-        var indexId =  learnings_time_slot1.value+learnings_time_slot2.value;
+        var indexId =  learnings_time_slot1.value+' - '+learnings_time_slot2.value;
         if(table_unique.includes(indexId)){
             //row already exists
         }else{
@@ -383,6 +391,10 @@
     $(window).on('load', function()
     {
               checkForm()
+              if(old_learning!=0){
+                  table_unique =  <?php echo json_encode($old_time_slot); ?>;
+                  document.getElementById("submit").disabled = false;
+              }
     });
 
     </script>

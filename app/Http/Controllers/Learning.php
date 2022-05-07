@@ -29,7 +29,6 @@ class Learning extends Controller
      */
     public function add()
     {
-        $data['learning'] = $this->modelRoom->get_rooms_list(1);
         $data['countries_list'] = countries_list();
         $data['days_list'] = days_list();
         $data['cabinet_list'] = cabinet_list();
@@ -116,7 +115,20 @@ class Learning extends Controller
      */
     public function edit($id)
     {
-        //
+        if($id <= 0)
+            return back()->with('error_message', "Accès illégal !");
+            $old_learning = $this->modelLearning->where("learnings_status", 1)->find($id);
+            if(!$old_learning)
+                return back()->with('error_message', "La formation que vous désirez éditer n'existe pas'!");
+           
+            $data['old_learning'] = $old_learning;
+            $data['old_days'] = json_decode($old_learning->learnings_days);
+            $data['old_time_slot'] = json_decode($old_learning->learnings_time_slot);
+            $data['countries_list'] = countries_list();
+            $data['days_list'] = days_list();
+            $data['cabinet_list'] = cabinet_list();
+            return view('learnings.create', $data);
+       
     }
 
     /**
@@ -126,9 +138,56 @@ class Learning extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //dd($request);   
+        $old_learning = $this->modelLearning->where("learnings_status", 1)->find($request->id);
+        if(!$old_learning)
+            return back()->with('error_message', "La formation que vous désirez éditer n'existe pas'!");
+       
+        $validator = Validator::make($request->all(), [
+            'learnings_author_id' => 'required|numeric',
+            'learnings_title' => 'required',
+            'learnings_duration' => 'required|numeric',
+            'learnings_days' => [
+                'required',
+                'array',
+            ],
+            'learnings_time_slot' => [
+                'required',
+                'array',
+            ],
+        ],[
+            'learnings_author_id.required' => 'Renseignez le cabinet de formation',
+            'learnings_title.required' => 'Renseignez le titre de la formation',
+            'learnings_duration.required' => 'Renseignez la durée de la formation',
+            'learnings_days.required' => 'Renseignez les jours de formation',
+            'learnings_time_slot.required' => 'Renseignez les heures de formation',
+        ]);
+ 
+        if ($validator->fails()) {
+            return redirect('/addLearning')
+                        ->withErrors($validator)
+                        ->withInput()
+                        ->with('error_message', "Une erreur est survenue lors de l'enregistrement de la formation !");
+        }else{
+            //validation okay
+            $learning = LearningModel::where("learnings_id", $request->id)->update([
+                'learnings_author_id' => $request->learnings_author_id,
+                'learnings_title' => $request->learnings_title,
+                'learnings_title2' => $request->learnings_title2,
+                'learnings_duration' => $request->learnings_duration,
+                'learnings_days' => json_encode($request->learnings_days),
+                'learnings_time_slot' => json_encode($request->learnings_time_slot),
+                'learnings_goal' => $request->learnings_goal,
+                'learnings_target' => $request->learnings_target,
+                'learnings_infos' => $request->learnings_infos,
+                'learnings_user_updated_by' => Auth::user()->id,
+            ]);
+         if($learning)
+            return redirect('/listLearnings')->with('success_message', "Une nouvelle formation est créée avec succès !");
+            return back()->with('error_message', "Vous ne pouvez pas éditer cette formation !");
+        }
     }
 
     /**
@@ -139,6 +198,15 @@ class Learning extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response = LearningModel::where("learnings_id",$id)->update([
+            "learnings_status"=>-1,
+            'learnings_user_updated_by' => Auth::user()->id,
+
+        ]);
+        if($response){
+            return back()->with('success_message', "La formation a été supprimée avec succès !");
+        }else{
+            return back()->with('error_message', "Une erreur s'est produite lors de la suppression de la formation !");
+        }
     }
 }
