@@ -9,7 +9,7 @@
             <!--begin::Page title-->
             <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                 <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1"> Gestion des actions de formation</h1>
+                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1"> Gestion des sessions de formation</h1>
                 <!--end::Title-->
                 <!--begin::Separator-->
                 <span class="h-20px border-gray-300 border-start mx-4"></span>
@@ -22,7 +22,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted text-capitalize">Action de formation</li>
+                    <li class="breadcrumb-item text-muted text-capitalize">Sessions de formation</li>
                     <!--end::Item-->
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
@@ -30,7 +30,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">Liste des actions de formation</li>
+                    <li class="breadcrumb-item text-dark">Liste des sesssions de formation</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -120,7 +120,6 @@
                                 <th class="min-w-125px">Jour</th>
                                 <th class="min-w-125px">Horaire</th>
                                 <th class="min-w-125px">Crée par</th>
-                                <th class="min-w-125px">Statut</th>
                                 <th class="min-w-125px">Créé le</th>
                             </tr>
                             <!--end::Table row-->
@@ -130,62 +129,53 @@
                         <tbody class="text-gray-600 fw-bold">
                             <!--begin::Table row-->
                             <?= $i=1?>
-                            @foreach($learning as $learn)
+                            @foreach($planning as $learn)
                                 <!--begin::Table row-->
                                     <tr>
                                         <td class="">
-                                            @if($learn->learnings_status != -1)
-                                                <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                                <span class="svg-icon svg-icon-5 m-0">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon--></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    @if($learn->learnings_status != -2)
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="<?= route('listLearnings.edit',['id'=>$learn->learnings_id]) ?>"  class="menu-link px-3 text-primary"> Editer</a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="<?= route('listLearnings.edit',['id'=>$learn->learnings_id]) ?>" title="Ajouter une session"  class="menu-link px-3 text-success"> Planifier session</a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <p class="menu-link px-3"onclick="close_learning(<?=$learn->learnings_id ?>)" ><span class='text-danger'>Fermer</span></p>
-                                                        </div>
-                                                        <!--end::Menu item-->
-                                                    @endif
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <p class="menu-link px-3"onclick="deleted(<?=$learn->learnings_id ?>)" ><?= deleteUser(1) ?></p>
-                                                    </div>
-                                                    <!--end::Menu item-->
+                                            <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                            <span class="svg-icon svg-icon-5 m-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
+                                                </svg>
+                                            </span>
+                                            <!--end::Svg Icon--></a>
+                                            <!--begin::Menu-->
+                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="<?= route('listPlannings.edit',['id'=>$learn->plannings_id]) ?>"  class="menu-link px-3 text-primary"> Editer</a>
                                                 </div>
-                                                <!--end::Menu-->
-                                            @endif
+                                                <!--end::Menu item-->
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="<?= route('listPlannings.edit',['id'=>$learn->plannings_id]) ?>" title="Ajouter une session"  class="menu-link px-3 text-success"> Planifier session</a>
+                                                </div>
+                                                <!--end::Menu item-->
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <p class="menu-link px-3"onclick="deleted(<?=$learn->plannings_id ?>)" ><?= deleteUser(1) ?></p>
+                                                </div>
+                                                <!--end::Menu item-->
+                                            </div>
+                                            <!--end::Menu-->
                                         </td>
                                         <!--end::Action=-->
                                         <td class="">
-                                           {{ $learn->learnings_title }}
+                                           {{ $learn->plannings_title }}
                                         </td>
                                        
                                         <td class="">
-                                        {{  $learn->learnings_title2 }}
+                                        {{  $learn->plannings_title2 }}
                                         </td>
                                         <td class="">
-                                        {{  $learn->learnings_duration.' H' }}
+                                        {{  $learn->plannings_duration.' H' }}
                                         </td>
                                         <td class="">
-                                            @if($learn->learnings_days)
+                                            @if($learn->plannings_days)
                                             <ul>
-                                                @foreach(json_decode($learn->learnings_days) as $value)
+                                                @foreach(json_decode($learn->plannings_days) as $value)
                                                 <li>
                                                    {{days_list()[$value]}} 
                                                 </li>
@@ -194,23 +184,22 @@
                                             @endif
                                         </td>
                                         <td class="">
-                                            @if($learn->learnings_time_slot)
-                                                <ul>
-                                                    @foreach(json_decode($learn->learnings_time_slot) as $value)
-                                                    <li>
-                                                    {{$value}} 
-                                                    </li>
-                                                    @endforeach
-                                                </ul>
+                                        @if($learn->plannings_time_slot)
+                                            <ul>
+                                                @foreach(json_decode($learn->plannings_time_slot) as $value)
+                                                <li>
+                                                   {{$value}} 
+                                                </li>
+                                                @endforeach
+                                            </ul>
                                             @endif
+                                       
                                         </td>
+
                                         <td> 
                                         {{  $learn->first_name.' '.$learn->last_name }}
                                        </td>
-                                        <td> 
-                                        <?= status($learn->learnings_status) ?>
-                                       </td>
-                                        <td><?= format_date($learn->learnings_created_at , "d/m/Y à H:i:s")  ?></td>
+                                        <td><?= format_date($learn->plannings_created_at , "d/m/Y à H:i:s")  ?></td>
                                     </tr>
                                     <!--end::Table row-->	
                                     <?= $i++?>
@@ -235,32 +224,6 @@
         var showModal = "<?= Route::currentRouteName() == '' ? ('') : ('') ?>";
         var base_url = "<?=URL::to('/') ?>";
         var mes = "Etes-vous sûr de vouloir supprimer cette formation ?";
-        var close_mes = "En fermant cette formation, vous ne pourrez plus la modifier ni ajouter de nouvelle session. \n Etes-vous sûr de vouloir fermer cette formation ?";
-        
-        function close_learning(id) 
-        {
-             Swal.fire({
-                html: close_mes,
-                icon: "warning" ,
-                buttonsStyling: false,
-                showCancelButton: true,
-                confirmButtonText: "J'en suis certain!",
-                cancelButtonText: "Non, J'abandonne.",
-                customClass: {
-                    confirmButton: "btn btn-primary",
-                    cancelButton: 'btn btn-danger'
-                }
-            }).then((result)=>
-                {
-                    if(result.value) 
-                        {
-                            document.location.href=base_url+"/listLearnings/close/"+id;
-                        }
-                });  
-            
-        }
-
-        
         function deleted(id) {
              Swal.fire({
                 html: mes,
@@ -277,12 +240,12 @@
                 {
                     if(result.value) 
                         {
-                            document.location.href=base_url+"/listLearnings/delete/"+id;
+                            document.location.href=base_url+"/listplannings/delete/"+id;
                         }
                 });  
             
         }
-       
+
       
        
         $(window).on('load', function() {

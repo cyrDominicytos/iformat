@@ -106,7 +106,7 @@
                                     <div class="col-md-6" _mstvisible="12">
                                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
                                             <label class="form-label fw-bolder text-dark fs-6 required">Cabinet</label>
-                                            <select name="learnings_author_id" data-value="{{ $old_learning ? $old_learning->learnings_author_id : old('learnings_author_id') }}" data-control="select2" data-placeholder="Choisissez le cabinet..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="learnings_author_id">
+                                            <select name="learnings_author_id" data-value="{{ isset($old_learning) ? $old_learning->learnings_author_id : old('learnings_author_id') }}" data-control="select2" data-placeholder="Choisissez le cabinet..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="learnings_author_id">
                                             @foreach($cabinet_list as $key=> $list)
                                                 <option value="{{$key}}">{{$list}}</option>
                                             @endforeach
@@ -204,12 +204,19 @@
                                 <div class="d-flex flex-column mb-5 fv-row  text-dark">
                                     <label class="form-label fw-bolder text-dark fs-6 required">Jours de formation</label>
                                     <select name="learnings_days[]" multiple="multiple" data-control="select2" data-placeholder="Ajouter des jours de formaton" class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="classrooms_countries_id">
-                                    @foreach($days_list as $key=> $list)
+                                   
+                                    @if(isset($old_days))
+                                        @foreach($days_list as $key=> $list)
                                         <option value="{{$key}}" <?= in_array($key, $old_days) ? 'selected' : ''?>>{{$list}}</option>
-                                    @endforeach
+                                         @endforeach
+                                    @else
+                                        @foreach($days_list as $key=> $list)
+                                            <option value="{{$key}}" <?= old('learnings_days')!==null ? (in_array($key, old('learnings_days')) ? 'selected' : '') : '' ?>>{{$list}}</option>
+                                        @endforeach
+                                    @endif
                                     </select>
-                                    @if($errors->has('classrooms_countries_id'))
-                                    <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('classrooms_countries_id')}}</div></div>
+                                    @if($errors->has('plannings_days'))
+                                    <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('plannings_days')}}</div></div>
                                     @endif
                                 </div>
                                 <!--begin::Row-->
@@ -322,6 +329,7 @@
       
         var showModal = "<?= Route::currentRouteName() == '' ? ('') : ('') ?>";
         var old_learning = <?php echo isset($old_learning) ? json_encode($old_learning) : (0)  ; ?>;
+        var old_time_slot = <?php echo isset($old_time_slot) ? json_encode($old_time_slot) : (0)  ; ?>;
         var base_url = "<?=URL::to('/') ?>";
         var mes = "Etes-vous sûr de vouloir supprimer ce site de formation ?";
         var learnings_time_slot1 = document.getElementById("learnings_time_slot1");
@@ -391,9 +399,13 @@
     $(window).on('load', function()
     {
               checkForm()
-              if(old_learning!=0){
-                  table_unique =  <?php echo json_encode($old_time_slot); ?>;
+              //alert(typeof old_learning)
+              if(typeof old_learning!=="number"){
+                  table_unique = old_time_slot;
+                 // alert(table_unique.length)
                   document.getElementById("submit").disabled = false;
+              }else{
+                 // alert("toto")
               }
     });
 

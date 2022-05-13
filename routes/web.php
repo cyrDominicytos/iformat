@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Room;
 use App\Http\Controllers\Group;
 use App\Http\Controllers\Learning;
+use App\Http\Controllers\Planning;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,8 +41,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/listLearnings', [Learning::class, 'list'])->name('listLearnings');
     Route::post('/listLearnings/store', [Learning::class, 'store'])->name('listLearnings.store');
     Route::get('/listLearnings/edit/{id}', [Learning::class, 'edit'])->name('listLearnings.edit');
+    Route::get('/listLearnings/close/{id}', [Learning::class, 'close'])->name('listLearnings.close');
     Route::post('/listLearnings/update', [Learning::class, 'update'])->name('listLearnings.update');
     Route::get('/listLearnings/delete/{id}', [Learning::class, 'destroy'])->name('listLearnings.delete');
+   
+    //Session
+    Route::get('/addPlanning/{code?}', [Planning::class, 'add'])->name('addPlanning');
+    Route::get('/listPlannings', [Planning::class, 'list'])->name('listPlannings');
+    Route::post('/listPlannings/store', [Planning::class, 'store'])->name('listPlannings.store');
+    Route::get('/listPlannings/edit/{id}', [Planning::class, 'edit'])->name('listPlannings.edit');
+    Route::post('/listPlannings/update', [Planning::class, 'update'])->name('listPlannings.update');
+    Route::get('/listPlannings/delete/{id}', [Planning::class, 'destroy'])->name('listPlannings.delete');
    
     //classrooms
     Route::get('/addRoom', [Room::class, 'add'])->name('addRoom');

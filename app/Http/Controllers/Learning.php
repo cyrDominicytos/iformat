@@ -37,7 +37,7 @@ class Learning extends Controller
 
     public function list()
     {
-        $data['learning'] = $this->modelLearning->get_learnings_list(1);
+        $data['learning'] = $this->modelLearning->get_learnings_list([-1]);
         $data['countries_list'] = countries_list();
         return view('learnings.list', $data);
     }
@@ -80,6 +80,7 @@ class Learning extends Controller
             //validation okay
             $learning = LearningModel::create([
                 'learnings_author_id' => $request->learnings_author_id,
+                'learnings_code' =>generate_learning_code(),
                 'learnings_title' => $request->learnings_title,
                 'learnings_title2' => $request->learnings_title2,
                 'learnings_duration' => $request->learnings_duration,
@@ -207,6 +208,20 @@ class Learning extends Controller
             return back()->with('success_message', "La formation a été supprimée avec succès !");
         }else{
             return back()->with('error_message', "Une erreur s'est produite lors de la suppression de la formation !");
+        }
+    }
+
+    public function close($id)
+    {
+        $response = LearningModel::where("learnings_id",$id)->update([
+            "learnings_status"=>-2,
+            'learnings_user_updated_by' => Auth::user()->id,
+
+        ]);
+        if($response){
+            return back()->with('success_message', "La formation a été cloturée avec succès !");
+        }else{
+            return back()->with('error_message', "Une erreur s'est produite lors de la clôture de la formation !");
         }
     }
 }

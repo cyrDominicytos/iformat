@@ -118,6 +118,32 @@
                         </div>
                     </div>
                 </div>
+                <!-- Session de formation -->
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <i class="bi bi-cash-coin fs-3"></i>
+                        </span>
+                        <span class="menu-title">Sessions de formation</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item menu-accordion">
+                            <a class="menu-link" href="{{ route('addPlanning') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Ajouter</span>
+                            </a>
+                            <a class="menu-link" href="{{ route('listPlannings') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Consulter liste</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <!-- Admin -->

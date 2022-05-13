@@ -2,6 +2,8 @@
 use App\Mail\Contact;
 use App\Models\Chambre;
 use App\Models\GroupModel;
+use App\Models\LearningModel;
+use App\Models\PlanningModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -201,6 +203,18 @@ if (!function_exists('days_list')) {
         ];
     }
 }
+if (!function_exists('generate_learning_code')) {
+    function generate_learning_code() {
+        
+        return  "FORM".LearningModel::max('learnings_id')+1; 
+    }
+}
+if (!function_exists('generate_planning_code')) {
+    function generate_planning_code() {
+        
+        return  "PLAN". PlanningModel::max('plannings_id')+1; 
+    }
+}
 if (!function_exists('no_assign_participants_to_group')) {
     function no_assign_participants_to_group() {
         
@@ -230,7 +244,7 @@ if (!function_exists("deleteUser")) {
 	function deleteUser()
 	{
 		return ("<span class='text-danger'>Supprimer</span>") ; 
-        // if (!function_exists("deleteUser")) {
+       
     }
 }
 // 	function deleteUser($statusId)
@@ -244,6 +258,10 @@ if (!function_exists("status")) {
 	function status($statusId)
 	{
 		switch ($statusId) {
+			case -2:
+				return ("<div class='badge badge-danger fw-bolder'>Fermé</div>"); 
+			case -1:
+				return ("<div class='badge badge-danger fw-bolder'>Supprimé</div>"); 
 			case 0:
 				return ("<div class='badge badge-danger fw-bolder'>InActif</div>"); 
 			case 1:

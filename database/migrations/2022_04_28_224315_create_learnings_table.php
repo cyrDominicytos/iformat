@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('learnings', function (Blueprint $table) {
             $table->id("learnings_id");
+            $table->string('learnings_code', 255)->unique();
             $table->string('learnings_title', 255);
             $table->string('learnings_title2', 255)->nullable();
             $table->text('learnings_goal')->nullable();

@@ -29,6 +29,7 @@ class GroupModel extends Model
         return  DB::table('groups')
             ->join('users', 'users.id', '=', 'groups_user_created_by')
             ->where('groups_status',$status)
+            ->orderBy('groups_created_at','DESC')
             ->get();
     }
     public function get_group_list_for_update($status, $id){

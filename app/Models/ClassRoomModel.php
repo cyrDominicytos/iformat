@@ -29,6 +29,7 @@ class ClassRoomModel extends Model
         return  DB::table('classrooms')
             ->join('users', 'users.id', '=', 'classrooms_user_created_by')
             ->where('classrooms_status',$status)
+            ->orderBy('classrooms_created_at','DESC')
             ->get();
     }
 }
