@@ -152,9 +152,9 @@
                                                         </div>
                                                         <!--end::Menu item-->
                                                         <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
+                                                        <!-- <div class="menu-item px-3">
                                                             <a href="<?= route('listLearnings.edit',['id'=>$learn->learnings_id]) ?>" title="Ajouter une session"  class="menu-link px-3 text-success"> Planifier session</a>
-                                                        </div>
+                                                        </div> -->
                                                         <!--end::Menu item-->
                                                         <!--begin::Menu item-->
                                                         <div class="menu-item px-3">

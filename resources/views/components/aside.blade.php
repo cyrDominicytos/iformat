@@ -144,6 +144,46 @@
                         </div>
                     </div>
                 </div>
+                <!-- Presence des participants -->
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <i class="bi bi-cash-coin fs-3"></i>
+                        </span>
+                        <span class="menu-title">Présence</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item menu-accordion">
+                            <a class="menu-link" href="{{ route('addPresence') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Ajouter</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Certification des participants -->
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <i class="bi bi-cash-coin fs-3"></i>
+                        </span>
+                        <span class="menu-title">Certification</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item menu-accordion">
+                            <a class="menu-link" href="{{ route('addCertification') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Ajouter</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <!-- Admin -->

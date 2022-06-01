@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssessmentModel;
 use App\Models\CertificationModel;
 use App\Models\ClassRoomModel;
 use App\Models\GroupModel;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class planning extends Controller
+class Assessment extends Controller
 {
 
     protected $modelRoom = null;
@@ -38,14 +39,19 @@ class planning extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function add($code=null)
+    public function add()
     {
-        //dd(learning_time_slot("1")); 
-        $data['learning_list'] =$this->modelLearning->where('learnings_status',1)->get();
-        $data['room_list'] =$this->modelRoom->where('classrooms_status',1)->get();
-        $data['teacher_list'] = $this->modelUser->where("user_role_id", 3)->where("status", 1)->get();
-        $data['group_list'] = $this->modelGroup->get_group_list(1);
-        return view('plannings.create', $data);
+        //dd(get_learning_planning_by_group(1, get_participant_group(9)->groups_id)); 
+        $group = $this->modelGroup->get_user_group(Auth::user()->id);
+        if(count($group) == 1){
+            $data['learning_list'] = $this->modelLearning->get_participant_learnings_list($group[0]->groups_id, Auth::user()->id);
+            if($data['learning_list'])
+                return view('assessment.create', $data);
+            return redirect('/home')->with('error_message', "Vous n'avez aucune évaluation en attente !!!"); 
+        }else{
+            return redirect()->back()->with('error_message', "Vous n'appartenez à aucun groupe !!!"); 
+        }
+        
     }
 
     public function list()
@@ -103,54 +109,32 @@ class planning extends Controller
     {
         //dd($request->all());
         $validator = Validator::make($request->all(), [
-            'plannings_learning_id' => 'required',
-            'plannings_classroom_id' => 'required',
-            'plannings_teachers' => [
-                'required',
-                'array',
-            ],
-            'plannings_user_groups' => [
-                'required',
-                'array',
-            ],
-            'plannings_date' => [
-                'required',
-                'array',
-            ],
-            'plannings_time_slot' => [
-                'required',
-                'array',
-            ],
+            'assessments_learning_id' => 'required',
+            'assessments_value' => 'required|numeric|max:20|min:0',
+            
             
         ],[
-            'plannings_learning_id.required' => 'Choisissez une formation',
-            'plannings_classroom_id.required' => 'Choisissez une salle de formation',
-            'plannings_teachers.required' => 'Ajoutez le(s) formateur(s)',
-            'plannings_user_groups.required' => 'Ajoutez le(s) groupe(s) de formation',
-            'plannings_date.required' => 'Renseignez la date de formation',
-            'plannings_time_slot.required' => 'Choisissez une heure de formation',
+            'assessments_learning_id.required' => 'Choisissez une formation',
+            'assessments_value.required' => 'Notez cette formation',
+            'assessments_value.numeric' => 'La note doit être un chiffre',
+            'assessments_value.max' => 'La note ne doit pas être supérieure à 20',
+            'assessments_value.min' => 'La note ne doit pas être inférieure à 0',
         ]);
  
         if ($validator->fails()) {
-            return redirect('/addPlanning')
+            return redirect('/addAssessment')
                         ->withErrors($validator)
                         ->withInput()
-                        ->with('error_message', "Une erreur est survenue lors de l'enregistrement de la session de formation !");
+                        ->with('error_message', "Une erreur est survenue lors de l'enregistrement de votre évaluation ! Veuillez réessayer");
         }else{
             //validation okay
           //  dd( $request);
-            $planning = planningModel::create([
-                'plannings_learning_id' => $request->plannings_learning_id,
-                'plannings_code' =>generate_planning_code(),
-                'plannings_classroom_id' => $request->plannings_classroom_id,
-                'plannings_teachers' => json_encode($request->plannings_teachers),
-                'plannings_user_groups' => json_encode($request->plannings_user_groups),
-                'plannings_date' => json_encode($request->plannings_date),
-                'plannings_time_slot' => json_encode($request->plannings_time_slot),
-                'plannings_infos' => $request->plannings_infos,
-                'plannings_user_created_by' => Auth::user()->id,
+            $planning = AssessmentModel::create([
+                'assessments_learning_id' => $request->assessments_learning_id,
+                'assessments_value' => $request->assessments_value,
+                'assessments_participant_id' => Auth::user()->id,
             ]);
-            return redirect('/listPlannings')->with('success_message', "Une nouvelle session de formation est créée avec succès !");
+            return redirect('/addAssessment')->with('success_message', "Votre évaluation est enregistrée avec succès. Merci de votre collaboration !!!");
         }
     }
 
@@ -497,7 +481,6 @@ class planning extends Controller
 
 
     //Certification
-
     public function certify($code=null)
     {
         $data['learning_list'] =$this->modelLearning->where('learnings_status',1)->get();
@@ -520,4 +503,6 @@ class planning extends Controller
 		}*/
        return  certify_group_participant_list($request->id, $request->learning);	
     }
+
+
 }

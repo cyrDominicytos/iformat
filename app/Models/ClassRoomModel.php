@@ -32,4 +32,12 @@ class ClassRoomModel extends Model
             ->orderBy('classrooms_created_at','DESC')
             ->get();
     }
+
+     /**
+     * Get the plannings associated with the classroom.
+     */
+    public function plannings()
+    {
+        return $this->belongsTo(PlanningModel::class, "plannings_classroom_id", "classrooms_id");
+    }
 }

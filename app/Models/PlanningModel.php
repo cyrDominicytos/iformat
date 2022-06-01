@@ -34,10 +34,19 @@ class PlanningModel extends Model
     public function get_plannings_list($status){
         return  DB::table('plannings')
             ->join('users', 'users.id', '=', 'plannings_user_created_by')
+            ->join('classrooms', 'classrooms_id', '=', 'plannings_classroom_id')
+            ->join('learnings', 'learnings_id', '=', 'plannings_learning_id')
             ->where('plannings_status',$status)
             ->orderBy('plannings_created_at','DESC')
             ->get();
     }
 
+    /**
+     * Get the classroom associated with the plannings.
+     */
+    public function classroom()
+    {
+        return $this->hasOne(ClassRoomModel::class, "classrooms_id", "plannings_classroom_id");
+    }
 
 }

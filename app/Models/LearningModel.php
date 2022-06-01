@@ -37,6 +37,16 @@ class LearningModel extends Model
             ->orderBy('learnings_created_at','DESC')
             ->get();
     }
+    public function get_participant_learnings_list($group, $id){
+        return DB::select("select * from learnings, plannings WHERE learnings_id = plannings_learning_id  AND learnings_status=1  AND JSON_SEARCH(plannings_user_groups, 'all', '".$group."', NULL ) IS NOT NULL AND learnings_id NOT IN (SELECT assessments_learning_id FROM assessments WHERE assessments_learning_id= learnings_id AND assessments_participant_id=".$id.")");
+        /*return  DB::table('learnings')
+            ->join('plannings', 'plannings_learning_id', '=', 'learnings_id')
+            ->join('users', 'users.id', '=', 'learnings_user_created_by')
+            ->whereIn(,'learnings_status')
+            ->whereNotIn('learnings_status',1)
+            ->orderBy('learnings_created_at','DESC')
+            ->get();*/
+    }
 
     public function generateUniqueCode()
     {

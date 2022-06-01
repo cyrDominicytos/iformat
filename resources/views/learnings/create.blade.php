@@ -402,7 +402,6 @@
               //alert(typeof old_learning)
               if(typeof old_learning!=="number"){
                   table_unique = old_time_slot;
-                 // alert(table_unique.length)
                   document.getElementById("submit").disabled = false;
               }else{
                  // alert("toto")

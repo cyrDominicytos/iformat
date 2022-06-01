@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClassRoomModel;
+use App\Models\GroupModel;
 use App\Models\LearningModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -14,10 +16,12 @@ class Learning extends Controller
 
     protected $modelRoom = null;
     protected $modelLearning = null;
+    protected $modelGroup = null;
 
     public function __construct(){
         $this->modelRoom = new ClassRoomModel();
         $this->modelLearning = new LearningModel();
+        $this->modelGroup = new GroupModel();
 
     }
 
@@ -29,6 +33,7 @@ class Learning extends Controller
      */
     public function add()
     {
+        
         $data['countries_list'] = countries_list();
         $data['days_list'] = days_list();
         $data['cabinet_list'] = cabinet_list();
@@ -223,5 +228,27 @@ class Learning extends Controller
         }else{
             return back()->with('error_message', "Une erreur s'est produite lors de la clôture de la formation !");
         }
+    }
+
+    public function getLearning(Request $request)
+    {
+       /* if (!$request->isMethod('post'))
+		{
+			return redirect()->to('/');
+		}*/
+        $group =$this->modelGroup->get_user_group(Auth::user()->id);
+        //$group = get_participant_group(Auth::user()->id);
+        if(count($group)==1){
+            $planning= get_learning_planning_by_group($request->id, $group[0]->groups_id);
+            if($planning){
+                $teachers = User::where("status",1)->whereIn("id", json_decode($planning->plannings_teachers))->get();
+               return response()->json([
+                    "teachers" =>teachers_list($teachers),
+                    "learning" =>  LearningModel::where("learnings_status",1)->where("learnings_id",$request->id)->first(),
+               ]);
+               // return ;	
+            }
+        }
+        return 0;
     }
 }

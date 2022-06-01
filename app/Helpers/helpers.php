@@ -1,9 +1,12 @@
 <?php
 use App\Mail\Contact;
+use App\Models\CertificationModel;
 use App\Models\Chambre;
 use App\Models\GroupModel;
 use App\Models\LearningModel;
 use App\Models\PlanningModel;
+use App\Models\PresenceModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -124,21 +127,17 @@ if (!function_exists('str_ok')) {
 
 }
 
-if (!function_exists('save_role_permission')) {
 
-    function save_role_permission($request, $permission) {
-        //$this->modelRolePermission->where('role', $id_role)->delete();
-        DB::table('permission_role')->where('role_id',$request->role)->delete();
-        foreach ($permission as $value) {
-           
-            if($request->input($value->id) !== null)
-            {
-               DB::table('permission_role')
-               ->insert(['role_id' => $request->role,'permission_id' => $request->input($value->id)]);
-               //dd($request->input($value->id));
-            }
-         // dd($request->input(1));
-        }
+if (!function_exists('getUser')) {
+    function getUser($id) {
+       return User::find($id);       
+    }
+
+}
+if (!function_exists('getGroup')) {
+
+    function getGroup($id) {
+       return GroupModel::find($id);       
     }
 
 }
@@ -203,6 +202,253 @@ if (!function_exists('days_list')) {
         ];
     }
 }
+
+if (!function_exists('mark_list')) {
+    function mark_list() {
+        
+        return  [
+            "20"=>"Excellent",
+            "16"=>"Très bien",
+            "14"=>"Bien",
+            "10"=>"Passable",
+            "10"=>"Insuffisant",
+            "5"=>"Médiocre",
+            "0"=>"Nul",
+        ];
+    }
+}
+if (!function_exists('learning_time_slot')) {
+    function learning_time_slot($id) {
+        
+        $learning_time_slot = LearningModel::find($id);
+			$output = '';
+            if($learning_time_slot){
+                
+                $learning_time_slot = json_decode($learning_time_slot->learnings_time_slot, true);
+                foreach ($learning_time_slot as $result){
+                    $output .= '<option value="'.$result.'">'.$result.'</option>';
+                }
+            }
+			//echo $output;
+			return  response()->json($output);
+
+    }
+}
+if (!function_exists('learning_days')) {
+    function learning_days($id) {
+        
+        $learnings_days = LearningModel::find($id);
+			$output = '';
+            if($learnings_days){
+                
+                $learnings_days = json_decode($learnings_days->learnings_days, true);
+                foreach ($learnings_days as $result){
+                    $output .= '<option value="'.$result.'">'.days_list()[$result].'</option>';
+                }
+            }
+			//echo $output;
+			return  response()->json($output);
+
+    }
+}
+
+if (!function_exists('get_participant_group')) {
+    function get_participant_group($id) {
+        
+        $model = GroupModel::where("groups_status", 1)->get();
+        foreach ($model as $group){
+            if(in_array($id, json_decode($group->groups_participant)))
+                return  $group;
+        }
+        return null;
+
+    }
+}
+if (!function_exists('get_learning_planning_by_group')) {
+    function get_learning_planning_by_group($id,$group) {
+        
+       $model = PlanningModel::where("plannings_status",1)->where("plannings_learning_id",$id)->get();
+        foreach ($model as $planning){
+            if(in_array($group, json_decode($planning->plannings_user_groups)))
+                return  $planning;
+        }
+        return null;
+
+    }
+}
+
+if (!function_exists('learning_available_groupe')) {
+    function learning_available_groupe($id) {
+        
+        $planning = PlanningModel::where("plannings_learning_id", $id)->where("plannings_status", 1)->get();
+			$output = '';
+            $old_groups =array();
+            if($planning){
+                foreach ($planning as $result){
+                    $old_groups = array_merge($old_groups,json_decode($result->plannings_user_groups));
+                }
+                $learning_available_groupe = GroupModel::where("groups_status",1)->whereNotIn("groups_id",$old_groups)->get();
+               // $learnings_days = json_decode($learnings_days->learnings_days, true);
+                foreach ($learning_available_groupe as $result){
+                    $output .= '<option value="'.$result->groups_id.'">'.$result->groups_name.'</option>';
+                }
+            }
+			//echo $output;
+			return  response()->json($output);
+
+    }
+}
+
+if (!function_exists('learning_available_groupe2')) {
+    function learning_available_groupe2($id, $session_id, $old_groups1) {
+        
+        $planning = PlanningModel::where("plannings_learning_id", $id)->whereNotIn("plannings_id", [$session_id])->where("plannings_status", 1)->get();
+			$output = '';
+            $old_groups =array();
+            if($planning){
+                foreach ($planning as $result){
+                    $old_groups = array_merge($old_groups,json_decode($result->plannings_user_groups));
+                }
+                $learning_available_groupe = GroupModel::where("groups_status",1)->whereNotIn("groups_id",$old_groups)->get();
+               // $learnings_days = json_decode($learnings_days->learnings_days, true);
+              // var_dump($learning_available_groupe);
+
+                foreach ($learning_available_groupe as $result){
+                    $output .= '<option value="'.$result->groups_id.'" '.(in_array($result->groups_id, $old_groups1) ? ' selected="selected"' : '').'>'.$result->groups_name.'</option>';
+                }
+            }
+			//dd($output);
+			return  response()->json($output);
+
+    }
+}
+
+if (!function_exists('certif_learning_groups')) {
+    function certif_learning_groups($id) {
+        
+        $planning = PlanningModel::where("plannings_learning_id", $id)->where("plannings_status", 1)->get();
+            $output = '';
+            if($planning){
+                foreach ($planning as $result){
+                    $groups = json_decode($result->plannings_user_groups);
+                    foreach ($groups  as $value){
+                        $group =  GroupModel::where('groups_id', $value)->where('groups_status', 1)->first();
+                        $output .= '<option value="'.$group->groups_id.'">'.$group->groups_name.'</option>';
+                     }
+                   
+                }
+            }
+			return  response()->json($output);
+    }
+}
+if (!function_exists('planning_list')) {
+    function planning_list($id) {
+        
+        $planning = PlanningModel::where("plannings_learning_id", $id)->where("plannings_status", 1)->get();
+			//dd($planning);
+            $output = '';
+            if($planning){
+                foreach ($planning as $result){
+                    $output .= '<option value="'.$result->plannings_id.'">'.$result->plannings_code.'</option>';
+                }
+            }
+			return  response()->json($output);
+    }
+}
+
+if (!function_exists('planning_details_list')) {
+    function planning_details_list($id) {
+        
+        $planning = PlanningModel::where("plannings_id", $id)->where("plannings_status", 1)->first();
+            $output = '';
+            $output1 = '';
+            if($planning){
+                $date =json_decode($planning->plannings_date);
+                $hour =json_decode($planning->plannings_time_slot);
+                foreach ($date  as $key => $result){
+                    if($result<= date('Y-m-d'))
+                        $output1 .= '<option value="'.$result.' de '.$hour[$key].'">'.$result.' de '.$hour[$key].'</option>';
+                }
+
+                $groups =json_decode($planning->plannings_user_groups);
+                foreach ($groups  as $result){
+                   $group =  GroupModel::where('groups_id', $result)->where('groups_status', 1)->first();
+                   $output .= '<option value="'.$group->groups_id.'">'.$group->groups_name.'</option>';
+                }
+
+
+            }
+			return  response()->json(['groups'=> $output, 'date'=>$output1]);
+    }
+}
+if (!function_exists('group_participant_list')) {
+    function group_participant_list($id, $date_time) {
+        $datetime = explode(' de ', $date_time);
+        $planning = GroupModel::where("groups_id", $id)->where("groups_status", 1)->first();
+            $output = '';
+            if($planning){
+                $old = PresenceModel::where("presences_date", $datetime[0])->where("presences_time_slot", $datetime[1])->where("presences_group_id", $id)->first();
+                $groups_participant =json_decode($planning->groups_participant);
+                if($old){
+                    $old_presence = json_decode($old->presences_participant_list);
+                    foreach ($groups_participant  as  $result){
+                        $user = User::where("id", $result)->where("status", 1)->first();
+                        if($user){
+                            $output .= '<tr class="text-center">';
+                            $output .= '<td> <input  name="presences_participant[]"  type="checkbox" value="'.$user->id.'" '.(in_array($user->id,$old_presence) ? "checked" : "").'></td>';
+                            $output .= '<td><input hidden name="participant[]"  type="text" value="'.$user->id.'"> '.$user->first_name.' '.$user->last_name.'</td></tr>';
+                        }
+                    }
+                }else{
+                    foreach ($groups_participant  as  $result){
+                        $user = User::where("id", $result)->where("status", 1)->first();
+                        if($user){
+                            $output .= '<tr class="text-center">';
+                            $output .= '<td> <input  name="presences_participant[]"  type="checkbox" value="'.$user->id.'"></td>';
+                            $output .= '<td><input hidden name="participant[]"  type="text" value="'.$user->id.'"> '.$user->first_name.' '.$user->last_name.'</td></tr>';
+                        }
+                    }
+                }
+                
+             }
+			return  response()->json($output);
+
+    }
+}
+if (!function_exists('certify_group_participant_list')) {
+    function certify_group_participant_list($id, $learning) {
+        $planning = GroupModel::where("groups_id", $id)->where("groups_status", 1)->first();
+            $output = '';
+            if($planning){
+                $old = CertificationModel::where("certifications_learnings_id", $learning)->where("certifications_group_id", $id)->first();
+                $groups_participant =json_decode($planning->groups_participant);
+                if($old){
+                    $old_presence = json_decode($old->certifications_participant_list);
+                    foreach ($groups_participant  as  $result){
+                        $user = User::where("id", $result)->where("status", 1)->first();
+                        if($user){
+                            $output .= '<tr class="text-center">';
+                            $output .= '<td> <input  name="presences_participant[]"  type="checkbox" value="'.$user->id.'" '.(in_array($user->id,$old_presence) ? "checked" : "").'></td>';
+                            $output .= '<td><input hidden name="participant[]"  type="text" value="'.$user->id.'"> '.$user->first_name.' '.$user->last_name.'</td></tr>';
+                        }
+                    }
+                }else{
+                    foreach ($groups_participant  as  $result){
+                        $user = User::where("id", $result)->where("status", 1)->first();
+                        if($user){
+                            $output .= '<tr class="text-center">';
+                            $output .= '<td> <input  name="presences_participant[]"  type="checkbox" value="'.$user->id.'"></td>';
+                            $output .= '<td><input hidden name="participant[]"  type="text" value="'.$user->id.'"> '.$user->first_name.' '.$user->last_name.'</td></tr>';
+                        }
+                    }
+                }
+                
+             }
+			return  response()->json($output);
+
+    }
+}
+
 if (!function_exists('generate_learning_code')) {
     function generate_learning_code() {
         
@@ -213,6 +459,18 @@ if (!function_exists('generate_planning_code')) {
     function generate_planning_code() {
         
         return  "PLAN". PlanningModel::max('plannings_id')+1; 
+    }
+}
+if (!function_exists('generate_presence_code')) {
+    function generate_presence_code() {
+        
+        return  "PRE". PresenceModel::max('presences_id')+1; 
+    }
+}
+if (!function_exists('generate_certif_code')) {
+    function generate_certif_code() {
+        
+        return  "ICDL". CertificationModel::max('certifications_id')+1; 
     }
 }
 if (!function_exists('no_assign_participants_to_group')) {
@@ -247,10 +505,7 @@ if (!function_exists("deleteUser")) {
        
     }
 }
-// 	function deleteUser($statusId)
-// 	{
-// 		return ($statusId== 1) ? ("<span class='text-danger'>Bannir</span>") : ("<span class='text-success'>Activer</span>"); 
-// 	}
+
 
 
 // Function: used to convert a string to revese in order
@@ -276,6 +531,19 @@ if (!function_exists("status")) {
 				return ("<div class='badge badge-danger fw-bolder'>Default status</div>") ; 
 		}
 	}
+}
+
+if (!function_exists('teachers_list')) {
+    function teachers_list($list) {
+        $output = '';
+        if($list)
+            foreach ($list  as  $user){
+                $output .= '<tr class="text-center">';
+                $output .= '<td> '.$user->first_name.' '.$user->last_name.'</td></tr>';
+                //return  response()->json($output);
+            }
+        return  $output;
+    }
 }
 
 if (!function_exists("format_date")) {
@@ -320,6 +588,7 @@ if (!function_exists('mail_queue')) {
     }
 
 }
+
 
 if (!function_exists('mail_send')) {
 

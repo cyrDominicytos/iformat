@@ -39,4 +39,8 @@ class GroupModel extends Model
             ->whereNotIn('groups_id',[$id])
             ->get();
     }
+
+    public function get_user_group($id){
+        return DB::select("select * from groups  WHERE JSON_SEARCH(groups_participant, 'all', '".$id."', NULL ) IS NOT NULL");
+    }
 }
