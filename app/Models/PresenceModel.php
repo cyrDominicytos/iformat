@@ -29,7 +29,4 @@ class PresenceModel extends Model
     const CREATED_AT = 'presences_created_at';
     const UPDATED_AT = 'presences_updated_at';
 
-  
-
-   
 }

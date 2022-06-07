@@ -48,6 +48,8 @@ class LearningModel extends Model
             ->get();*/
     }
 
+    
+
     public function generateUniqueCode()
     {
 

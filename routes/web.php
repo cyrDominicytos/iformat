@@ -72,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/listPlannings/learning_days', [Planning::class, 'learning_days'])->name('listPlannings.learning_days');
     Route::post('/listPlannings/learning_available_groupe', [Planning::class, 'learning_available_groupe'])->name('listPlannings.learning_available_groupe');
     Route::post('/listPlannings/learning_available_groupe2', [Planning::class, 'learning_available_groupe2'])->name('listPlannings.learning_available_groupe2');
+    Route::get('/planningsView', [Planning::class, 'planningsView'])->name('planningsView');
    
     
     //Assessment
