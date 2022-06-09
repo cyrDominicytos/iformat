@@ -546,6 +546,46 @@ if (!function_exists('teachers_list')) {
     }
 }
 
+//GET PLANNING TO DISPLAY EVENTS LIST
+if (!function_exists('get_events_list')) {
+    function get_events_list($result, $beginDate,$endDate) {
+        $events = [];
+        $eventElements = [];
+        if($result){
+            foreach($result as $value){
+             $date_slots = json_decode($value->plannings_date);
+             $time_slots = json_decode($value->plannings_time_slot);
+                foreach ($date_slots as $date_key=> $date_value){
+                    if($date_value >= $beginDate && $date_value <= $endDate){
+                        array_push($eventElements,
+                            array(
+                            'date'=>  $date_value,
+                            'title'=>"<div style='width:100%' title='".$value->learnings_goal."'><p style='text-align:center; font-weight:bold; color:red;'>".$time_slots[$date_key]."</p> \n\n ".$time_slots[$date_key]."</div>",
+                            'learnTime'=>  $time_slots[$date_key],
+                            'learnClass'=> $value->classrooms_name,
+                            'learnText'=> $value->learnings_title,
+                            'learnGoal'=> $value->learnings_goal,
+                            'learnDesc'=> $value->learnings_infos,
+                            'learnGroup'=> implode(", ",GroupModel::whereIn('groups_id',json_decode($value->plannings_user_groups))->where('groups_status',1)->pluck('groups_name')->toArray()),
+
+                        )
+                            );
+                    }
+                }
+
+            }
+        }
+        foreach ($eventElements as $key=>$value){
+            if(!array_key_exists($value['date'],$events))
+                $events[$value['date']] = [];
+            array_push($events[$value['date']],$value );  
+           
+        }
+
+        return $events;
+    }
+}
+
 if (!function_exists("format_date")) {
     function format_date($text, $format)
         {

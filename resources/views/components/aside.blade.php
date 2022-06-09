@@ -40,6 +40,7 @@
                         <span class="menu-sectio text-muted text-uppercase fs-8 ls-1"  style="color: #fff;">Fonctionnalités</span>
                     </div>
                 </div>
+                @if(in_array(Auth::user()->user_role_id,[1, 5]))
                 <!-- Classrooms -->
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
@@ -51,12 +52,6 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item menu-accordion">
-                            <!-- <a class="menu-link" href="{{ route('addRoom') }}">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Ajouter</span>
-                            </a> -->
                             <a class="menu-link" href="{{ route('listRooms') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
@@ -66,7 +61,9 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 <!-- Groups -->
+                @if(in_array(Auth::user()->user_role_id,[1, 5]))
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -92,7 +89,10 @@
                         </div>
                     </div>
                 </div>
+                @endif
+
                 <!-- Actions de formation -->
+                @if(in_array(Auth::user()->user_role_id,[1, 5]))
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -118,7 +118,10 @@
                         </div>
                     </div>
                 </div>
+                @endif
+
                 <!-- Session de formation -->
+                @if(in_array(Auth::user()->user_role_id,[1, 5]))
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -144,7 +147,10 @@
                         </div>
                     </div>
                 </div>
+                @endif
+
                 <!-- Presence des participants -->
+                @if(in_array(Auth::user()->user_role_id,[1, 5, 3]))
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -164,7 +170,10 @@
                         </div>
                     </div>
                 </div>
+                @endif
+
                 <!-- Certification des participants -->
+                @if(in_array(Auth::user()->user_role_id,[1, 5]))
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -184,7 +193,9 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
+                @if(in_array(Auth::user()->user_role_id,[1, 5]))
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <!-- Admin -->
                     <div class="menu-item">
@@ -297,7 +308,7 @@
                         </div>
                     </div>							
                 </div>
-                </div>
+                @endif
             </div>
             <!--end::Menu-->
         </div>

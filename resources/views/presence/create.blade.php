@@ -191,12 +191,14 @@
                                     <button type="reset" id="kt_modal_new_address_cancel" class="btn btn-danger me-3" onclick="location.go(-1)">Quitter</button>
                                     <!--end::Button-->
                                     <!--begin::Button-->
+                                    @if(in_array(Auth::user()->user_role_id,[3]))
                                     <button type="submit" id="submit" class="btn btn-primary">
                                         <span class="indicator-label" id="submitText">Enregistrer</span>
                                         <span class="indicator-progress">Patientez...
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                     </button>
                                     <!--end::Button-->
+                                    @endif
                                 </div>
                                 <!--end::Modal footer-->                               
                             </div>

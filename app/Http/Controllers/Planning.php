@@ -57,49 +57,29 @@ class planning extends Controller
     }
 
     public function planningsView()
-    {
-        $group = "1";
-        $beginDate = "2022-05-01";
-        $endDate = "2022-05-31";
-        $yearMonth = "2022-05";
-        $result = $this->modelplanning->get_participant_planning($group, $beginDate, $endDate, $yearMonth );
-       $events = [];
-       $eventElements = [];
-        if($result){
-            foreach($result as $value){
-             $date_slots = json_decode($value->plannings_date);
-             $time_slots = json_decode($value->plannings_time_slot);
-                foreach ($date_slots as $date_key=> $date_value){
-                    if($date_value >= $beginDate && $date_value <= $endDate){
-                        array_push($eventElements,
-                            array(
-                            'date'=>  $date_value,
-                            'title'=>"<div style='width:100%' title='Module 1 : (1513 Personnes)Formation l’Essentiel sur l’ordinateur & sur le web et de la communication'><p style='text-align:center; font-weight:bold; color:red;'>7:00 - 12:00</p> \n\n Module 1 : (1513 Personnes)Formation l’Essentiel sur l’ordinateur & sur le web et de la communication</div>",
-                            'learnTime'=>  $time_slots[$date_key],
-                            'learnClass'=> $value->classrooms_name,
-                            'learnText'=> $value->learnings_title,
-                            'learnGoal'=> $value->learnings_goal,
-                            'learnDesc'=> $value->learnings_infos,
-                            'learnGroup'=> implode(", ",GroupModel::whereIn('groups_id',json_decode($value->plannings_user_groups))->where('groups_status',1)->pluck('groups_name')->toArray()),
+    {     
+        $yearMonth = date('Y-m');
+       // $yearMonth = "2022-05";
+        $beginDate =  $yearMonth.'-01';
+        $endDate = $yearMonth.'-31';
+        $userRole = Auth::user()->user_role_id;
+       switch ($userRole) {
+           case 3:
+               //formateur
+               $result = $this->modelplanning->get_teachers_planning(Auth::user()->id, $beginDate, $endDate, $yearMonth );
+            break;
+           case 4:
+               //Agent
+               $group = session('userGroup');
+               $result = $this->modelplanning->get_participant_planning($group, $beginDate, $endDate, $yearMonth );
+            break;
+           default:
+                $result = $this->modelplanning->get_planning($beginDate, $endDate, $yearMonth );
+           break;
+       }
+        $data['events'] = get_events_list($result,$beginDate,$endDate);
 
-                        )
-                            );
-                    }
-                }
-
-            }
-        }
-        foreach ($eventElements as $key=>$value){
-            if(!array_key_exists($value['date'],$events))
-                $events[$value['date']] = [];
-            array_push($events[$value['date']],$value );  
-           
-        }
-       
-        //dd($events);
-        $data['planning'] = $this->modelplanning->get_plannings_list(1);
-        $data['countries_list'] = countries_list();
-        $data['events'] = $events;
+        //dd($data['events']);
         return view('plannings.planningsView', $data);
     }
 
@@ -559,6 +539,8 @@ class planning extends Controller
 		}*/
        return  certif_learning_groups($request->id);	
     }
+    
+    
     public function certify_group_participant_list(Request $request)
     {
        /* if (!$request->isMethod('post'))
@@ -566,5 +548,31 @@ class planning extends Controller
 			return redirect()->to('/');
 		}*/
        return  certify_group_participant_list($request->id, $request->learning);	
+    }
+
+    public function get_events_plannings(Request $request)
+    {
+       
+        $yearMonth = $request->yearMonth;
+        $beginDate =  $yearMonth.'-01';
+        $endDate = $yearMonth.'-31';
+        $userRole = Auth::user()->user_role_id;
+       switch ($userRole) {
+           case 3:
+               //formateur
+               $result = $this->modelplanning->get_teachers_planning(Auth::user()->id, $beginDate, $endDate, $yearMonth );
+            break;
+           case 4:
+               //Agent
+               $group = session('userGroup');
+               $result = $this->modelplanning->get_participant_planning($group, $beginDate, $endDate, $yearMonth );
+            break;
+           default:
+                $result = $this->modelplanning->get_planning($beginDate, $endDate, $yearMonth );
+           break;
+       }
+
+        $events = get_events_list($result,$beginDate,$endDate);
+		return  response()->json($events);
     }
 }

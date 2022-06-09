@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IFORMAT: Planning des formations</title>
+      <!-- CSRF Token -->
+      <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="{{ asset('assets/planning_calendar/style.css') }}">
   </head>
@@ -55,7 +57,15 @@
     </div>
 	
 	 <div id="showEventModal">
-      <p>
+   <p>
+		  <strong>Titre: </strong>
+		  <span id="learnText"></span>
+	  </p>
+	  <p>
+		  <strong>Objectif: </strong>
+		  <span id="learnGoal"></span>
+	  </p>
+   <p>
 		  <strong>Heures: </strong>
 		  <span id="learnTime"></span>
 	  </p>
@@ -68,26 +78,27 @@
 		  <strong>Site: </strong>
 		  <span id="learnClass"></span>
 	  </p>
-	  <p>
-		  <strong>Titre: </strong>
-		  <span id="learnText"></span>
-	  </p>
-	  <p>
-		  <strong>Objectif: </strong>
-		  <span id="learnGoal"></span>
-	  </p>
+	  
 	  <p>
 		  <strong>Infos :</strong>
 		  <span id="learnDesc"></span>
 	  </p>
 
       <button id="exitButton">Fermer</button>
-    </div>
+    </div>  
 
     <div id="modalBackDrop"></div>
 
+    <script src="{{ asset('assets/jquery/jquery-3.6.0.min.js') }}"></script>
     <script>
-      var php_events = <?php echo  isset($events) ? json_encode($events) : []  ; ?>;
+      var php_events = <?php echo  isset($events) ? json_encode($events) : [] ?>;
+      var switch_events_route = "<?=route('listPlannings.get_events_plannings') ?>";
+      $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
 
     </script>
     <script src="{{ asset('assets/planning_calendar/script.js') }}"></script>

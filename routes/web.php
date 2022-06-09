@@ -73,6 +73,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/listPlannings/learning_available_groupe', [Planning::class, 'learning_available_groupe'])->name('listPlannings.learning_available_groupe');
     Route::post('/listPlannings/learning_available_groupe2', [Planning::class, 'learning_available_groupe2'])->name('listPlannings.learning_available_groupe2');
     Route::get('/planningsView', [Planning::class, 'planningsView'])->name('planningsView');
+    Route::post('/planningsView/get_events_plannings', [Planning::class, 'get_events_plannings'])->name('listPlannings.get_events_plannings');
    
     
     //Assessment
