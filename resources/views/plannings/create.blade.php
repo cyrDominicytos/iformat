@@ -51,9 +51,6 @@
                     
                 </div>
                 <!--end::Wrapper-->
-                <!--begin::Button-->
-                <button class="btn btn-sm btn-primary"  id="kt_toolbar_primary_button"  data-bs-toggle="modal" data-bs-target="#create_modal">Ajouter</button>
-                <!--end::Button-->
             </div>
             <!--end::Actions-->
         </div>
@@ -274,21 +271,20 @@
                                     <!--end::Table body-->
                                 </table>
                                 <!--end::Table-->  
-                <!--begin::Modal footer-->
-                <div class="modal-footer flex-center">
-                    <!--begin::Button-->
-                    <button type="reset" id="kt_modal_new_address_cancel" class="btn btn-danger me-3" data-bs-dismiss="modal">Quitter</button>
-                    <!--end::Button-->
-                    <!--begin::Button-->
-                    <button type="submit" id="submit" class="btn btn-primary">
-                        <span class="indicator-label" id="submitText">Enregistrer</span>
-                        <span class="indicator-progress">Patientez...
-                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                    </button>
-                    <!--end::Button-->
-                </div>
-                <!--end::Modal footer-->                               
+                            <!--begin::Modal footer-->
+                            <div class="modal-footer flex-center">
+                                <!--begin::Button-->
+                                <button type="reset" id="kt_modal_new_address_cancel" class="btn btn-danger me-3" data-bs-dismiss="modal">Quitter</button>
+                                <!--end::Button-->
+                                <!--begin::Button-->
+                                <button type="submit" id="submit" class="btn btn-primary">
+                                    <span class="indicator-label" id="submitText">Enregistrer</span>
+                                    <span class="indicator-progress">Patientez...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
+                                <!--end::Button-->
                             </div>
+                            <!--end::Modal footer-->                               
                         </form>
                     </div>
                 </div>

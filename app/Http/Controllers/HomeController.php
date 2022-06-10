@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LearningModel;
+use App\Models\PresenceModel;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -12,6 +14,8 @@ use Illuminate\Validation\Rule;
 class HomeController extends Controller
 {
     protected $modelUser = null;
+    protected $modelPresence = null;
+
     /**
      * Create a new controller instance.
      *
@@ -21,6 +25,7 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
         $this->modelUser = new User();
+        $this->modelPresence = new PresenceModel();
     }
 
     /**
@@ -173,6 +178,12 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        return view('dashboard/dashboard');
+
+        $data['formed_count'] = $this->modelPresence->get_agent_count();
+        $data['certify_count'] = $this->modelPresence->get_certify_count();
+        $data['learning_count'] = $this->modelPresence->get_learning_count();
+        $data['tested_agent_count'] = $this->modelPresence->get_evaluated_agent_count();
+      //  dd($data['certify_count']);
+        return view('dashboard/dashboard', $data);
     }
 }

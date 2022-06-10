@@ -35,7 +35,7 @@
       </div>
 
       <div id="calendar">
-	  </div>
+	    </div>
     </div>
 
     <div id="newEventModal">

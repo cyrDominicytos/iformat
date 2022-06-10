@@ -51,9 +51,7 @@
                     
                 </div>
                 <!--end::Wrapper-->
-                <!--begin::Button-->
-                <button class="btn btn-sm btn-primary" >Ajouter</button>
-                <!--end::Button-->
+               
             </div>
             <!--end::Actions-->
         </div>
@@ -426,7 +424,7 @@
                 success:function(result)
                 {
                     $("table tbody").html(result);
-                   // document.getElementById("table_slot").tBodies.innerHTML = result
+                    // document.getElementById("table_slot").tBodies.innerHTML = result
                     //$('#table_slot'). html(result);
                 }
             });

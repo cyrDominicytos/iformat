@@ -79,6 +79,7 @@ Route::middleware(['auth'])->group(function () {
     //Assessment
     Route::get('/addAssessment', [Assessment::class, 'add'])->name('addAssessment');
     Route::post('/listAssessment/store', [Assessment::class, 'store'])->name('listAssessment.store');
+    Route::get('/getAssessments', [Planning::class, 'getAssessments'])->name('getAssessments');
 
 
     //classrooms

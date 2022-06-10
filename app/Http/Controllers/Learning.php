@@ -42,7 +42,22 @@ class Learning extends Controller
 
     public function list()
     {
-        $data['learning'] = $this->modelLearning->get_learnings_list([-1]);
+        $userRole = Auth::user()->user_role_id;
+        switch ($userRole) {
+            case 3:
+                //formateur
+                $data['learning'] = $this->modelLearning->get_learnings_by_teachers(Auth::user()->id);
+                //dd($data['learning']);
+                break;
+            case 4:
+                //Agent
+                $group = session('userGroup');
+                $data['learning'] = $this->modelLearning->get_learnings_by_agent($group->groups_id);
+             break;
+            default:
+                $data['learning'] = $this->modelLearning->get_learnings_list([-1]);
+            break;
+        }
         $data['countries_list'] = countries_list();
         return view('learnings.list', $data);
     }

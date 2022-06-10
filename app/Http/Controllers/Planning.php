@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssessmentModel;
 use App\Models\CertificationModel;
 use App\Models\ClassRoomModel;
 use App\Models\GroupModel;
@@ -22,6 +23,7 @@ class planning extends Controller
     protected $modelLearning = null;
     protected $modelUser = null;
     protected $modelGroup = null;
+    protected $modelAssessment = null;
 
     public function __construct(){
         $this->modelRoom = new ClassRoomModel();
@@ -29,6 +31,7 @@ class planning extends Controller
         $this->modelLearning = new LearningModel();
         $this->modelUser = new User();
         $this->modelGroup = new GroupModel();
+        $this->modelAssessment = new AssessmentModel();
 
     }
 
@@ -54,6 +57,41 @@ class planning extends Controller
        // dd($data['planning']);
         $data['countries_list'] = countries_list();
         return view('plannings.list', $data);
+    }
+    //Get Assessment Details
+    public function getAssessments()
+    {
+        if(Auth::user()->user_role_id!=3)
+            return redirect()->back()->with('error_message', "Vous n'êtes pas autorisé à acceder à cette page !");
+
+        $data['learns'] = $this->modelAssessment->get_learnings_assessments(Auth::user()->id);
+        //dd($data['learns']);
+        return view('assessment.list',  $data);
+
+       /* $userRole = Auth::user()->user_role_id;
+        switch ($userRole) {
+            case 3:
+                //formateur
+                $result = $this->modelplanning->get_learnings_assessments(Auth::user()->id);
+             break;
+            // case 4:
+            //     //Agent
+            //     $group = session('userGroup');
+            //    // $result = $this->modelplanning->get_participant_planning($group, $beginDate, $endDate, $yearMonth );
+            //    $result = $this->modelplanning->get_learnings_assessments(Auth::user()->id);
+            //  break;
+            default:
+                return redirect('/listLearnings')->with('success_message', "Une nouvelle formation est créée avec succès !");
+
+                // $result = $this->modelplanning->get_planning($beginDate, $endDate, $yearMonth );
+            break;
+        }
+
+
+
+        $data['planning'] = $this->modelplanning->get_plannings_list(1);
+       // dd($data['planning']);
+        $data['countries_list'] = countries_list();*/
     }
 
     public function planningsView()
@@ -565,7 +603,7 @@ class planning extends Controller
            case 4:
                //Agent
                $group = session('userGroup');
-               $result = $this->modelplanning->get_participant_planning($group, $beginDate, $endDate, $yearMonth );
+               $result = $this->modelplanning->get_participant_planning($group->groups_id, $beginDate, $endDate, $yearMonth );
             break;
            default:
                 $result = $this->modelplanning->get_planning($beginDate, $endDate, $yearMonth );

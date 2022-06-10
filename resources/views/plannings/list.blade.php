@@ -43,9 +43,11 @@
                     
                 </div>
                 <!--end::Wrapper-->
+                @if(in_array(Auth::user()->user_role_id,[1]))
                 <!--begin::Button-->
                 <a href="{{ route('addPlanning') }}" class="btn btn-sm btn-primary"  id="kt_toolbar_primary_button"  >Ajouter</a>
                 <!--end::Button-->
+                @endif
             </div>
             <!--end::Actions-->
         </div>
@@ -81,17 +83,19 @@
                     <div class="card-toolbar">
                         <!--begin::Toolbar-->
                         <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
-                            <!--begin::Add user-->
-                            <a href="{{ route('addPlanning') }}" class="btn btn-primary">
-                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
-                            <span class="svg-icon svg-icon-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
-                                    <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->Ajouter</a>
-                            <!--end::Add user-->
+                            @if(in_array(Auth::user()->user_role_id,[1]))
+                                <!--begin::Add user-->
+                                <a href="{{ route('addPlanning') }}" class="btn btn-primary">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
+                                        <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->Ajouter</a>
+                                <!--end::Add user-->
+                            @endif
                         </div>
                         <!--end::Toolbar-->
                         <!--begin::Group actions-->
@@ -135,6 +139,7 @@
                                 <!--begin::Table row-->
                                     <tr>
                                         <td class="">
+                                        @if(in_array(Auth::user()->user_role_id,[1]))
                                             <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                             <span class="svg-icon svg-icon-5 m-0">
@@ -157,6 +162,7 @@
                                                 <!--end::Menu item-->
                                             </div>
                                             <!--end::Menu-->
+                                            @endif
                                         </td>
                                         <!--end::Action=-->
                                         <td class="">
@@ -164,7 +170,7 @@
                                         </td>
                                        
                                         <td class="">
-                                        {{  $learn->classrooms_name }}
+                                        {{  $learn->classrooms_name." :  ".countries_list()[$learn->classrooms_countries_id]}}
                                         </td>
                                        
                                         <td class="">

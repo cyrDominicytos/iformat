@@ -70,7 +70,7 @@
                 <div class="card-header border-0 pt-6">
                     <!--begin::Card title-->
                     <div class="card-title">
-                        <h4 class="fw-bolder text-dark">{{ isset($old_learning) ? "Edition" : "Création"}} de site de formation</h4>
+                        <h4 class="fw-bolder text-dark">{{ isset($old_learning) ? "Edition" : "Création"}} d'une action de formation</h4>
                     </div>
                     <!--begin::Card title-->
                     <!--begin::Card toolbar-->
@@ -92,14 +92,13 @@
                 </div>
                 <!--end::Card header-->
                 <!--begin::Card body-->
-                <div class="card-body py-4">
+                <div class="card-body py-4" >
                     <div class="row">
                         <form class="form" action="<?= isset($old_learning) ? route('listLearnings.update') : route('listLearnings.store') ?>" method="post" id="create_modal_from">
                             @csrf   
                             @isset($old_learning):
                                 <input type="hidden" name="id" id="old_id" value="{{$old_learning->learnings_id}}">   
                             @endisset
-                            
                             <div class="col-md-12">
                                 <div class="row fv-row fv-plugins-icon-container" _mstvisible="11">
                                     <!--begin::Col-->
@@ -117,7 +116,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6" _mstvisible="12">
-                                         <!--begin::Input group-->
+                                        <!--begin::Input group-->
                                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
                                             <!--begin::Label-->
                                             <label class="fs-5 fw-bold mb-2 required">Titre de la formation</label>
@@ -149,8 +148,8 @@
                                         <!--end::Input group-->
                                     </div>
                                     <div class="col-md-6" _mstvisible="12">
-                                         <!--begin::Input group-->
-                                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
+                                        <!--begin::Input group-->
+                                        <div class="d-flex flex-column mb-5 fv-row  text-dark">
                                             <!--begin::Label-->
                                             <label class="fs-5 fw-bold mb-2 required">Durée de la formation (en Heure)</label>
                                             <!--end::Label-->
@@ -167,7 +166,7 @@
                                 <div class="row fv-row fv-plugins-icon-container" _mstvisible="11">
                                     <!--begin::Col-->
                                     <div class="col-md-6" _mstvisible="12">
-                                         <!--begin::Input group-->
+                                        <!--begin::Input group-->
                                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
                                             <!--end::Label-->
                                             <label class="fw-bolder text-dark fs-6 mb-2">Objectif</label>
@@ -204,11 +203,11 @@
                                 <div class="d-flex flex-column mb-5 fv-row  text-dark">
                                     <label class="form-label fw-bolder text-dark fs-6 required">Jours de formation</label>
                                     <select name="learnings_days[]" multiple="multiple" data-control="select2" data-placeholder="Ajouter des jours de formaton" class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="classrooms_countries_id">
-                                   
+                                
                                     @if(isset($old_days))
                                         @foreach($days_list as $key=> $list)
                                         <option value="{{$key}}" <?= in_array($key, $old_days) ? 'selected' : ''?>>{{$list}}</option>
-                                         @endforeach
+                                        @endforeach
                                     @else
                                         @foreach($days_list as $key=> $list)
                                             <option value="{{$key}}" <?= old('learnings_days')!==null ? (in_array($key, old('learnings_days')) ? 'selected' : '') : '' ?>>{{$list}}</option>
@@ -255,11 +254,11 @@
                                         <!--begin::Button-->
                                         <button type="button" id="addSlot" class="btn btn-primary mx-auto mt-5 pt-5 align-bottom" >
                                             <span class="svg-icon svg-icon-2">
-												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-													<rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black"></rect>
-													<rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black"></rect>
-												</svg>
-											</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black"></rect>
+                                                    <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black"></rect>
+                                                </svg>
+                                            </span>
                                         </button>
                                         <!--end::Button--> 
                                         </div>
@@ -297,21 +296,20 @@
                                     <!--end::Table body-->
                                 </table>
                                 <!--end::Table--> 
-                <!--begin::Modal footer-->
-                <div class="modal-footer flex-center">
-                    <!--begin::Button-->
-                    <button type="reset" id="kt_modal_new_address_cancel" class="btn btn-danger me-3" data-bs-dismiss="modal">Quitter</button>
-                    <!--end::Button-->
-                    <!--begin::Button-->
-                    <button type="submit" id="submit" class="btn btn-primary">
-                        <span class="indicator-label" id="submitText">Enregistrer</span>
-                        <span class="indicator-progress">Patientez...
-                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                    </button>
-                    <!--end::Button-->
-                </div>
-                <!--end::Modal footer-->                               
+                            <!--begin::Modal footer-->
+                            <div class="modal-footer flex-center">
+                                <!--begin::Button-->
+                                <button type="reset" id="kt_modal_new_address_cancel" class="btn btn-danger me-3" data-bs-dismiss="modal">Quitter</button>
+                                <!--end::Button-->
+                                <!--begin::Button-->
+                                <button type="submit" id="submit" class="btn btn-primary">
+                                    <span class="indicator-label" id="submitText">Enregistrer</span>
+                                    <span class="indicator-progress">Patientez...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
+                                <!--end::Button-->
                             </div>
+                            <!--end::Modal footer-->                               
                         </form>
                     </div>
                 </div>

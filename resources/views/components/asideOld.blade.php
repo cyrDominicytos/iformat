@@ -61,7 +61,9 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 <!-- Groups -->
+                @if(in_array(Auth::user()->user_role_id,[1, 5]))
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -82,8 +84,10 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
                 <!-- Actions de formation -->
+                @if(in_array(Auth::user()->user_role_id,[1, 5]))
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -109,8 +113,10 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
                 <!-- Session de formation -->
+                @if(in_array(Auth::user()->user_role_id,[1, 5]))
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -136,8 +142,10 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
                 <!-- Presence des participants -->
+                @if(in_array(Auth::user()->user_role_id,[1, 5]))
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -157,8 +165,10 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
                 <!-- Certification des participants -->
+                @if(in_array(Auth::user()->user_role_id,[1, 5]))
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -178,7 +188,9 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
+                @if(in_array(Auth::user()->user_role_id,[1, 5]))
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <!-- Admin -->
                     <div class="menu-item">
@@ -291,74 +303,7 @@
                         </div>
                     </div>							
                 </div>
-                @else
-                <div class="menu-item menu-accordion">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <i class="bi bi-cash-coin fs-3"></i>
-                        </span>
-                        <a class="menu-link" href="{{route('planningsView')}}">
-                        <span class="menu-title">Plan</span>
-                        </a>
-                    </span>
-                </div>
-                <div class="menu-item menu-accordion">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <i class="bi bi-cash-coin fs-3"></i>
-                        </span>
-                        <a class="menu-link" href="{{route('listLearnings')}}">
-                        <span class="menu-title">Formations</span>
-                        </a>
-                    </span>
-                </div>
-                @if(in_array(Auth::user()->user_role_id,[4]))
-                <div class="menu-item menu-accordion">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <i class="bi bi-cash-coin fs-3"></i>
-                        </span>
-                        <a class="menu-link" href="{{route('addAssessment')}}">
-                        <span class="menu-title">Evaluations</span>
-                        </a>
-                    </span>
-                </div>
                 @endif
-                @if(Auth::user()->user_role_id != 4)
-                <div class="menu-item menu-accordion">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <i class="bi bi-cash-coin fs-3"></i>
-                        </span>
-                        <a class="menu-link" href="{{route('listPlannings')}}">
-                        <span class="menu-title">Sessions</span>
-                        </a>
-                    </span>
-                </div>
-                @endif
-                @if(in_array(Auth::user()->user_role_id,[3]))
-                <div class="menu-item menu-accordion">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <i class="bi bi-cash-coin fs-3"></i>
-                        </span>
-                        <a class="menu-link" href="{{route('addPresence')}}">
-                        <span class="menu-title">Présence</span>
-                        </a>
-                    </span>
-                </div>
-                <div class="menu-item menu-accordion">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <i class="bi bi-cash-coin fs-3"></i>
-                        </span>
-                        <a class="menu-link" href="{{route('getAssessments')}}">
-                        <span class="menu-title">Evaluations</span>
-                        </a>
-                    </span>
-                </div>
-                @endif
-
                 @endif
             </div>
             <!--end::Menu-->

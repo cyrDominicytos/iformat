@@ -32,20 +32,62 @@ class LearningModel extends Model
 
     public function get_learnings_list($statusArray){
         return  DB::table('learnings')
+            ->select('learnings.*', 'users.*')
             ->join('users', 'users.id', '=', 'learnings_user_created_by')
             ->whereNotIn('learnings_status',$statusArray)
             ->orderBy('learnings_created_at','DESC')
+            ->distinct()
             ->get();
+    }
+
+    public function get_learnings_by_teachers($teacher){
+       /* return  DB::table('learnings')
+            ->select('learnings.*', 'users.*')
+            ->join('users', 'users.id', '=', 'learnings_user_created_by')
+            ->join('plannings', 'plannings_learning_id', '=', 'learnings_id')
+            ->whereNotIn('learnings_status',[-1])
+            ->where('plannings_status',1)
+            ->whereJsonContains('plannings_teachers', [$teacher])
+            ->orderBy('learnings_created_at','DESC')
+            ->distinct()
+            ->get();*/
+
+            return DB::select(
+                "select DISTINCT learnings.*, users.*  from learnings, plannings, users 
+                    WHERE learnings_id = plannings_learning_id  
+                    AND users.id = learnings_user_created_by  
+                    AND learnings_status != -1   
+                    AND plannings_status = 1   
+                    AND JSON_SEARCH(plannings_teachers, 'all', '".$teacher."', NULL ) IS NOT NULL 
+                    ORDER BY learnings_created_at DESC
+                ");
+
+    }
+
+    public function get_learnings_by_agent($group){
+       /* return  DB::table('learnings')
+            ->select('learnings.*', 'users.*')
+            ->join('users', 'users.id', '=', 'learnings_user_created_by')
+            ->join('plannings', 'learnings_id', '=', 'plannings_learning_id')
+            ->whereNotIn('learnings_status',[-1])
+            ->where('plannings_status',1)
+            ->whereJsonContains('plannings_user_groups', $group)
+            ->orderBy('learnings_created_at','DESC')
+            ->distinct()
+            ->get();*/
+
+            return DB::select(
+                "select DISTINCT learnings.*, users.*  from learnings, plannings, users 
+                    WHERE learnings_id = plannings_learning_id  
+                    AND users.id = learnings_user_created_by  
+                    AND learnings_status != -1   
+                    AND plannings_status = 1   
+                    AND JSON_SEARCH(plannings_user_groups, 'all', '".$group."', NULL ) IS NOT NULL 
+                    ORDER BY learnings_created_at DESC
+                ");
     }
     public function get_participant_learnings_list($group, $id){
         return DB::select("select * from learnings, plannings WHERE learnings_id = plannings_learning_id  AND learnings_status=1  AND JSON_SEARCH(plannings_user_groups, 'all', '".$group."', NULL ) IS NOT NULL AND learnings_id NOT IN (SELECT assessments_learning_id FROM assessments WHERE assessments_learning_id= learnings_id AND assessments_participant_id=".$id.")");
-        /*return  DB::table('learnings')
-            ->join('plannings', 'plannings_learning_id', '=', 'learnings_id')
-            ->join('users', 'users.id', '=', 'learnings_user_created_by')
-            ->whereIn(,'learnings_status')
-            ->whereNotIn('learnings_status',1)
-            ->orderBy('learnings_created_at','DESC')
-            ->get();*/
     }
 
     

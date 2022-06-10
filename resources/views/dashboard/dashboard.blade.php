@@ -21,7 +21,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <div class="text-white fw-bolder fs-2 mb-2 mt-5">0</div>
+                        <div class="text-white fw-bolder fs-2 mb-2 mt-5">{{$formed_count}}</div>
                         <div class="fw-bold text-white">Nombre total d’agents formés</div>
                     </div>
                     <!--end::Body-->
@@ -42,7 +42,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <div class="text-white fw-bolder fs-2 mb-2 mt-5">0</div>
+                        <div class="text-white fw-bolder fs-2 mb-2 mt-5">{{$certify_count}}</div>
                         <div class="fw-bold text-white">Nombre total d’agents certifiés</div>
                     </div>
                     <!--end::Body-->
@@ -63,7 +63,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <div class="text-white fw-bolder fs-2 mb-2 mt-5">0</div>
+                        <div class="text-white fw-bolder fs-2 mb-2 mt-5">{{$learning_count}}</div>
                         <div class="fw-bold text-white">Nombre de formations réalisées</div>
                     </div>
                     <!--end::Body-->
@@ -84,7 +84,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <div class="text-white fw-bolder fs-2 mb-2 mt-5">0</div>
+                        <div class="text-white fw-bolder fs-2 mb-2 mt-5">{{$tested_agent_count}}</div>
                         <div class="fw-bold text-white">Nombre d’agents évalués</div>
                     </div>
                     <!--end::Body-->

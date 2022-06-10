@@ -32,11 +32,30 @@
 								</a>
 							</span>
 						</div>
+						<div class="menu-item menu-lg-down-accordion me-lg-1">
+							<span class="menu-link py-3">
+								<a class="menu-link bg-color hover-overlay br-dark" href="{{route('listLearnings')}}" style="hover:background-color:black"> 
+									<span class="menu-title" style="color: #fff;">Formations</span>
+									<span class="menu-arrow d-lg-none"></span>
+								</a>
+							</span>
+						</div>
+						
 						@if(in_array(Auth::user()->user_role_id,[4]))
 						<div class="menu-item menu-lg-down-accordion me-lg-1">
 							<span class="menu-link py-3">
 								<a class="menu-link bg-color hover-overlay br-dark" href="{{route('addAssessment')}}" style="hover:background-color:black"> 
 									<span class="menu-title" style="color: #fff;">Evaluations</span>
+									<span class="menu-arrow d-lg-none"></span>
+								</a>
+							</span>
+						</div>
+						@endif
+						@if(Auth::user()->user_role_id != 4)
+						<div class="menu-item menu-lg-down-accordion me-lg-1">
+							<span class="menu-link py-3">
+								<a class="menu-link bg-color hover-overlay br-dark" href="{{route('listPlannings')}}" style="hover:background-color:black"> 
+									<span class="menu-title" style="color: #fff;">Sessions</span>
 									<span class="menu-arrow d-lg-none"></span>
 								</a>
 							</span>

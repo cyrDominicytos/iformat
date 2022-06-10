@@ -560,9 +560,9 @@ if (!function_exists('get_events_list')) {
                         array_push($eventElements,
                             array(
                             'date'=>  $date_value,
-                            'title'=>"<div style='width:100%' title='".$value->learnings_goal."'><p style='text-align:center; font-weight:bold; color:red;'>".$time_slots[$date_key]."</p> \n\n ".$time_slots[$date_key]."</div>",
+                            'title'=>"<div style='width:100%' title='Cliquer pour avoir plus de détail'><p style='text-align:center; font-weight:bolder; color:white; font-size:15px'>".$time_slots[$date_key]."</p> \n\n ".$value->learnings_title."</div>",
                             'learnTime'=>  $time_slots[$date_key],
-                            'learnClass'=> $value->classrooms_name,
+                            'learnClass'=> $value->classrooms_name."( ".countries_list()[$value->classrooms_countries_id]." )",
                             'learnText'=> $value->learnings_title,
                             'learnGoal'=> $value->learnings_goal,
                             'learnDesc'=> $value->learnings_infos,
@@ -593,6 +593,37 @@ if (!function_exists("format_date")) {
             return  date_format($date,$format);
         }
     }
+
+if (!function_exists("mark_honors")) {
+    function mark_honors($val)
+        {
+            if($val<5){
+                return "nul";
+
+            }else if($val < 8){
+              return  "médiocre";
+
+            }else if($val < 10){
+                return  "Insuffisant";
+
+            }else if($val < 12){
+                return  "Passable";
+
+            }else if($val < 14){
+                return  "Assez-Bien";
+
+            }else if($val < 16){
+                return "Bien";
+
+            }else if($val < 18){
+                return "Très Bien";
+
+            }else{
+                return "Excellent";
+            }
+        }
+    }
+
 if (!function_exists('disponibilite')) {
 
     function  disponibilite( $dispo=0)

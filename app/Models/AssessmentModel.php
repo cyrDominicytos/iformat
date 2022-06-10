@@ -24,5 +24,20 @@ class AssessmentModel extends Model
 
   
 
-   
+    public function get_learnings_assessments($teacher){ 
+             return DB::select(
+                 "select learnings.*, AVG(assessments_value) as mark, COUNT(assessments_id) as total_agent 
+                     from assessments, learnings
+                     WHERE learnings_id = assessments_learning_id  
+                     AND learnings_status != -1   
+                     AND learnings_id IN (
+                        SELECT plannings_learning_id FROM plannings
+                        WHERE plannings_status = 1 
+                        AND JSON_SEARCH(plannings_teachers, 'all', '".$teacher."', NULL ) IS NOT NULL 
+                     )
+                     GROUP BY learnings_id
+                 ");
+ 
+     }
+ 
 }

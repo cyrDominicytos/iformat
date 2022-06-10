@@ -48,7 +48,7 @@ class PlanningModel extends Model
             WHERE learnings_id = plannings_learning_id  
             AND users.id = plannings_user_created_by
             AND classrooms_id = plannings_classroom_id
-            AND learnings_status = 1
+            AND learnings_status != -1   
             AND JSON_SEARCH(plannings_user_groups, 'all', '".$group."', NULL ) IS NOT NULL
             AND  plannings_created_at BETWEEN '".$beginDate."' AND '".$endDate."' 
             AND JSON_SEARCH(plannings_date , 'all', '".$YearMonth."%', NULL ) IS NOT NULL
