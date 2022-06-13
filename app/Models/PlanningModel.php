@@ -69,6 +69,20 @@ class PlanningModel extends Model
             ");
         }
 
+    //Get planning program for teachers
+    public function get_teachers_learning_planning($user_id,$learning_id){
+       return DB::select(
+        "select learnings.*, users.*, plannings.* from learnings, plannings,users, classrooms
+            WHERE learnings_id = plannings_learning_id  
+            AND users.id = plannings_user_created_by
+            AND classrooms_id = plannings_classroom_id
+            AND learnings_status = 1
+            AND learnings_id = ".$learning_id."
+            AND JSON_SEARCH(plannings_teachers, 'all', ".$user_id.", NULL ) IS NOT NULL
+            ");
+        }
+
+   
     //Get learning program for teachers
     public function get_planning($beginDate, $endDate, $YearMonth){
        return DB::select(

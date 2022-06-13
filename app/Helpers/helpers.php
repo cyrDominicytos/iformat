@@ -8,6 +8,7 @@ use App\Models\PlanningModel;
 use App\Models\PresenceModel;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -343,16 +344,21 @@ if (!function_exists('certif_learning_groups')) {
 }
 if (!function_exists('planning_list')) {
     function planning_list($id) {
-        
-        $planning = PlanningModel::where("plannings_learning_id", $id)->where("plannings_status", 1)->get();
-			//dd($planning);
-            $output = '';
-            if($planning){
-                foreach ($planning as $result){
-                    $output .= '<option value="'.$result->plannings_id.'">'.$result->plannings_code.'</option>';
-                }
+        $userRole = Auth::user()->user_role_id;
+        $modelPlan = new PlanningModel();
+        if ($userRole == 3) {
+             //formateur
+             $planning = $modelPlan->get_teachers_learning_planning(Auth::user()->id, $id);
+        }else{
+            $planning = PlanningModel::where("plannings_learning_id", $id)->where("plannings_status", 1)->get();
+        }
+        $output = '';
+        if($planning){
+            foreach ($planning as $result){
+                $output .= '<option value="'.$result->plannings_id.'">'.$result->plannings_code.'</option>';
             }
-			return  response()->json($output);
+        }
+        return  response()->json($output);
     }
 }
 

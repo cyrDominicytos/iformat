@@ -183,6 +183,9 @@ class HomeController extends Controller
         $data['certify_count'] = $this->modelPresence->get_certify_count();
         $data['learning_count'] = $this->modelPresence->get_learning_count();
         $data['tested_agent_count'] = $this->modelPresence->get_evaluated_agent_count();
+
+
+        
       //  dd($data['certify_count']);
         return view('dashboard/dashboard', $data);
     }

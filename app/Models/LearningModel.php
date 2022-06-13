@@ -41,17 +41,6 @@ class LearningModel extends Model
     }
 
     public function get_learnings_by_teachers($teacher){
-       /* return  DB::table('learnings')
-            ->select('learnings.*', 'users.*')
-            ->join('users', 'users.id', '=', 'learnings_user_created_by')
-            ->join('plannings', 'plannings_learning_id', '=', 'learnings_id')
-            ->whereNotIn('learnings_status',[-1])
-            ->where('plannings_status',1)
-            ->whereJsonContains('plannings_teachers', [$teacher])
-            ->orderBy('learnings_created_at','DESC')
-            ->distinct()
-            ->get();*/
-
             return DB::select(
                 "select DISTINCT learnings.*, users.*  from learnings, plannings, users 
                     WHERE learnings_id = plannings_learning_id  
@@ -65,17 +54,6 @@ class LearningModel extends Model
     }
 
     public function get_learnings_by_agent($group){
-       /* return  DB::table('learnings')
-            ->select('learnings.*', 'users.*')
-            ->join('users', 'users.id', '=', 'learnings_user_created_by')
-            ->join('plannings', 'learnings_id', '=', 'plannings_learning_id')
-            ->whereNotIn('learnings_status',[-1])
-            ->where('plannings_status',1)
-            ->whereJsonContains('plannings_user_groups', $group)
-            ->orderBy('learnings_created_at','DESC')
-            ->distinct()
-            ->get();*/
-
             return DB::select(
                 "select DISTINCT learnings.*, users.*  from learnings, plannings, users 
                     WHERE learnings_id = plannings_learning_id  

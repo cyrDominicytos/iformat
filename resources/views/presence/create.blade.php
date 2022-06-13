@@ -273,6 +273,7 @@
               
                 success:function(result)
                 {
+                //sessions
                 $('#plannings_classroom_id').html(result);
                 document.getElementById("plannings_classroom_id").dispatchEvent(new Event('change'));
 

@@ -351,8 +351,18 @@ class planning extends Controller
     {
         //dd(planning_details_list("2")); 
        //dd(planning_list(1));
-        $data['learning_list'] =$this->modelLearning->where('learnings_status',1)->get();
-        $data['room_list'] =$this->modelRoom->where('classrooms_status',1)->get();
+
+       $userRole = Auth::user()->user_role_id;
+       if(!in_array($userRole, [3,1,2]))
+            return redirect()->back()->with('error_message', "Vous n'êtes pas autorisés à accédéz à cette page !");
+
+       if ($userRole == 3) {
+            //formateur
+            $data['learning_list']=$this->modelLearning->get_learnings_by_teachers(Auth::user()->id);
+       }else{
+            $data['learning_list']=$this->modelLearning->where('learnings_status',1)->get();
+       }
+
         $data['teacher_list'] = $this->modelUser->where("user_role_id", 3)->where("status", 1)->get();
         $data['group_list'] = $this->modelGroup->get_group_list(1);
         $data['countries_list'] = countries_list();
@@ -555,7 +565,7 @@ class planning extends Controller
             ]);
          if($planning)
             return redirect('/listPlannings')->with('success_message', "La session de formation est mise à jour avec succès !");
-            return back()->with('error_message', "Vous ne pouvez pas éditer cette session de formation !");
+        return back()->with('error_message', "Vous ne pouvez pas éditer cette session de formation !");
         }
     }
 
