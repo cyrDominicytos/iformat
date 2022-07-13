@@ -16,7 +16,7 @@
 		<link href="<?=  base_url(); ?>/public/assets/custom/css/style.css" rel="stylesheet" type="text/css" />
 
 		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-		<link rel="shortcut icon" href="<?= base_url(); ?>/public/assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="{{ asset('assets/logo/logo.png') }}" />
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
@@ -61,7 +61,7 @@
 							<!--begin::Copyright-->
 							<div class="text-dark order-2 order-md-1">
 								<span class="text-muted fw-bold me-1">2022</span>
-								<a href="" target="_blank" class="text-gray-800 text-hover-primary">MYAH IT COMPANY</a>
+								<a href="" target="_blank" class="text-gray-800 text-hover-primary">WIN AFRICA</a>
 							</div>
 							<!--end::Copyright-->
 							<!--begin::Menu-->

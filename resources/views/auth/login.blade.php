@@ -12,7 +12,7 @@
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
 							<a href="{{ route('home')}}" class="py-9 mb-5">
-								<img alt="Logo" src="http://www.win-africa.com/images/logo.png" class="h-60px  rounded-circle" style="background-color:rgba(255,255,255,0.1)" />
+								<img alt="Logo" src="{{ asset('assets/logo/logo.png') }}" class="h-60px  rounded-circle" style="background-color:rgba(255,255,255,0.1)" />
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
@@ -55,7 +55,12 @@
 									<h1 class="text-dark mb-3">Connexion à  {{config('app.name', 'IFORMAT')}}</h1>
 									<!--end::Title-->
 									<!--begin::Link-->
-									<!-- <div id="infoMessage" style="color:red;"><?=  session()->has('message') ? (session()->get('message')) : ("")?></div> -->
+									@if($errors->has('email'))
+									<div class="alert alert-info alert-block">
+										<strong>{{ $errors->first('email') }}</strong>
+									</div>
+									@endif
+									
 									<!-- <div class="text-gray-400 fw-bold fs-4">Vous n'avez pas de compte? -->
 									<!-- <a href="/register" class="link-primary fw-bolder">Inscrivez-vous</a></div> -->
 									<!--end::Link-->
@@ -69,6 +74,9 @@
 									<!--begin::Input-->
 									<input class="form-control form-control-lg form-control-solid" type="text" name="email" autocomplete="off" />
 									<!--end::Input-->
+									@if($errors->has('email'))
+										<div class="fv-plugins-message-container invalid-feedback"><div data-field="email" data-validator="notEmpty">{{$errors->first('email')}}</div></div>
+									@endif
 								</div>
 								<!--end::Input group-->
 								<!--begin::Input group-->
@@ -86,6 +94,9 @@
 									<!--begin::Input-->
 									<input class="form-control form-control-lg form-control-solid" type="password" name="password" autocomplete="off" />
 									<!--end::Input-->
+									@if($errors->has('password'))
+										<div class="fv-plugins-message-container invalid-feedback"><div data-field="password" data-validator="notEmpty">{{$errors->first('password')}}</div></div>
+									@endif
 								</div>
 								<!--end::Input group-->
 								<!--begin::Actions-->

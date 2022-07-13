@@ -12,7 +12,7 @@
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
 							<a href="{{ route('home')}}" class="py-9 mb-5">
-								<img alt="Logo" src="http://www.win-africa.com/images/logo.png" class="h-60px  rounded-circle" style="background-color:rgba(255,255,255,0.1)" />
+								<img alt="Logo" src="{{ asset('assets/logo/logo.png') }}" class="h-60px  rounded-circle" style="background-color:rgba(255,255,255,0.1)" />
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->

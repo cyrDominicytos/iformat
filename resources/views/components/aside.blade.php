@@ -4,7 +4,7 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="">
-            <img alt="Logo" src="http://www.win-africa.com/images/logo.png" class="h-50px logo rounded-circle" style="background-color:rgba(255,255,255,0.1);"/>
+            <img alt="Logo" src="{{ asset('assets/logo/logo.png') }}" class="h-50px logo rounded-circle" style="background-color:rgba(255,255,255,0.1);"/>
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
