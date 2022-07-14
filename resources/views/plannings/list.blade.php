@@ -123,7 +123,7 @@
                                 <th class="min-w-125px">Date</th>
                                 <th class="min-w-125px">Heure</th>
                                 <th class="min-w-125px">Formateur (S)</th>
-                                <th class="min-w-125px">Groupe (S)</th>
+                                <th class="min-w-125px">Groupe</th>
                                 <th class="min-w-125px">Formation (S)</th>
                                 <th class="min-w-125px">Crée par</th>
                                 <th class="min-w-125px">Créé le</th>
@@ -209,11 +209,8 @@
                                        
                                         </td>
                                         <td class="">
-                                        @if($learn->plannings_user_groups)
-                                                @foreach(json_decode($learn->plannings_user_groups) as $value)
-                                                   {{getGroup($value)->groups_name}}- 
-                                                @endforeach
-                                            @endif
+                                        {{ $learn->groups_name }}
+
                                         </td>
                                         <td> 
                                         {{  $learn->learnings_title }}

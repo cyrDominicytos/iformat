@@ -43,7 +43,6 @@ class planning extends Controller
      */
     public function add($code=null)
     {
-        //dd(learning_time_slot("1")); 
         $data['learning_list'] =$this->modelLearning->where('learnings_status',1)->get();
         $data['room_list'] =$this->modelRoom->where('classrooms_status',1)->get();
         $data['teacher_list'] = $this->modelUser->where("user_role_id", 3)->where("status", 1)->get();
@@ -54,7 +53,6 @@ class planning extends Controller
     public function list()
     {
         $data['planning'] = $this->modelplanning->get_plannings_list(1);
-       // dd($data['planning']);
         $data['countries_list'] = countries_list();
         return view('plannings.list', $data);
     }
