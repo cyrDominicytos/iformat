@@ -667,6 +667,64 @@ if (!function_exists('mail_queue')) {
 }
 
 
+if (!function_exists('institutions')) {
+    function institutions() {
+        
+        return  [
+            "MAEC"=>["name"=>"Ministère des Affaires Etrangères et de la Coopération", "sigle"=>"MAEC"],
+            "MAEP"=>["name"=>"Ministère de l'Agriculture, de l'Élevage et de la Pêche", "sigle"=>"MAEP"],
+            "MASM"=>["name"=>"Ministère des Affaires Sociales et de la Microfinance", "sigle"=>"MASM"],
+            "MCVDD"=>["name"=>"Ministère du Cadre de Vie et du Développement Durable", "sigle"=>"MCVDD"],
+            "MDGL"=>["name"=>"Ministère de la Décentralisation et de la Gouvernance Locale", "sigle"=>"MDGL"],
+            "MDN"=>["name"=>"Ministère Délégué Auprès du Président de la République, Chargé 
+            de la Défense Nationale", "sigle"=>"MDN"],
+            "ME"=>["name"=>"Ministère de l’Énergie", "sigle"=>"ME"],
+            "MEF"=>["name"=>"Ministère de l'Économie et des Finances", "sigle"=>"MEF"],
+            "MEM"=>["name"=>"Ministère de l’Eau et des Mines", "sigle"=>"MEM"],
+            "MEMP"=>["name"=>"Ministère des Enseignements Maternel et Primaire", "sigle"=>"MEMP"],
+            "MESRS"=>["name"=>"Ministère de l'Enseignement Supérieur et de la Recherche 
+            Scientifique", "sigle"=>"MESRS"],
+            "MESTFP"=>["name"=>"Ministère des Enseignements Secondaire, Technique et de la 
+            Formation Professionnelle", "sigle"=>"MESTFP"],
+            "MIC"=>["name"=>"Ministère de l'Industrie et du Commerce", "sigle"=>"MIC"],
+            "MISP"=>["name"=>"Ministère de l'Intérieur et de la Sécurité Publique", "sigle"=>"MISP"],
+            "MIT"=>["name"=>"Ministère des infrastructures et des Transports", "sigle"=>"MIT"],
+            "MJL"=>["name"=>"Ministère de la Justice et de la Législation", "sigle"=>"MJL"],
+            "MND"=>["name"=>"Ministère du Numérique et de la Digitalisation", "sigle"=>"MND"],
+            "MPD"=>["name"=>"Ministère Chargé du Plan et du Développement", "sigle"=>"MPD"],
+            "MPMEPE"=>["name"=>"Ministère des Petites et Moyennes Entreprises et de la Promotion 
+            de l'Emploi", "sigle"=>"MPMEPE"],
+            "MS"=>["name"=>"Ministère de la Santé", "sigle"=>"MS"],
+            "MSp"=>["name"=>"Ministère des Sports", "sigle"=>"MSp"],
+            "MTCA"=>["name"=>"Ministère du Tourisme, de la Culture et des Arts", "sigle"=>"MTCA"],
+            "MTFP"=>["name"=>"Ministère du Travail et de la Fonction Publique", "sigle"=>"MTFP"],
+            "Présidence"=>["name"=>"Présidence", "sigle"=>"Présidence"],
+           
+        ];
+    }
+}
+
+if (!function_exists('departments')) {
+    function departments() {
+        
+        return  [
+            "Alibori",
+            "Atacora",
+            "Atlantique",
+            "Borgou",
+            "Collines",
+            "Couffo",
+            "Donga",
+            "Littoral",
+            "Mono",
+            "Ouémé",
+            "Plateau",
+            "Zou",
+                       
+        ];
+    }
+}
+
 if (!function_exists('mail_send')) {
 
 function mail_send(String $view_url,  $data, Array $destinataires, String $sujet) {

@@ -72,7 +72,12 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item menu-accordion">
-                            
+                            <a class="menu-link" href="{{ route('addGroup') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Ajouter</span>
+                            </a>
                             <a class="menu-link" href="{{ route('listGroups') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>

@@ -9,7 +9,7 @@
                 <!--begin::Page title-->
                 <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                     <!--begin::Title-->
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Liste des groupes de participant</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Groupes de formation</h1>
                     <!--end::Title-->
                     <!--begin::Separator-->
                     <span class="h-20px border-gray-300 border-start mx-4"></span>
@@ -22,7 +22,7 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">Groups de participant</li>
+                        <li class="breadcrumb-item text-muted">Groupes</li>
                         <!--end::Item-->
                         <!--begin::Item-->
                         <li class="breadcrumb-item">
@@ -116,6 +116,7 @@
                                 <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                                     <th class="text-en min-w-100px">Actions</th>
                                     <th class="min-w-125px">Désignation</th>
+                                    <th class="min-w-125px">Formation</th>
                                     <th class="min-w-125px">Participant</th>
                                     <th class="min-w-125px">Détail</th>
                                     <th class="min-w-125px">Créé par</th>
@@ -158,6 +159,7 @@
                                         </td>
                                         <!--end::Action=-->
                                         <td class="text-capitalize">{{$group->groups_name}}</td>
+                                        <td class="text-capitalize">{{$group->learnings_title}}</td>
 
                                         <td class="text-capitalize">{{count(json_decode($group->groups_participant))}}</td>
                                         <td class="text-capitalize">{{$group->groups_detail}}</td>
@@ -186,6 +188,7 @@
     <script type="text/javascript">
         var base_url = "<?=URL::to('/') ?>";
         var old_group = "<?= isset($old_group) ? 1 : 0 ?>";
+        var add = "<?= $add ?>";
         var mes = "Etes-vous sûr de vouloir supprimer ce groupe ?";
         function deleted(id) {
              Swal.fire({
@@ -224,6 +227,8 @@
 
         $(window).on('load', function() {
          if(old_group == 1)
+             $('#create_modal').modal('show');
+         if(add == 1)
              $('#create_modal').modal('show');
     });
        // var table = document.getElementById(#)

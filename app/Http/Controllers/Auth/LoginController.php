@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+
+
 
 
 
@@ -30,6 +34,8 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        User::where('id', Auth::user()->id)->update(["active"=> 1]);
+
         if($user->user_role_id==4){
             $request->session()->put('userGroup', get_participant_group($user->id));
         }
@@ -140,17 +146,22 @@ class LoginController extends Controller
         $result =  $this->guard()->attempt(
             $this->credentials($request), $request->filled('remember')
         );
+        //successfullogin
         if($result){
-            $user = User::where("active",0)->where("status", 1)->where("email", $request->get('email'))->where("password", $request->get('password'))->first();
+            //$user = User::where("email", $request->get('email'))->where("password", $request->get('password'))->first();
+            $user = User::where("active",0)->where("status", 1)->where("email", $request->get('email'))->first();
+
+            //valid login
             if($user!= null){
                 return 1;
             }
 
-            $user = User::where("status", 1)->where("email", $request->get('email'))->where("password", $request->get('password'))->first();
+            $this->logout($request, 2);
+            $user = User::where("status", 1)->where("email", $request->get('email'))->first();
+            //undeleted login
             if($user!= null){
-                $this->logout($request, 2);
                 return 2;
-            }else return 0;
+            }else return 0;//deleted login
         }else return 0;
     }
 
@@ -164,6 +175,7 @@ class LoginController extends Controller
      */
     public function logout(Request $request, $type=1)
     {
+        User::where('id', Auth::user()->id)->update(["active"=> 0]);
         $this->guard()->logout();
 
         $request->session()->invalidate();
@@ -174,10 +186,12 @@ class LoginController extends Controller
             return $response;
         }
 
-        if($type==1)
-        return $request->wantsJson()
+       if($type==1){
+            return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect('/');
+            : redirect('/')->with("message", "Vous êtes déconnectés avec succès !");
+       }
+       
     }
 
     /**
@@ -192,6 +206,24 @@ class LoginController extends Controller
     }
 
 
+       /**
+     * Redirect the user after determining they are locked out.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function sendLockoutResponse(Request $request)
+    {
+        $seconds = $this->limiter()->availableIn(
+            $this->throttleKey($request)
+        );
+
+        throw ValidationException::withMessages([
+            $this->username() => ["Trop de tentative de connexion. Veuillez réessayer après ".(ceil($seconds / 60) >0 ? ceil($seconds / 60)." min ". $seconds." secondes" : $seconds." secondes")],
+        ])->status(Response::HTTP_TOO_MANY_REQUESTS);
+    }
 
     /**
      * Create a new controller instance.

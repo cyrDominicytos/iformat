@@ -139,6 +139,7 @@ class HomeController extends Controller
                     'email' => $request->email,
                     'from' => $request->from,
                     'fonction' => $request->fonction,
+                    'department' => $request->department,
                     'status' => 1,
                     'user_created_by' => Auth::user()->id,
                 ];

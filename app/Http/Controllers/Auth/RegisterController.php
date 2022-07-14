@@ -111,6 +111,7 @@ class RegisterController extends Controller
             'status' => 1,
             'user_created_by' => Auth::user()->id,
             'password' => Hash::make($data['password']),
+            'department' => $data['department'],
         ]);
     }
 }

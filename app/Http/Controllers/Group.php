@@ -28,9 +28,20 @@ class Group extends Controller
 
     }
   
-    public function list()
+    public function add()
     {
         $data['groups'] = $this->modelGroup->get_group_list(1);
+        $data['learnings'] = $this->modelLearning->where("learnings_status", 1)->get();
+        $data['add'] = 1;
+        $data['users'] = $this->modelUser->where("user_role_id", 4)->where("status", 1)->get();
+        $data['user_to_offset'] = no_assign_participants_to_group();
+        return view('groups.list', $data);
+    }
+    public function list()
+    {
+        $data['add'] = 0;
+        $data['groups'] = $this->modelGroup->get_group_list(1);
+        $data['learnings'] = $this->modelLearning->where("learnings_status", 1)->get();
         $data['users'] = $this->modelUser->where("user_role_id", 4)->where("status", 1)->get();
         $data['user_to_offset'] = no_assign_participants_to_group();
         return view('groups.list', $data);
@@ -38,6 +49,7 @@ class Group extends Controller
 
     public function update($id)
     {
+
         if($id > 0){
             $old_group = $this->modelGroup->where("groups_id", $id)->where("groups_status", 1)->get();
             if(count($old_group) <= 0)
@@ -48,6 +60,8 @@ class Group extends Controller
             $data['user_to_offset'] = no_assign_participants_to_group_for_update($id);
             $data['old_group'] = $old_group[0];
             $data['old_participation'] = json_decode($old_group[0]->groups_participant);
+            $data['add'] = 0;
+            $data['learnings'] = $this->modelLearning->where("learnings_status", 1)->get();
             return view('groups.list', $data);
         }else{
             return back()->with('error_message', "Accès illégal !");
@@ -66,13 +80,16 @@ class Group extends Controller
             $validator = Validator::make($request->all(), [
                 'groups_name' => [
                                 'required',
-                                'groups_name' => Rule::unique('groups')->where(fn ($query) => $query->where('groups_status', 1))
+                                'groups_name' => Rule::unique('groups')->where(fn ($query) => $query->where('groups_learning_id', $request->groups_learning_id)->where('groups_status', 1))
                             ],
                 'groups_participant' => 'required',
+                'groups_learning_id' => 'required',
             ],[
                 'groups_name.required' => 'Renseignez la désignation du groupe',
-                'groups_name.unique' => 'Le groupe '.$request->groups_name.' existe déjà',
+                'groups_name.unique' => 'Le groupe '.$request->groups_name.' existe déjà pour cette formation',
+
                 'groups_participant.required' => 'Ajouter des participants au groupe',
+                'groups_learning_id.required' => 'Ajouter une formation au groupe',
             ]);
      
             if ($validator->fails()) {
@@ -86,6 +103,7 @@ class Group extends Controller
                     'groups_name' => $request->groups_name,
                     'groups_participant' => json_encode($request->groups_participant),
                     'groups_detail' => $request->groups_detail,
+                    'groups_learning_id' => $request->groups_learning_id,
                     'groups_user_created_by' => Auth::user()->id,
                     'groups_status' =>1,
                 ]);
@@ -116,7 +134,8 @@ class Group extends Controller
            $validator = Validator::make($request->all(), [
                         'groups_name' => [
                             'required',
-                            'groups_name' => Rule::unique('groups')->ignore($request->id, 'groups_id')->where(fn ($query) => $query->where('groups_status', 1))
+                            'groups_name' => Rule::unique('groups')->ignore($request->id, 'groups_id')->where(fn ($query) => $query->where('groups_learning_id', $request->groups_learning_id)->where('groups_status', 1))
+
                         ]
                         /*,
                             'groups_name' => 'required'.($request->groups_name!= $old_group[0]->groups_name ? '|unique:groups' : ''),
@@ -124,7 +143,7 @@ class Group extends Controller
             ],
             [
                 'groups_name.required' => 'Renseignez la désignation du groupe',
-                'groups_name.unique' => 'Le groupe '.$request->groups_name.' existe déjà',
+                'groups_name.unique' => 'Le groupe '.$request->groups_name.' existe déjà pour cette formation',
                 'groups_participant.required' => 'Ajouter des participants au groupe',
             ]);
      

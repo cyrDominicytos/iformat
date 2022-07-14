@@ -117,8 +117,22 @@
 									<!--end::Col-->
 								</div>
 								<div class="row fv-row mb-7">
+									<div class="col-md-6" _mstvisible="12">
+                                        <div class="d-flex flex-column mb-5 fv-row  text-dark">
+											<label class="form-label fw-bolder text-dark fs-6">Département <sup class="mySup"><i class="fa fa-info text-primary" title="Département de provenance"></i></sup></label>
+                                            <select name="department" data-value="{{ isset($old_user) ? $old_user->department : old('department') }}" data-control="select2" data-placeholder="Département de provenance..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="department">
+											<option value="" title="Sélectionnez l'institution">Département de provenance...</option>
+											@foreach(departments() as $key=> $list)
+                                                <option value="{{$list}}" >{{$list}}</option>
+                                            @endforeach
+                                            </select>
+                                            @if($errors->has('department'))
+                                            <div class="fv-plugins-message-container invalid-feedback"><div data-field="department" data-validator="notEmpty">{{$errors->first('department')}}</div></div>
+                                            @endif
+                                        </div>
+                                    </div>
 									<!--begin::Col-->
-									<div class="col-xl-12">
+									<div class="col-md-6" _mstvisible="12">
 										<label class="form-label fw-bolder text-dark fs-6">Adresse </sup></label>
 										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="address" autocomplete="off" value="<?= (isset($old_user)? ($old_user->address) : (old("address")))?>"/>
 										@if($errors->has('address'))
@@ -135,10 +149,21 @@
 								<!--end::Input group-->
 								<div class="row fv-row mb-7">
 									<!--begin::Col-->
-									<div class="col-xl-6">
-										<label class="form-label fw-bolder text-dark fs-6">Institution <sup class="mySup"><i class="fa fa-info text-primary" title="Ou travaille cet utilisateur ?"></i></sup></label>
-										<input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="from" autocomplete="on" value="<?= (isset($old_user)? ($old_user->from) : (old("from")))?>" title="Ou travaille cet utilisateur ?"/>
-									</div>
+									<div class="col-md-6" _mstvisible="12">
+                                        <div class="d-flex flex-column mb-5 fv-row  text-dark">
+											<label class="form-label fw-bolder text-dark fs-6">Institution <sup class="mySup"><i class="fa fa-info text-primary" title="Ou travaille cet utilisateur ?"></i></sup></label>
+                                            <select name="from" data-value="{{ isset($old_user) ? $old_user->from : old('from') }}" data-control="select2" data-placeholder="Choisissez l'institution..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="from">
+											<option value="" title="Sélectionnez l'institution">Sélectionnez l'institution</option>
+											@foreach(institutions() as $key=> $list)
+                                                <option value="{{$key}}" title="{{$list['name']}}">{{$key}}</option>
+                                            @endforeach
+                                            </select>
+                                            @if($errors->has('from'))
+                                            <div class="fv-plugins-message-container invalid-feedback"><div data-field="from" data-validator="notEmpty">{{$errors->first('from')}}</div></div>
+                                            @endif
+                                        </div>
+                                    </div>
+									
 									<!--end::Col-->
 									<!--begin::Col-->
 									<div class="col-xl-6">
@@ -178,7 +203,7 @@
 									</div>
 									<!--end::Wrapper-->
 									<!--begin::Hint-->
-									<div class="text-muted">Un mot de passe sécurisé doit contenir au moins 8 caractères avec un mélange de lettres, numbres &amp; de symboles.</div>
+									<div class="text-muted">Un mot de passe sécurisé doit contenir au moins 8 caractères avec un mélange de lettres (minuscule et majuscule), nombres &amp; de symboles.</div>
 									<!--end::Hint-->
 								</div>
 								<!--end::Input group=-->
@@ -209,7 +234,7 @@
 									</div>
 									<!--end::Wrapper-->
 									<!--begin::Hint-->
-									<div class="text-muted">Un mot de passe sécurisé doit contenir au moins 8 caractères avec un mélange de lettres, numbres &amp; de symboles.</div>
+									<div class="text-muted">Un mot de passe sécurisé doit contenir au moins 8 caractères avec un mélange de lettres (minuscule et majuscule), nombres &amp; de symboles.</div>
 									<!--end::Hint-->
 								</div>
 								<!--end::Input group=-->

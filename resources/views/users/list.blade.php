@@ -120,6 +120,7 @@
                                     <th class="min-w-125px">Adresse</th>
                                     <th class="min-w-125px">Institution</th>
                                     <th class="min-w-125px">Fonction</th>
+                                    <th class="min-w-125px">Département</th>
                                     <th class="min-w-125px">Créé le</th>
                                 </tr>
                                 <!--end::Table row-->
@@ -165,6 +166,7 @@
                                             <td class="text-capitalize">{{$user->address}}</td>
                                             <td class="text-capitalize">{{$user->from}}</td>
                                             <td class="text-capitalize">{{$user->fonction}}</td>
+                                            <td class="text-capitalize">{{$user->department}}</td>
                                             <td><?= format_date($user->created_at, "d/m/Y à H:i:s")?></td>
                                         </tr>
                                         <!--end::Table row-->	

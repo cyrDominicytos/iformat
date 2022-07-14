@@ -60,6 +60,11 @@
 										<strong>{{ $errors->first('email') }}</strong>
 									</div>
 									@endif
+									@if(session()->has('message'))
+									<div class="alert alert-info alert-block">
+										<strong>{{ session()->get('message') }}</strong>
+									</div>
+									@endif
 									
 									<!-- <div class="text-gray-400 fw-bold fs-4">Vous n'avez pas de compte? -->
 									<!-- <a href="/register" class="link-primary fw-bolder">Inscrivez-vous</a></div> -->

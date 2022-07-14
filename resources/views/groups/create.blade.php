@@ -43,17 +43,27 @@
                             <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('groups_name')}}</div></div>
                             @endif
                         </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="d-flex flex-column mb-5 fv-row  text-dark">
-                             <!--end::Label-->
-                             <label class="fw-bolder text-dark fs-6 mb-2">Description</label>
-                            <!--end::Label-->
-                            <!--end::Input-->
-                            <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="groups_detail" id="groups_detail" ><?= isset($old_group) ? $old_group->groups_detail : old("groups_detail") ?></textarea>
-                            <!--end::Input-->
+                        <!--end::Input group-->   
+                          <!--end::Input group-->
+                         <!--begin::Input group-->
+                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
+                            <label class="form-label fw-bolder text-dark fs-6 required">Formation</label>
+                            <select name="groups_learning_id" aria-label="Selectionnez une formation" data-control="select2" data-placeholder="Attribuer une formation..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="groups_learning_id">
+                            @if(isset($old_group))
+                                @foreach($learnings as $key=> $learn)
+                                    <option value="{{$learn->learnings_id}}" <?= $learn->learnings_id==$old_group->groups_learning_id ? 'selected' : ''?> title="{{$learn->learnings_title2}}" >{{$learn->learnings_title}}</option>
+                                @endforeach
+                            @else
+                                @foreach($learnings as $key=> $learn)
+                                    <option value="{{$learn->learnings_id}}"  <?= $learn->learnings_id== old('groups_learning_id') ? 'selected' : ''?>  title="{{$learn->learnings_title2}}" >{{$learn->learnings_title}}</option>
+                                @endforeach
+                            @endif
+                            </select>
+                            @if($errors->has('groups_learning_id'))
+                            <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('groups_learning_id')}}</div></div>
+                            @endif
                         </div>
-                        <!--end::Input group-->
+                        <!--end::Input group-->                 
                          <!--begin::Input group-->
                          <div class="d-flex flex-column mb-5 fv-row  text-dark">
                             <label class="form-label fw-bolder text-dark fs-6 required">Ajouter des participants</label>
@@ -67,7 +77,7 @@
                             @else
                                 @foreach($users as $key=> $user)
                                     @if(!in_array($user->id, $user_to_offset))
-                                    <option value="{{$user->id}}">{{$user->first_name.' '.$user->last_name}}</option>
+                                    <option value="{{$user->id}}" >{{$user->first_name.' '.$user->last_name}}</option>
                                     @endif
                                 @endforeach
                             @endif
@@ -75,6 +85,17 @@
                             @if($errors->has('groups_participant'))
                             <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('groups_participant')}}</div></div>
                             @endif
+                        </div>
+                        <!--end::Input group-->
+                      
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-5 fv-row  text-dark">
+                             <!--end::Label-->
+                             <label class="fw-bolder text-dark fs-6 mb-2">Description</label>
+                            <!--end::Label-->
+                            <!--end::Input-->
+                            <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="groups_detail" id="groups_detail" ><?= isset($old_group) ? $old_group->groups_detail : old("groups_detail") ?></textarea>
+                            <!--end::Input-->
                         </div>
                         <!--end::Input group-->
                     </div>

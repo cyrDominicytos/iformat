@@ -4,10 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
+	<meta name="description" content="IFORMAT, EFORMAT, PLATEFORME DE SUIVI DES FORMATIONS EN LIGNE" />
+	<meta name="keywords" content="IFORMAT, EFORMAT, PLATEFORME DE SUIVI DES FORMATIONS EN LIGNE" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'IFORMAT') }}</title>
     <!-- Scripts -->
-	<link rel="shortcut icon" type="text/css" href="http://www.win-africa.com/images/logo.png" />
+	<link rel="shortcut icon" href="{{ asset('assets/logo/logo.ico') }}" />
     <script src="{{ asset('assets/js/app.js') }}" defer></script>
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
