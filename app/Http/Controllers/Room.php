@@ -59,6 +59,7 @@ class Room extends Controller
        
             $validator = Validator::make($request->all(), [
                 'classrooms_countries_id' => 'required',
+                'classrooms_state' => 'required',
                 'classrooms_name' => [
                     'required',
                     'max:255',
@@ -68,6 +69,7 @@ class Room extends Controller
                 ],
             ],[
                 'classrooms_name.required' => 'Renseignez la désignation du site',
+                'classrooms_state.required' => 'Renseignez le département du site',
                 'classrooms_name.unique' => 'Ce site de formation est déjà créé dans cette ville',
                 'classrooms_name.max' => 'La désignation du site doit comporter maximum 255 caractères',
                 'classrooms_countries_id.required' => 'Renseignez la ville du site',
@@ -84,6 +86,7 @@ class Room extends Controller
                     'classrooms_name' => $request->classrooms_name,
                     'classrooms_countries_id' => $request->classrooms_countries_id,
                     'classrooms_detail' => $request->classrooms_detail,
+                    'classrooms_state' => $request->classrooms_state,
                     'classrooms_user_created_by' => Auth::user()->id,
                 ]);
 
@@ -116,7 +119,8 @@ class Room extends Controller
     {
        
             $validator = Validator::make($request->all(), [
-                'classrooms_name' => 'required|max:255',
+                'classrooms_countries_id' => 'required',
+                'classrooms_state' => 'required',
                 'classrooms_name' => [
                     'required',
                     'max:255',
@@ -130,6 +134,7 @@ class Room extends Controller
                 'classrooms_name.unique' => 'Ce site de formation est déjà créé dans cette ville',
                 'classrooms_name.max' => 'La désignation du site doit comporter maximum 255 caractères',
                 'classrooms_countries_id.required' => 'Renseignez la ville du site',
+                'classrooms_state.required' => 'Renseignez le département du site',
             ]);
      
             if ($validator->fails()) {
@@ -143,6 +148,7 @@ class Room extends Controller
                     'classrooms_name' => $request->classrooms_name,
                     'classrooms_countries_id' => $request->classrooms_countries_id,
                     'classrooms_detail' => $request->classrooms_detail,
+                    'classrooms_state' => $request->classrooms_state,
                     'classrooms_user_updated_by' => Auth::user()->id,
                 ]);
 

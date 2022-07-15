@@ -100,17 +100,17 @@
                             <div class="col-md-12">
                                 <div class="row fv-row fv-plugins-icon-container" _mstvisible="11">
                                     <!--begin::Col-->
-                                    <div class="col-md-6" _mstvisible="12">
+                                    <div class="col-md-4" _mstvisible="12">
                                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
                                             <label class="form-label fw-bolder text-dark fs-6 required">Formation</label>
                                             <select name="plannings_learning_id" data-control="select2" data-placeholder="Choisissez la formation..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="plannings_learning_id">
                                                 @if(isset($old_planning))
                                                     @foreach($learning_list as $key=> $list)
-                                                        <option value="{{$list->learnings_id}}" <?= $list->learnings_id==$old_planning->plannings_learning_id ? 'selected' : ''?>>{{$list->learnings_code}}</option>
+                                                        <option value="{{$list->learnings_id}}" <?= $list->learnings_id==$old_planning->plannings_learning_id ? 'selected' : ''?> title="{{$list->learnings_code}} : {{$list->learnings_title2}}" >{{$list->learnings_title}}</option>
                                                     @endforeach
                                                 @else
                                                     @foreach($learning_list as $key=> $list)
-                                                        <option value="{{$list->learnings_id}}" <?= old('plannings_learning_id')!==null ? ($list->learnings_id==old('plannings_learning_id') ? 'selected' : '') : '' ?>>{{$list->learnings_code}}</option>
+                                                        <option value="{{$list->learnings_id}}" <?= old('plannings_learning_id')!==null ? ($list->learnings_id==old('plannings_learning_id') ? 'selected' : '') : '' ?> title="{{$list->learnings_code}} : {{$list->learnings_title2}}" >{{$list->learnings_title}}</option>
                                                     @endforeach 
                                                 @endif                                           
                                             </select>
@@ -119,7 +119,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-md-6" _mstvisible="12">
+                                    <div class="col-md-4" _mstvisible="12">
                                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
                                             <label class="form-label fw-bolder text-dark fs-6 required">Site</label>
                                             <select name="plannings_classroom_id" data-control="select2" data-placeholder="Choisissez le site de formation..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="plannings_classroom_id">
@@ -138,10 +138,27 @@
                                                 @endif
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row fv-row fv-plugins-icon-container" _mstvisible="11">
+                                    <div class="col-md-4" _mstvisible="12">
+                                        <div class="d-flex flex-column mb-5 fv-row  text-dark">
+                                            <label class="form-label fw-bolder text-dark fs-6 required">Groupes de formation</label>
+                                            <select name="plannings_user_groups"  data-control="select2" data-placeholder="Ajouter les groupes de formaton" class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="plannings_user_groups">
+                                            @if(isset($old_groups))
+                                                @foreach($group_list as $key=> $list)
+                                                <option value="{{$list->groups_id}}" <?= $list->groups_id, $old_groups ? 'selected' : ''?>>{{$list->groups_name}}</option>
+                                                @endforeach
+                                            @else
+                                                @foreach($group_list as $key=> $list)
+                                                    <option value="{{$list->groups_id}}" <?= old('plannings_user_groups')!==null ? ($list->groups_id==old('plannings_user_groups') ? 'selected' : '') : '' ?>>{{$list->groups_name}}</option>
+                                                @endforeach
+                                            @endif
+                                            </select>
+                                            @if($errors->has('plannings_user_groups'))
+                                            <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('plannings_user_groups')}}</div></div>
+                                            @endif
+                                        </div>
+                                    </div>
                                     <!--begin::Col-->
-                                    <div class="col-md-6" _mstvisible="12">
+                                    <div class="col-md-12" _mstvisible="12">
                                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
                                             <label class="form-label fw-bolder text-dark fs-6 required">Formateurs</label>
                                             <select name="plannings_teachers[]" multiple="multiple" data-control="select2" data-placeholder="Ajouter les formateurs de cette session" class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="plannings_teachers">
@@ -160,26 +177,8 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-md-6" _mstvisible="12">
-                                        <div class="d-flex flex-column mb-5 fv-row  text-dark">
-                                            <label class="form-label fw-bolder text-dark fs-6 required">Groupes de formation</label>
-                                            <select name="plannings_user_groups[]" multiple="multiple" data-control="select2" data-placeholder="Ajouter les groupes de formaton" class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="plannings_user_groups">
-                                            @if(isset($old_groups))
-                                                @foreach($group_list as $key=> $list)
-                                                <option value="{{$list->groups_id}}" <?= in_array($list->groups_id, $old_groups) ? 'selected' : ''?>>{{$list->groups_name}}</option>
-                                                @endforeach
-                                            @else
-                                                @foreach($group_list as $key=> $list)
-                                                    <option value="{{$list->groups_id}}" <?= old('plannings_user_groups')!==null ? (in_array($list->groups_id, old('plannings_user_groups')) ? 'selected' : '') : '' ?>>{{$list->groups_name}}</option>
-                                                @endforeach
-                                            @endif
-                                            </select>
-                                            @if($errors->has('plannings_user_groups'))
-                                            <div class="fv-plugins-message-container invalid-feedback"><div data-field="first_name" data-validator="notEmpty">{{$errors->first('plannings_user_groups')}}</div></div>
-                                            @endif
-                                        </div>
-                                    </div>
                                 </div>
+                               
                                 <!--begin::Input group-->
                                 <div class="d-flex flex-column mb-5 fv-row  text-dark">
                                     <!--end::Label-->

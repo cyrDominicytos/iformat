@@ -178,6 +178,16 @@ if (!function_exists('countries_list')) {
             "1"=>"Cotonou",
             "2"=>"Porto-Novo",
             "3"=>"Parakou",
+            "4"=>"Abomey-Calavi",
+            "5"=>"Bohicon",
+            "6"=>"Abomey",
+            "7"=>"Ouidah",
+            "8"=>"Lokossa",
+            "9"=>"Comé",
+            "10"=>"Possotomè",
+            "11"=>"Bopa",
+            "12"=>"Pobè",
+            "13"=>"Kandi",
         ];
     }
 }
@@ -572,7 +582,7 @@ if (!function_exists('get_events_list')) {
                             'learnText'=> $value->learnings_title,
                             'learnGoal'=> $value->learnings_goal,
                             'learnDesc'=> $value->learnings_infos,
-                            'learnGroup'=> implode(", ",GroupModel::whereIn('groups_id',json_decode($value->plannings_user_groups))->where('groups_status',1)->pluck('groups_name')->toArray()),
+                            'learnGroup'=> implode(", ",GroupModel::where('groups_id',$value->plannings_user_groups)->where('groups_status',1)->pluck('groups_name')->toArray()),
 
                         )
                             );

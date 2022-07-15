@@ -40558,9 +40558,9 @@ code:not([class*=language-]) {
     border-width: inherit;
     border-style: inherit;
     text-transform: inherit;
-    font-weight: inherit;
-    font-size: inherit;
-    color: inherit;
+    /* font-weight: inherit; */
+    /* font-size: inherit; */
+    /* color: inherit; */
     height: inherit;
     min-height: inherit
 }

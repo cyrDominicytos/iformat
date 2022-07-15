@@ -158,6 +158,7 @@ class Group extends Controller
                 $group = GroupModel::where("groups_id", $request->id)->update([
                     'groups_name' => $request->groups_name,
                     'groups_participant' => json_encode($request->groups_participant),
+                    'groups_learning_id' => $request->groups_learning_id,
                     'groups_detail' => $request->groups_detail,
                     'groups_user_updated_by' => Auth::user()->id,
                     'groups_status' =>1,

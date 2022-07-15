@@ -43,9 +43,11 @@
                         
                     </div>
                     <!--end::Wrapper-->
+                    @if(in_array(Auth::user()->user_role_id,[1]))
                    <!--begin::Button-->
                     <button class="btn btn-sm btn-primary"  id="kt_toolbar_primary_button"  data-bs-toggle="modal" data-bs-target="#create_modal">Ajouter</button>
                     <!--end::Button-->
+                    @endif
                 </div>
                 <!--end::Actions-->
             </div>
@@ -81,7 +83,8 @@
                         <div class="card-toolbar">
                             <!--begin::Toolbar-->
                             <div class="d-flex justify-content-end" data-bs-toggle="modal" data-bs-target="#create_modal" data-kt-user-table-toolbar="base">
-                                                               
+                                
+                                @if(in_array(Auth::user()->user_role_id,[1]))          
                                 <!--begin::Add user-->
                                 <button  class="btn btn-primary">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
@@ -92,6 +95,7 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->Ajouter</button>
+                                @endif
                                 <!--end::Add user-->
                             </div>
                             <!--end::Toolbar-->                           
@@ -113,7 +117,7 @@
                             <!--begin::Table head-->
                             <thead>
                                 <!--begin::Table row-->
-                                <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0 text-bold" style="color:black; font-weight:bold">
                                     <th class="text-en min-w-100px">Actions</th>
                                     <th class="min-w-125px">Désignation</th>
                                     <th class="min-w-125px">Formation</th>
@@ -132,6 +136,7 @@
                                 @foreach($groups as $group)
                                     <!--begin::Table row-->
                                     <tr>
+                                    @if(in_array(Auth::user()->user_role_id,[1,3]))
                                         <td class="text-cente">
                                             <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
@@ -149,13 +154,16 @@
                                                     <a href="<?= route('groups.update',['id'=>$group->groups_id]) ?>" class="menu-link px-3 text-primary"> Editer</a>
                                                 </div>
                                                 <!--end::Menu item-->
+                                                @if(in_array(Auth::user()->user_role_id,[1]))
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
                                                     <p class="menu-link px-3"onclick="deleted(<?=$group->groups_id ?>)" ><?= deleteUser(1) ?></p>
                                                 </div>
-                                                <!--end::Menu item-->
+                                                <!--end::Menu item--> 
+                                                @endif
                                             </div>
                                             <!--end::Menu-->
+                                            @endif
                                         </td>
                                         <!--end::Action=-->
                                         <td class="text-capitalize">{{$group->groups_name}}</td>
@@ -219,6 +227,7 @@
            document.getElementById("modalTitle").innerHTML = "Mise à jour du groupe";
            document.getElementById("submitText").innerHTML = "Sauvegarder";
            document.getElementById("groups_name").value = table.rows[rowId].cells[1].innerHTML.trim();
+           document.getElementById("groups_learning_id").value = table.rows[rowId].cells[2].innerHTML.trim();
            document.getElementById("groups_detail").value = table.rows[rowId].cells[3].innerHTML.trim();
 
            document.getElementById("groups_participant").value = 1;

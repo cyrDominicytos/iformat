@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
+
 
 
 class HomeController extends Controller
@@ -103,7 +105,7 @@ class HomeController extends Controller
         if(count($old_user) <= 0)
              return back()->with('error_message', "Le profile que vous désirez éditer n'existe pas !");
 
-            $validator = Validator::make($request->all(), [
+             $rules = [
                 'first_name' => ['required', 'string', 'max:255'],
                 'last_name' => ['required', 'string', 'max:255'],
                 'user_role_id' => ['required'],
@@ -114,15 +116,41 @@ class HomeController extends Controller
                     'max:255',
                     'email' => Rule::unique('users')->ignore($request->id)->where(fn ($query) => $query->where('status', 1))
                 ],
-            ],[
+            ];
+
+            $messages = [
                 'first_name.required' => 'Renseignez le prénom',
                 'last_name.required' => 'Renseignez le nom',
                 'user_role_id.required' => 'Renseignez le rôle de l\'utilisateur',
                 'email' => 'Renseignez une adresse email valid',
                 'email.required' => 'Renseignez une adresse email valid',                
                 'email.unique' => "L'adresse email existe déjà",                
-            ]);
-     
+            ];
+
+            $field = [
+                'first_name' => $request->first_name,
+                'last_name' =>$request->last_name,
+                'phone_number' => $request->phone_number,
+                'address' => $request->address,
+                'user_role_id' => $request->user_role_id,
+                'email' => $request->email,
+                'from' => $request->from,
+                'fonction' => $request->fonction,
+                'department' => $request->department,
+                'status' => 1,
+                'user_created_by' => Auth::user()->id,
+            ];
+
+            if(!empty($request->password) && $request->password!= null )
+            {
+                $rules['password'] =  ['required', 'string', 'min:8', 'confirmed'];
+                $messages['password.confirmed'] = 'Les mots de passe ne correspondent pas !';
+                $messages['password.min'] = 'Le mot de passe doit contenir au moins 8 caractères!';
+               $field['password'] = Hash::make($request->password);
+                
+            }
+
+            $validator = Validator::make($request->all(),$rules,$messages);
             if ($validator->fails()) {
                 return       back()
                             ->withErrors($validator)
@@ -130,23 +158,6 @@ class HomeController extends Controller
                             ->with('error_message', "Une erreur est survenue lors de la mise à jour de l'utilisateur !");
             }else{
                 //validation okay
-                $field = [
-                    'first_name' => $request->first_name,
-                    'last_name' =>$request->last_name,
-                    'phone_number' => $request->phone_number,
-                    'address' => $request->address,
-                    'user_role_id' => $request->user_role_id,
-                    'email' => $request->email,
-                    'from' => $request->from,
-                    'fonction' => $request->fonction,
-                    'department' => $request->department,
-                    'status' => 1,
-                    'user_created_by' => Auth::user()->id,
-                ];
-                /*if(!empty($request->from) && $request->from!= null )
-                    $field['from'] = $request->from;
-                if(!empty($request->fonction) && $request->fonction!= null )
-                    $field['fonction'] = $request->fonction;*/
                 $updated_user = User::where("id",$request->id)->update($field);
 
                // dd(  $updated_user);

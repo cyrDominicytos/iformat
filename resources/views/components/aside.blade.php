@@ -362,6 +362,59 @@
                         </a>
                     </span>
                 </div>
+                <!-- Groups -->
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <span class="menu-link">
+                            <span class="menu-icon">
+                                <i class="bi bi-cash-coin fs-3"></i>
+                            </span>
+                            <span class="menu-title">Groupes de formation</span>
+                            <span class="menu-arrow"></span>
+                        </span>
+                        <div class="menu-sub menu-sub-accordion menu-active-bg">
+                            <div class="menu-item menu-accordion">
+                                <a class="menu-link" href="{{ route('addGroup') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Ajouter</span>
+                                </a>
+                                <a class="menu-link" href="{{ route('listGroups') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Consulter liste</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <!-- Participants -->
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <span class="menu-link">
+                            <span class="menu-icon">
+                                <i class="fa fa-user fs-3"></i>
+                            </span>
+                            <span class="menu-title">Participants</span>
+                            <span class="menu-arrow"></span>
+                        </span>
+                        <div class="menu-sub menu-sub-accordion menu-active-bg">
+                            <div class="menu-item menu-accordion">
+                                <a class="menu-link" href="{{ route('addParticipant') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title" >Ajouter</span>
+                                </a>
+                                <a class="menu-link" href="{{ route('users_list',[4]) }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Liste</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>	
+                     
                 @endif
 
                 @endif

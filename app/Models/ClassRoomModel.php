@@ -17,6 +17,7 @@ class ClassRoomModel extends Model
         'classrooms_name',
         'classrooms_countries_id',
         'classrooms_detail',
+        'classrooms_state',
         'classrooms_status',
         'classrooms_user_created_by',
         'classrooms_user_updated_by',

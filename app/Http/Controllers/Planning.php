@@ -66,30 +66,6 @@ class planning extends Controller
         //dd($data['learns']);
         return view('assessment.list',  $data);
 
-       /* $userRole = Auth::user()->user_role_id;
-        switch ($userRole) {
-            case 3:
-                //formateur
-                $result = $this->modelplanning->get_learnings_assessments(Auth::user()->id);
-             break;
-            // case 4:
-            //     //Agent
-            //     $group = session('userGroup');
-            //    // $result = $this->modelplanning->get_participant_planning($group, $beginDate, $endDate, $yearMonth );
-            //    $result = $this->modelplanning->get_learnings_assessments(Auth::user()->id);
-            //  break;
-            default:
-                return redirect('/listLearnings')->with('success_message', "Une nouvelle formation est créée avec succès !");
-
-                // $result = $this->modelplanning->get_planning($beginDate, $endDate, $yearMonth );
-            break;
-        }
-
-
-
-        $data['planning'] = $this->modelplanning->get_plannings_list(1);
-       // dd($data['planning']);
-        $data['countries_list'] = countries_list();*/
     }
 
     public function planningsView()
@@ -168,14 +144,15 @@ class planning extends Controller
         $validator = Validator::make($request->all(), [
             'plannings_learning_id' => 'required',
             'plannings_classroom_id' => 'required',
+            'plannings_user_groups' => 'required',
             'plannings_teachers' => [
                 'required',
                 'array',
             ],
-            'plannings_user_groups' => [
-                'required',
-                'array',
-            ],
+            // 'plannings_user_groups' => [
+            //     'required',
+            //     'array',
+            // ],
             'plannings_date' => [
                 'required',
                 'array',
@@ -189,7 +166,7 @@ class planning extends Controller
             'plannings_learning_id.required' => 'Choisissez une formation',
             'plannings_classroom_id.required' => 'Choisissez une salle de formation',
             'plannings_teachers.required' => 'Ajoutez le(s) formateur(s)',
-            'plannings_user_groups.required' => 'Ajoutez le(s) groupe(s) de formation',
+            'plannings_user_groups.required' => 'Ajoutez le groupe de formation',
             'plannings_date.required' => 'Renseignez la date de formation',
             'plannings_time_slot.required' => 'Choisissez une heure de formation',
         ]);
@@ -207,7 +184,7 @@ class planning extends Controller
                 'plannings_code' =>generate_planning_code(),
                 'plannings_classroom_id' => $request->plannings_classroom_id,
                 'plannings_teachers' => json_encode($request->plannings_teachers),
-                'plannings_user_groups' => json_encode($request->plannings_user_groups),
+                'plannings_user_groups' => $request->plannings_user_groups,
                 'plannings_date' => json_encode($request->plannings_date),
                 'plannings_time_slot' => json_encode($request->plannings_time_slot),
                 'plannings_infos' => $request->plannings_infos,
@@ -253,7 +230,7 @@ class planning extends Controller
             $data['old_teachers'] = json_decode($old_planning->plannings_teachers);
             $data['old_time_slot'] = json_decode($old_planning->plannings_time_slot);
             $data['old_date'] = json_decode($old_planning->plannings_date);
-            $data['old_groups'] = json_decode($old_planning->plannings_user_groups);
+            $data['old_groups'] = $old_planning->plannings_user_groups;
             $data['cabinet_list'] = cabinet_list();
             return view('plannings.create', $data);
        
@@ -276,6 +253,8 @@ class planning extends Controller
             $validator = Validator::make($request->all(), [
                 'plannings_learning_id' => 'required',
                 'plannings_classroom_id' => 'required',
+                'plannings_user_groups' => 'required',
+
                 'plannings_teachers' => [
                     'required',
                     'array',
@@ -288,16 +267,16 @@ class planning extends Controller
                     'required',
                     'array',
                 ],
-                'plannings_user_groups' => [
-                    'required',
-                    'array',
-                ],
+                // 'plannings_user_groups' => [
+                //     'required',
+                //     'array',
+                // ],
                 
             ],[
                 'plannings_learning_id.required' => 'Choisissez une formation',
                 'plannings_classroom_id.required' => 'Choisissez une salle de formation',
                 'plannings_teachers.required' => 'Ajoutez le(s) formateur(s)',
-                'plannings_user_groups.required' => 'Ajoutez le(s) groupe(s) de formation',
+                'plannings_user_groups.required' => 'Ajoutez le groupe de formation',
                 'plannings_date.required' => 'Renseignez la date de formation',
                 'plannings_time_slot.required' => 'Choisissez une heure de formation',
             ]);
@@ -313,7 +292,7 @@ class planning extends Controller
                 'plannings_learning_id' => $request->plannings_learning_id,
                 'plannings_classroom_id' => $request->plannings_classroom_id,
                 'plannings_teachers' => json_encode($request->plannings_teachers),
-                'plannings_user_groups' => json_encode($request->plannings_user_groups),
+                'plannings_user_groups' => $request->plannings_user_groups,
                 'plannings_date' => json_encode($request->plannings_date),
                 'plannings_time_slot' => json_encode($request->plannings_time_slot),
                 'plannings_infos' => $request->plannings_infos,

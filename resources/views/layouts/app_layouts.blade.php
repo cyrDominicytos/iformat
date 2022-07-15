@@ -22,6 +22,23 @@
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle--><!--end::Global Stylesheets Bundle-->
     @yield('css')
+
+	<style>
+		 tr > th
+		{
+			
+			/* color:blue;  */
+			color:#005aab; 
+			
+		}
+		 tr > td
+		{
+			
+			/* color:blue;  */
+			color:#000; 
+			
+		}
+		</style>
 </head>
 <body id="kt_body"   class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 		<!--begin::Root-->

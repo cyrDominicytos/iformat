@@ -115,6 +115,7 @@
                             <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                                 <th class="text-en min-w-100px">Actions</th>
                                 <th class="min-w-125px">Désignation</th>
+                                <th class="min-w-125px">Département</th>
                                 <th class="min-w-125px">Ville</th>
                                 <th class="min-w-125px">Description</th>
                                 <th class="min-w-125px">Crée par</th>
@@ -157,6 +158,10 @@
                                         <!--end::Action=-->
                                         <td class="d-flex align-items-center">
                                            {{  $room->classrooms_name }}
+                                        </td>
+                                       
+                                        <td class="">
+                                        {{ $room->classrooms_state }}
                                         </td>
                                         <td class="">
                                         {{  countries_list()[$room->classrooms_countries_id]  }}
@@ -223,6 +228,7 @@
            document.getElementById("modalTitle").innerHTML = "Mise à jour de site de formation";
            document.getElementById("submitText").innerHTML = "Sauvegarder";
            document.getElementById("classrooms_name").value = table.rows[rowId].cells[1].innerHTML.trim();
+           document.getElementById("classrooms_state").value = table.rows[rowId].cells[2].innerHTML.trim();
            document.getElementById("classrooms_detail").value = table.rows[rowId].cells[3].innerHTML.trim();
 
            document.getElementById("classrooms_countries_id").value = country;
