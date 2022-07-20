@@ -43,6 +43,7 @@
                     
                 </div>
                 <!--end::Wrapper-->
+                <span class="total">Total : {{$planning!=null ? count($planning) : 0}}</span>
                 <!--begin::Button-->
                 <a href="{{ route('addPlanning') }}" class="btn btn-sm btn-primary"  id="kt_toolbar_primary_button"  >Ajouter</a>
                 <!--end::Button-->

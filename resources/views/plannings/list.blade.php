@@ -43,6 +43,7 @@
                     
                 </div>
                 <!--end::Wrapper-->
+                <span class="total">Total : {{$planning!=null ? count($planning) : 0}}</span>
                 @if(in_array(Auth::user()->user_role_id,[1]))
                 <!--begin::Button-->
                 <a href="{{ route('addPlanning') }}" class="btn btn-sm btn-primary"  id="kt_toolbar_primary_button"  >Ajouter</a>

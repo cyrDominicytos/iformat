@@ -43,7 +43,7 @@
                     
                 </div>
                 <!--end::Wrapper-->
-               
+                <span class="total">Total : {{$learns!=null ? count($learns) : 0}}</span>
             </div>
             <!--end::Actions-->
         </div>
