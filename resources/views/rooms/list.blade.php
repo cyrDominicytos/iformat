@@ -43,6 +43,7 @@
                     
                 </div>
                 <!--end::Wrapper-->
+                <span class="total">Total : {{$rooms!=null ? count($rooms) : 0}}</span>
                 <!--begin::Button-->
                 <button class="btn btn-sm btn-primary"  id="kt_toolbar_primary_button"  data-bs-toggle="modal" data-bs-target="#create_modal">Ajouter</button>
                 <!--end::Button-->

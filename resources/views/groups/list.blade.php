@@ -43,6 +43,7 @@
                         
                     </div>
                     <!--end::Wrapper-->
+                    <span class="total">Total : {{$groups!=null ? count($groups) : 0}}</span>
                     @if(in_array(Auth::user()->user_role_id,[1]))
                    <!--begin::Button-->
                     <button class="btn btn-sm btn-primary"  id="kt_toolbar_primary_button"  data-bs-toggle="modal" data-bs-target="#create_modal">Ajouter</button>

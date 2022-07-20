@@ -40,10 +40,11 @@
                 <div class="d-flex align-items-center py-1">
                     <!--begin::Wrapper-->
                     <div class="me-4">
-                        
+                   
                     </div>
                     <!--end::Wrapper-->
                     <!--begin::Button-->
+                    <span class="total">Total : {{$users!=null ? count($users) : 0}}</span>
                     <a href="{{ route(roles_routes()[$role_id]) }}" class="btn btn-sm btn-primary">Ajouter</a>
                     <!--end::Button-->
                 </div>
