@@ -234,7 +234,7 @@
     <!--end::Post-->
 </div>
  <!--end::Content-->
-    @section('javascript')
+    @section('js')
     <script type="text/javascript">
       
         var showModal = "<?= Route::currentRouteName() == '' ? ('') : ('') ?>";

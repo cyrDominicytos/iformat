@@ -108,7 +108,7 @@
 		<script src="{{ asset('assets/js/custom/utilities/modals/create-app.js')}}"></script>
 		<script src="{{ asset('assets/js/custom/utilities/modals/users-search.js')}}"></script>
 		<!--end::Page Custom Javascript-->
-		@yield('javascript')
+		@yield('js')
 		<!--end::Javascript-->
 		<script type="text/javascript">
 			var success_message = "<?= Session::get('success_message') ? Session::get('success_message') : 0 ?>";

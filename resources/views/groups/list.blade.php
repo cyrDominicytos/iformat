@@ -192,7 +192,7 @@
     </div>
     @include('groups.create');
     <!--end::Content-->
-    @section('javascript')
+    @section('js')
     <script type="text/javascript">
         var base_url = "<?=URL::to('/') ?>";
         var old_group = "<?= isset($old_group) ? 1 : 0 ?>";

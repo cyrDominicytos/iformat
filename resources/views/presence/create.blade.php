@@ -68,7 +68,7 @@
                 <div class="card-header border-0 pt-6">
                     <!--begin::Card title-->
                     <div class="card-title">
-                        <h4 class="fw-bolder text-dark">{{ isset($old_planning) ? "Edition" : "Création"}} d'une session de formation</h4>
+                        <h4 class="fw-bolder text-dark">{{ isset($old_planning) ? "Edition" : "Ajout"}} d'une présence</h4>
                     </div>
                     <!--begin::Card title-->
                     <!--begin::Card toolbar-->
@@ -186,7 +186,7 @@
                                 <!--begin::Modal footer-->
                                 <div class="modal-footer flex-center" style="margin-top: 10px">
                                     <!--begin::Button-->
-                                    <button type="reset" id="kt_modal_new_address_cancel" class="btn btn-danger me-3" onclick="location.go(-1)">Quitter</button>
+                                    <button type="reset" id="kt_modal_new_address_cancel" class="btn btn-danger me-3" onclick="history.go(-1)">Quitter</button>
                                     <!--end::Button-->
                                     <!--begin::Button-->
                                     @if(in_array(Auth::user()->user_role_id,[3]))
@@ -212,7 +212,7 @@
     <!--end::Post-->
 </div>
  <!--end::Content-->
-    @section('javascript')
+    @section('js')
     <script type="text/javascript">
          $.ajaxSetup({
             headers: {

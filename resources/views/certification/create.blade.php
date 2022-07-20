@@ -179,7 +179,7 @@
     <!--end::Post-->
 </div>
  <!--end::Content-->
-    @section('javascript')
+    @section('js')
     <script type="text/javascript">
          $.ajaxSetup({
             headers: {

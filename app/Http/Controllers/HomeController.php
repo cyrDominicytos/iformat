@@ -91,6 +91,7 @@ class HomeController extends Controller
 
             $data['roles'] = roles_list();
             $data['old_user'] =  $user[0];
+          //  dd($data['old_user']->from);
             $data['role_id'] = $role;
             return view('auth.register', $data);
         }else{

@@ -135,6 +135,7 @@ class PlanningModel extends Model
             AND JSON_SEARCH(plannings_date , 'all', '".$YearMonth."%', NULL ) IS NOT NULL
             ");
         }*/
+        
     public function get_planning($beginDate, $endDate, $YearMonth){
        return DB::select(
         "select * from learnings, plannings,users, classrooms, groups

@@ -299,7 +299,7 @@
                             <!--begin::Modal footer-->
                             <div class="modal-footer flex-center">
                                 <!--begin::Button-->
-                                <button type="reset" id="kt_modal_new_address_cancel" class="btn btn-danger me-3" data-bs-dismiss="modal">Quitter</button>
+                                <button type="reset"  class="btn btn-danger me-3" onclick="history.go(-1)">Quitter</button>
                                 <!--end::Button-->
                                 <!--begin::Button-->
                                 <button type="submit" id="submit" class="btn btn-primary">
@@ -322,7 +322,7 @@
     <!--end::Post-->
 </div>
  <!--end::Content-->
-    @section('javascript')
+    @section('js')
     <script type="text/javascript">
       
         var showModal = "<?= Route::currentRouteName() == '' ? ('') : ('') ?>";
