@@ -159,6 +159,12 @@
                                 </span>
                                 <span class="menu-title">Ajouter</span>
                             </a>
+                            <a class="menu-link" href="{{route('listPresence')  }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Consulter liste</span>
+                                </a>
                         </div>
                     </div>
                 </div>
@@ -302,7 +308,7 @@
                         <span class="menu-icon">
                             <i class="bi bi-cash-coin fs-3"></i>
                         </span>
-                        <a class="menu-link" href="{{route('planningsView')}}">
+                        <a class="" href="{{route('planningsView')}}">
                         <span class="menu-title">Plan</span>
                         </a>
                     </span>
@@ -312,7 +318,7 @@
                         <span class="menu-icon">
                             <i class="bi bi-cash-coin fs-3"></i>
                         </span>
-                        <a class="menu-link" href="{{route('listLearnings')}}">
+                        <a class="" href="{{route('listLearnings')}}">
                         <span class="menu-title">Formations</span>
                         </a>
                     </span>
@@ -323,7 +329,7 @@
                         <span class="menu-icon">
                             <i class="bi bi-cash-coin fs-3"></i>
                         </span>
-                        <a class="menu-link" href="{{route('addAssessment')}}">
+                        <a class="" href="{{route('addAssessment')}}">
                         <span class="menu-title">Evaluations</span>
                         </a>
                     </span>
@@ -335,32 +341,48 @@
                         <span class="menu-icon">
                             <i class="bi bi-cash-coin fs-3"></i>
                         </span>
-                        <a class="menu-link" href="{{route('listPlannings')}}">
+                        <a class="" href="{{route('listPlannings')}}">
                         <span class="menu-title">Sessions</span>
                         </a>
                     </span>
                 </div>
                 @endif
-                @if(in_array(Auth::user()->user_role_id,[3]))
+                @if(in_array(Auth::user()->user_role_id,[3]))                
                 <div class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <i class="bi bi-cash-coin fs-3"></i>
                         </span>
-                        <a class="menu-link" href="{{route('addPresence')}}">
-                        <span class="menu-title">Présence</span>
-                        </a>
-                    </span>
-                </div>
-                <div class="menu-item menu-accordion">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <i class="bi bi-cash-coin fs-3"></i>
-                        </span>
-                        <a class="menu-link" href="{{route('getAssessments')}}">
+                        <a class="" href="{{route('getAssessments')}}">
                         <span class="menu-title">Evaluations</span>
                         </a>
                     </span>
+                </div>
+                <!-- Presence des participants -->
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <i class="bi bi-cash-coin fs-3"></i>
+                        </span>
+                        <span class="menu-title">Présence</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item menu-accordion">
+                            <a class="menu-link" href="{{ route('addPresence') }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Ajouter</span>
+                            </a>
+                            <a class="menu-link" href="{{route('listPresence')  }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Consulter liste</span>
+                                </a>
+                        </div>
+                    </div>
                 </div>
                 <!-- Groups -->
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">

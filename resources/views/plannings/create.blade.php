@@ -320,6 +320,7 @@
             return;
         }
         var indexId =  plannings_date1.value+''+plannings_time_slot1.value;
+        console.log(table_unique.length)
         if(table_unique.includes(indexId)|| table_unique.length==3 ){
             //row already exists
         }else{
@@ -338,9 +339,12 @@
 
        $(document).on('click', '.remove', function(){
         var row_index =$(this).closest("tr").index();
+        
         var rowId =  $(this).attr("id");
-        table_unique.splice(row_index-1, 1);
+        table_unique.splice(row_index, 1);
         $(this).closest('tr').remove();
+        
+        console.log(table_unique)
         checkForm()
     });
 
@@ -379,6 +383,7 @@
               if(old_planning!=0){
                 table_unique = old_table_data;
                 document.getElementById("submit").disabled = false;
+                console.log(table_unique)
               }
     });
 

@@ -54,6 +54,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/listPresence/group_participant_list', [Planning::class, 'group_participant_list'])->name('listPresence.group_participant_list');
     Route::post('/listPresence/store', [Planning::class, 'presence_store'])->name('listPresence.store');
     Route::post('/listPresence/update', [Planning::class, 'presence_update'])->name('listPresence.update');
+    Route::get('/listPresence', [Planning::class, 'listPresence'])->name('listPresence');
+    Route::post('/listPresence/print', [Planning::class, 'presence_print'])->name('listPresence.print');
    
     //Certification                                                                                  
     Route::get('/addCertification/{code?}', [Planning::class, 'certify'])->name('addCertification');
@@ -96,6 +98,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/groups/update/{id}', [Group::class, 'update'])->name('groups.update');
     Route::post('/groups/edit', [Group::class, 'edit'])->name('groups.edit');
     Route::get('/group/delete/{id}', [Group::class, 'destroy'])->name('group.delete');
+
+
+    //PDF Controller
+    Route::get('create-pdf-file', [PDFController::class, 'index']);
    
    
 });

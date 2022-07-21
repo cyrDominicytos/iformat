@@ -111,7 +111,7 @@ class PlanningModel extends Model
         }*/
     public function get_teachers_learning_planning($user_id,$learning_id){
        return DB::select(
-        "select learnings.*, users.*, plannings.* from learnings, plannings,users, classrooms, groups
+        "select * from learnings, plannings,users, classrooms, groups
             WHERE learnings_id = plannings_learning_id  
             AND users.id = plannings_user_created_by
             AND classrooms_id = plannings_classroom_id
