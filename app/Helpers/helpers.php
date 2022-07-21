@@ -360,12 +360,16 @@ if (!function_exists('planning_list')) {
              //formateur
              $planning = $modelPlan->get_teachers_learning_planning(Auth::user()->id, $id);
         }else{
-            $planning = PlanningModel::where("plannings_learning_id", $id)->where("plannings_status", 1)->get();
+            $planning = PlanningModel:: join('classrooms', 'classrooms_id', '=', 'plannings_classroom_id')->where("plannings_learning_id", $id)->where("plannings_status", 1)->get();
         }
         $output = '';
         if($planning){
+            //$output .= '<option value="">Choisissez un plan</option>'; 
+
             foreach ($planning as $result){
-                $output .= '<option value="'.$result->plannings_id.'">'.$result->plannings_code.'</option>';
+                $text = $result->plannings_code.' - '.countries_list()[$result->classrooms_countries_id].' - '.$result->classrooms_name;
+                $output .= '<option value="'.$result->plannings_id.'" title="'.$text.'">'.$text.'</option>'; 
+                //title="{{$list->learnings_code}} : {{$list->learnings_title2}}" >{{$list->learnings_title}}</option>
             }
         }
         return  response()->json($output);
@@ -375,7 +379,7 @@ if (!function_exists('planning_list')) {
 if (!function_exists('planning_details_list')) {
     function planning_details_list($id) {
         
-        $planning = PlanningModel::where("plannings_id", $id)->where("plannings_status", 1)->first();
+        /*$planning = PlanningModel::where("plannings_id", $id)->where("plannings_status", 1)->first();
             $output = '';
             $output1 = '';
             if($planning){
@@ -386,6 +390,7 @@ if (!function_exists('planning_details_list')) {
                         $output1 .= '<option value="'.$result.' de '.$hour[$key].'">'.$result.' de '.$hour[$key].'</option>';
                 }
 
+              
                 $groups =json_decode($planning->plannings_user_groups);
                 foreach ($groups  as $result){
                    $group =  GroupModel::where('groups_id', $result)->where('groups_status', 1)->first();
@@ -393,6 +398,22 @@ if (!function_exists('planning_details_list')) {
                 }
 
 
+            }*/
+        
+            $planning = PlanningModel::join('groups','groups_id', 'plannings_user_groups')->where("plannings_id", $id)->where("plannings_status", 1)->where("groups_status", 1)->first();
+            $output = '';
+            $output1 = '';
+            if($planning){
+                $date =json_decode($planning->plannings_date);
+                $hour =json_decode($planning->plannings_time_slot);
+                foreach ($date  as $key => $result){
+                    if($result<= date('Y-m-d'))
+                        $output1 .= '<option value="'.$result.' de '.$hour[$key].'">'.format_date($result,"d-m-Y").' de '.$hour[$key].'</option>';
+                }
+
+              
+                $output .= '<option value="'.$planning->groups_id.'">'.$planning->groups_name.'</option>';
+               
             }
 			return  response()->json(['groups'=> $output, 'date'=>$output1]);
     }
@@ -411,7 +432,7 @@ if (!function_exists('group_participant_list')) {
                         $user = User::where("id", $result)->where("status", 1)->first();
                         if($user){
                             $output .= '<tr class="text-center">';
-                            $output .= '<td> <input  name="presences_participant[]"  type="checkbox" value="'.$user->id.'" '.(in_array($user->id,$old_presence) ? "checked" : "").'></td>';
+                            $output .= '<td> <input class="participant_checkbox"  name="presences_participant[]"  type="checkbox" value="'.$user->id.'" '.(in_array($user->id,$old_presence) ? "checked" : "").'></td>';
                             $output .= '<td><input hidden name="participant[]"  type="text" value="'.$user->id.'"> '.$user->first_name.' '.$user->last_name.'</td></tr>';
                         }
                     }
@@ -420,7 +441,7 @@ if (!function_exists('group_participant_list')) {
                         $user = User::where("id", $result)->where("status", 1)->first();
                         if($user){
                             $output .= '<tr class="text-center">';
-                            $output .= '<td> <input  name="presences_participant[]"  type="checkbox" value="'.$user->id.'"></td>';
+                            $output .= '<td> <input class="participant_checkbox"  name="presences_participant[]"  type="checkbox" value="'.$user->id.'"></td>';
                             $output .= '<td><input hidden name="participant[]"  type="text" value="'.$user->id.'"> '.$user->first_name.' '.$user->last_name.'</td></tr>';
                         }
                     }
