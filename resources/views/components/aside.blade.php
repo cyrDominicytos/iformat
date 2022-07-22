@@ -40,6 +40,7 @@
                         <span class="menu-sectio text-muted text-uppercase fs-8 ls-1"  style="color: #fff;">Fonctionnalités</span>
                     </div>
                 </div>
+                <!-- Cabinet, admin -->
                 @if(in_array(Auth::user()->user_role_id,[1, 5]))
                 <!-- Classrooms -->
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
@@ -347,6 +348,19 @@
                     </span>
                 </div>
                 @endif
+                @if(Auth::user()->user_role_id == 2)
+                <div class="menu-item menu-accordion">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <i class="bi bi-cash-coin fs-3"></i>
+                        </span>
+                        <a class="" href="{{ route('users_list',[4]) }}">
+                        <span class="menu-title">Participants</span>
+                        </a>
+                    </span>
+                </div>
+                @endif
+                <!-- teachers -->
                 @if(in_array(Auth::user()->user_role_id,[3]))                
                 <div class="menu-item menu-accordion">
                     <span class="menu-link">

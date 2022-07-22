@@ -105,7 +105,8 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        $this->validateLogin($request);
+        try{
+            $this->validateLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
@@ -131,6 +132,10 @@ class LoginController extends Controller
         // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
         return $this->sendFailedLoginResponse($request, $type);
+            
+        }catch(Exception $e){
+            return redirect()->back()->with('message', "Nous n'avons pas pu contacter le serveur !");
+        }
     }
 
 
@@ -143,26 +148,27 @@ class LoginController extends Controller
      */
     protected function attemptLogin(Request $request)
     {
-        $result =  $this->guard()->attempt(
-            $this->credentials($request), $request->filled('remember')
-        );
-        //successfullogin
-        if($result){
-            //$user = User::where("email", $request->get('email'))->where("password", $request->get('password'))->first();
-            $user = User::where("active",0)->where("status", 1)->where("email", $request->get('email'))->first();
-
-            //valid login
-            if($user!= null){
-                return 1;
-            }
-
-            $this->logout($request, 2);
-            $user = User::where("status", 1)->where("email", $request->get('email'))->first();
-            //undeleted login
-            if($user!= null){
-                return 2;
-            }else return 0;//deleted login
-        }else return 0;
+            $result =  $this->guard()->attempt(
+                $this->credentials($request), $request->filled('remember')
+            );
+            //successfullogin
+            if($result){
+                //$user = User::where("email", $request->get('email'))->where("password", $request->get('password'))->first();
+                $user = User::where("active",0)->where("status", 1)->where("email", $request->get('email'))->first();
+    
+                //valid login
+                if($user!= null){
+                    return 1;
+                }
+    
+                $this->logout($request, 2);
+                $user = User::where("status", 1)->where("email", $request->get('email'))->first();
+                //undeleted login
+                if($user!= null){
+                    return 2;
+                }else return 0;//deleted login
+            }else return 0;
+      
     }
 
 

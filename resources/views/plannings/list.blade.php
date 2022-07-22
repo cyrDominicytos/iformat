@@ -135,7 +135,6 @@
                         <!--begin::Table body-->
                         <tbody class="text-gray-600 fw-bold">
                             <!--begin::Table row-->
-                            <?= $i=1?>
                             @foreach($planning as $learn)
                                 <!--begin::Table row-->
                                     <tr>
@@ -217,12 +216,11 @@
                                         {{  $learn->learnings_title }}
                                        </td>
                                         <td> 
-                                        {{  $learn->plannings_user_updated_by.' '.$learn->plannings_user_updated_by }}
+                                        {{   $learn->first_name.' '.$learn->last_name }}
                                        </td>
                                         <td><?= format_date($learn->plannings_created_at , "d/m/Y à H:i:s")  ?></td>
                                     </tr>
                                     <!--end::Table row-->	
-                                    <?= $i++?>
                                 @endforeach						
                         </tbody>
                         <!--end::Table body-->

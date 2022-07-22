@@ -45,7 +45,9 @@
                     <!--end::Wrapper-->
                     <!--begin::Button-->
                     <span class="total">Total : {{$users!=null ? count($users) : 0}}</span>
+                    @if(in_array(Auth::user()->user_role_id,[1,3,5]))
                     <a href="{{ route(roles_routes()[$role_id]) }}" class="btn btn-sm btn-primary">Ajouter</a>
+                    @endif
                     <!--end::Button-->
                 </div>
                 <!--end::Actions-->
@@ -82,6 +84,7 @@
 										<div class="card-toolbar">
 											<!--begin::Toolbar-->
 											<div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                                            @if(in_array(Auth::user()->user_role_id,[1,3,5]))
 												<!--begin::Add user-->
                                                 <a href="{{ route(roles_routes()[$role_id]) }}" class="btn btn-primary">
                                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
@@ -92,6 +95,7 @@
                                                     </svg>
                                                 </span>
                                                 <!--end::Svg Icon-->Ajouter</a>
+                                                @endif
 												<!--end::Add user-->
 											</div>
 											<!--end::Toolbar-->
@@ -109,11 +113,12 @@
                     <!--begin::Card body-->
                     <div class="card-body py-4">
                         <!--begin::Table-->
+                        @if(in_array(Auth::user()->user_role_id,[1,3,5]))
                         <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
                             <!--begin::Table head-->
                             <thead>
                                 <!--begin::Table row-->
-                                <tr class="text-center text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                <tr class="text-cente text-muted fw-bolder fs-7 text-uppercase gs-0">
                                     <th class="text-en min-w-100px">Actions</th>
                                     <th class="min-w-125px">Noms et Prénoms</th>
                                     <th class="min-w-125px">Email</th>
@@ -175,6 +180,46 @@
                             </tbody>
                             <!--end::Table body-->
                         </table>
+                        @else
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                            <!--begin::Table head-->
+                            <thead>
+                                <!--begin::Table row-->
+                                <tr class="text-cente text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                    <th class="min-w-125px">Noms et Prénoms</th>
+                                    <th class="min-w-125px">Email</th>
+                                    <th class="min-w-125px">Téléphone</th>
+                                    <th class="min-w-125px">Adresse</th>
+                                    <th class="min-w-125px">Institution</th>
+                                    <th class="min-w-125px">Fonction</th>
+                                    <th class="min-w-125px">Département</th>
+                                </tr>
+                                <!--end::Table row-->
+                            </thead>
+                            <!--end::Table head-->
+                            <!--begin::Table body-->
+                            <tbody class="text-gray-600 fw-bold">
+                                <!--begin::Table row-->
+                                @foreach($users as $user)
+                                    <!--begin::Table row-->
+                                        <tr>
+                                            <td class="d-flex align-items-center">
+                                                <?= $user->first_name." ".$user->last_name ?>
+                                            </td>
+                                            <td><?= $user->email?></td>
+                                            <td><?= $user->phone_number?></td>
+                                            <td class="text-capitalize">{{$user->address}}</td>
+                                            <td class="text-capitalize">{{$user->from}}</td>
+                                            <td class="text-capitalize">{{$user->fonction}}</td>
+                                            <td class="text-capitalize">{{$user->department}}</td>
+                                        </tr>
+                                        <!--end::Table row-->	
+                                        @endforeach								
+                            </tbody>
+                            <!--end::Table body-->
+                        </table>
+
+                        @endif
                         <!--end::Table-->
                     </div>
                     <!--end::Card body-->
@@ -186,7 +231,7 @@
         <!--end::Post-->
     </div>
     <!--end::Content-->
-    @section('javascript')
+    @section('js')
     <script type="text/javascript">
         var base_url = "<?=URL::to('/') ?>";
         var mes = "Etes-vous sûr de vouloir supprimer cet utilisateur ?";
