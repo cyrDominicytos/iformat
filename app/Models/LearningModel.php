@@ -64,8 +64,19 @@ class LearningModel extends Model
                     ORDER BY learnings_created_at DESC
                 ");
     }
-    public function get_participant_learnings_list($group, $id){
+    public function get_participant_learnings_listold($group, $id){
         return DB::select("select * from learnings, plannings WHERE learnings_id = plannings_learning_id  AND learnings_status=1  AND JSON_SEARCH(plannings_user_groups, 'all', '".$group."', NULL ) IS NOT NULL AND learnings_id NOT IN (SELECT assessments_learning_id FROM assessments WHERE assessments_learning_id= learnings_id AND assessments_participant_id=".$id.")");
+    }
+    public function get_participant_learnings_list($group, $id){
+        return DB::select("select * from learnings, plannings 
+        WHERE learnings_id = plannings_learning_id  
+        AND learnings_status=1  
+        AND JSON_SEARCH(plannings_user_groups, 'all', '".$group."', NULL ) IS NOT NULL 
+        AND learnings_id NOT IN 
+        (SELECT evaluations_learning_id 
+            FROM evaluations 
+            WHERE evaluations_learning_id= learnings_id 
+            AND evaluations_user_id=".$id.")");
     }
 
     

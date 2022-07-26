@@ -1,0 +1,16 @@
+.custom-accordion-button {
+    color: white !important;
+    font-weight: bold !important;
+    font-size: medium !important;
+    background-image: linear-gradient(to bottom right, #005AAB, #F36F21);
+}
+
+.custom-accordion-item {
+    color: black !important;
+    font-weight: bold !important;
+    font-size: small;
+}
+
+.radio-title {
+    font-size: medium;
+}

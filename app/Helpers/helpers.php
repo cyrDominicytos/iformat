@@ -280,7 +280,8 @@ if (!function_exists('get_learning_planning_by_group')) {
         
        $model = PlanningModel::where("plannings_status",1)->where("plannings_learning_id",$id)->get();
         foreach ($model as $planning){
-            if(in_array($group, json_decode($planning->plannings_user_groups)))
+            //if(in_array($group, json_decode($planning->plannings_user_groups)))
+            if($group==$planning->plannings_user_groups)
                 return  $planning;
         }
         return null;
@@ -296,7 +297,8 @@ if (!function_exists('learning_available_groupe')) {
             $old_groups =array();
             if($planning){
                 foreach ($planning as $result){
-                    $old_groups = array_merge($old_groups,json_decode($result->plannings_user_groups));
+                   // $old_groups = array_merge($old_groups,json_decode($result->plannings_user_groups));
+                    $old_groups = array_push($old_groups,$result->plannings_user_groups);
                 }
                 $learning_available_groupe = GroupModel::where("groups_status",1)->whereNotIn("groups_id",$old_groups)->get();
                // $learnings_days = json_decode($learnings_days->learnings_days, true);

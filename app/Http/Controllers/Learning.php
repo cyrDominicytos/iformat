@@ -251,10 +251,14 @@ class Learning extends Controller
 		{
 			return redirect()->to('/');
 		}*/
-        $group =$this->modelGroup->get_user_group(Auth::user()->id);
-        //$group = get_participant_group(Auth::user()->id);
-        if(count($group)==1){
-            $planning= get_learning_planning_by_group($request->id, $group[0]->groups_id);
+        
+        $userRole = Auth::user()->user_role_id;
+        //$group =$this->modelGroup->get_user_group(Auth::user()->id);
+        if($userRole==4){
+           // $planning= get_learning_planning_by_group($request->id, $group[0]->groups_id);
+           $group = session('userGroup');
+            $planning= get_learning_planning_by_group($request->id, $group->groups_id);
+            
             if($planning){
                 $teachers = User::where("status",1)->whereIn("id", json_decode($planning->plannings_teachers))->get();
                return response()->json([
