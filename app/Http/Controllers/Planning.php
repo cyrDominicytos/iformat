@@ -83,7 +83,8 @@ class planning extends Controller
            case 4:
                //Agent
                $group = session('userGroup');
-               $result = $this->modelplanning->get_participant_planning($group, $beginDate, $endDate, $yearMonth );
+               //dd($group);
+               $result = $this->modelplanning->get_participant_planning($group->groups_id, $beginDate, $endDate, $yearMonth );
             break;
            default:
                 $result = $this->modelplanning->get_planning($beginDate, $endDate, $yearMonth );

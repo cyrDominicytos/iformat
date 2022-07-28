@@ -25,8 +25,8 @@
 	<!--end::Global Stylesheets Bundle-->
 
 	<!-- BEGIN THEME GLOBAL STYLES -->
-	<link href="{{ asset('assets/global/css/components.min.css') }}" rel="stylesheet" id="style_components" type="text/css" />
-	<link href="{{ asset('assets/global/css/plugins.min.css') }}" rel="stylesheet" type="text/css" />
+	<link href="{{ asset('assets/global/css/components.min.cs') }}" rel="stylesheet" id="style_components" type="text/css" />
+	<link href="{{ asset('assets/global/css/plugins.min.cs') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('assets/custom/css/custom_accordion.css') }}" rel="stylesheet" type="text/css" />
 	<!-- END THEME GLOBAL STYLES -->
 	@yield('css')
@@ -126,6 +126,8 @@
 	<script src="{{ asset('assets/global/scripts/app.min.j')}}" type="text/javascript"></script>
 	<!-- END THEME GLOBAL SCRIPTS -->
 	<script src="{{ asset('assets/global/scripts/bootstrap-tabdrop.j')}}" type="text/javascript"></script>
+
+
 	@yield('js')
 	<!--end::Javascript-->
 	<script type="text/javascript">
@@ -137,7 +139,7 @@
 					toast: true,
 					icon: 'success',
 					title: 'General Title',
-					animation: false,
+					animation: true,
 					position: 'top-right',
 					showConfirmButton: false,
 					timer: 5000,
@@ -151,7 +153,6 @@
 				//success toast
 				if (success_message != "0")
 					toastMixin.fire({
-						animation: true,
 						title: success_message
 					});
 

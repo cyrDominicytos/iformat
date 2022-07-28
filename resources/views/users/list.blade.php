@@ -218,7 +218,6 @@
                             </tbody>
                             <!--end::Table body-->
                         </table>
-
                         @endif
                         <!--end::Table-->
                     </div>

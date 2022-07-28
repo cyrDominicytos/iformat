@@ -344,11 +344,12 @@ if (!function_exists('certif_learning_groups')) {
             $output = '';
             if($planning){
                 foreach ($planning as $result){
-                    $groups = json_decode($result->plannings_user_groups);
-                    foreach ($groups  as $value){
-                        $group =  GroupModel::where('groups_id', $value)->where('groups_status', 1)->first();
+                    //$groups = json_decode($result->plannings_user_groups);
+                    $group_id = $result->plannings_user_groups;
+                    //foreach ($groups  as $value){
+                        $group =  GroupModel::where('groups_id', $group_id)->where('groups_status', 1)->first();
                         $output .= '<option value="'.$group->groups_id.'">'.$group->groups_name.'</option>';
-                     }
+                    // }
                    
                 }
             }

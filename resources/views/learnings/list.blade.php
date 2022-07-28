@@ -107,6 +107,7 @@
                 <!--end::Card header-->
                 <!--begin::Card body-->
                 <div class="card-body py-4">
+                     @if(in_array(Auth::user()->user_role_id,[1,3,5]))
                     <!--begin::Table-->
                     <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
                         <!--begin::Table head-->
@@ -223,6 +224,121 @@
                         <!--end::Table body-->
                     </table>
                     <!--end::Table-->
+                    @else
+<!--begin::Table-->
+<table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                        <!--begin::Table head-->
+                        <thead>
+                            <!--begin::Table row-->
+                            <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                <th class="text-en min-w-100px">Actions</th>
+                                <th class="min-w-125px">Code</th>
+                                <th class="min-w-125px">Titre</th>
+                                <th class="min-w-125px">Sous-Titre</th>
+                                <th class="min-w-125px">Durée</th>
+                                <th class="min-w-125px">Jour</th>
+                                <th class="min-w-125px">Horaire</th>
+                               
+                                <th class="min-w-125px">Statut</th>
+                            </tr>
+                            <!--end::Table row-->
+                        </thead>
+                        <!--end::Table head-->
+                        <!--begin::Table body-->
+                        <tbody class="text-gray-600 fw-bold">
+                            <!--begin::Table row-->
+                            @foreach($learning as $i=>  $learn)
+                                <!--begin::Table row-->
+                                    <tr>
+                                        <td class="">
+                                            @if(in_array(Auth::user()->user_role_id,[1]))
+                                                @if($learn->learnings_status != -1)
+                                                    <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                                    <span class="svg-icon svg-icon-5 m-0">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="black" />
+                                                        </svg>
+                                                    </span>
+                                                    <!--end::Svg Icon--></a>
+                                                    <!--begin::Menu-->
+                                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                                        @if($learn->learnings_status != -2)
+                                                            <!--begin::Menu item-->
+                                                            <div class="menu-item px-3">
+                                                                <a href="<?= route('listLearnings.edit',['id'=>$learn->learnings_id]) ?>"  class="menu-link px-3 text-primary"> Editer</a>
+                                                            </div>
+                                                            <!--end::Menu item-->
+                                                            <!--begin::Menu item-->
+                                                            <!-- <div class="menu-item px-3">
+                                                                <a href="<?= route('listLearnings.edit',['id'=>$learn->learnings_id]) ?>" title="Ajouter une session"  class="menu-link px-3 text-success"> Planifier session</a>
+                                                            </div> -->
+                                                            <!--end::Menu item-->
+                                                            <!--begin::Menu item-->
+                                                            <div class="menu-item px-3">
+                                                                <p class="menu-link px-3"onclick="close_learning(<?=$learn->learnings_id ?>)" ><span class='text-danger'>Fermer</span></p>
+                                                            </div>
+                                                            <!--end::Menu item-->
+                                                        @endif
+                                                        <!--begin::Menu item-->
+                                                        <div class="menu-item px-3">
+                                                            <p class="menu-link px-3"onclick="deleted(<?=$learn->learnings_id ?>)" ><?= deleteUser(1) ?></p>
+                                                        </div>
+                                                        <!--end::Menu item-->
+                                                    </div>
+                                                    <!--end::Menu-->
+                                                @endif
+                                            @endif
+                                        </td>
+                                        <!--end::Action=-->
+                                        <td class="">
+                                           {{ $learn->learnings_code }}
+                                        </td>
+                                        <td class="">
+                                           {{ $learn->learnings_title }}
+                                        </td>
+                                       
+                                        <td class="">
+                                        {{  $learn->learnings_title2 }}
+                                        </td>
+                                        <td class="">
+                                        {{  $learn->learnings_duration.' H' }}
+                                        </td>
+                                        <td class="">
+                                            @if($learn->learnings_days)
+                                            <ul>
+                                                @foreach(json_decode($learn->learnings_days) as $value)
+                                                <li>
+                                                   {{days_list()[$value]}} 
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                            @endif
+                                        </td>
+                                        <td class="">
+                                            @if($learn->learnings_time_slot)
+                                                <ul>
+                                                    @foreach(json_decode($learn->learnings_time_slot) as $value)
+                                                    <li>
+                                                    {{$value}} 
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        </td>
+                                        
+                                        <td> 
+                                        <?= status($learn->learnings_status) ?>
+                                       </td>
+                                    </tr>
+                                    <!--end::Table row-->	
+                                @endforeach						
+                        </tbody>
+                        <!--end::Table body-->
+                    </table>
+                    <!--end::Table-->
+                    @endif
+        
                 </div>
                 <!--end::Card body-->
             </div>
