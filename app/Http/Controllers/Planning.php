@@ -225,13 +225,13 @@ class planning extends Controller
             $data['teacher_list'] = $this->modelUser->where("user_role_id", 3)->where("status", 1)->get();
             $data['group_list'] = $this->modelGroup->get_group_list(1);;
         
-
             $data['old_planning'] = $old_planning;
             $data['old_teachers'] = json_decode($old_planning->plannings_teachers);
             $data['old_time_slot'] = json_decode($old_planning->plannings_time_slot);
             $data['old_date'] = json_decode($old_planning->plannings_date);
             $data['old_groups'] = $old_planning->plannings_user_groups;
             $data['cabinet_list'] = cabinet_list();
+
             return view('plannings.create', $data);
        
     }

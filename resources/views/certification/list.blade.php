@@ -131,8 +131,7 @@
                         <!--begin::Table body-->
                         <tbody class="text-gray-600 fw-bold">
                             <!--begin::Table row-->
-                            <?= $i=1?>
-                            @foreach($planning as $learn)
+                            @foreach($planning as $i=> $learn)
                                 <!--begin::Table row-->
                                     <tr>
                                         <td class="">
@@ -219,7 +218,6 @@
                                         <td><?= format_date($learn->plannings_created_at , "d/m/Y à H:i:s")  ?></td>
                                     </tr>
                                     <!--end::Table row-->	
-                                    <?= $i++?>
                                 @endforeach						
                         </tbody>
                         <!--end::Table body-->

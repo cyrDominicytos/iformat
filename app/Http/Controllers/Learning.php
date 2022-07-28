@@ -256,9 +256,8 @@ class Learning extends Controller
         //$group =$this->modelGroup->get_user_group(Auth::user()->id);
         if($userRole==4){
            // $planning= get_learning_planning_by_group($request->id, $group[0]->groups_id);
-           $group = session('userGroup');
+            $group = session('userGroup');
             $planning= get_learning_planning_by_group($request->id, $group->groups_id);
-            
             if($planning){
                 $teachers = User::where("status",1)->whereIn("id", json_decode($planning->plannings_teachers))->get();
                return response()->json([

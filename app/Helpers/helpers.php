@@ -298,7 +298,7 @@ if (!function_exists('learning_available_groupe')) {
             if($planning){
                 foreach ($planning as $result){
                    // $old_groups = array_merge($old_groups,json_decode($result->plannings_user_groups));
-                    $old_groups = array_push($old_groups,$result->plannings_user_groups);
+                    array_push($old_groups,$result->plannings_user_groups);
                 }
                 $learning_available_groupe = GroupModel::where("groups_status",1)->whereNotIn("groups_id",$old_groups)->get();
                // $learnings_days = json_decode($learnings_days->learnings_days, true);
@@ -320,7 +320,7 @@ if (!function_exists('learning_available_groupe2')) {
             $old_groups =array();
             if($planning){
                 foreach ($planning as $result){
-                    $old_groups = array_push($old_groups,$result->plannings_user_groups);
+                    array_push($old_groups,$result->plannings_user_groups);
                     //$old_groups = array_merge($old_groups,json_decode($result->plannings_user_groups));
                 }
                 $learning_available_groupe = GroupModel::where("groups_status",1)->whereNotIn("groups_id",$old_groups)->get();
@@ -328,7 +328,7 @@ if (!function_exists('learning_available_groupe2')) {
               // var_dump($learning_available_groupe);
 
                 foreach ($learning_available_groupe as $result){
-                    $output .= '<option value="'.$result->groups_id.'" '.(in_array($result->groups_id, $old_groups) ? ' selected="selected"' : '').'>'.$result->groups_name.'</option>';
+                    $output .= '<option value="'.$result->groups_id.'" '.($result->groups_id== $old_groups1 ? ' selected="selected"' : '').'>'.$result->groups_name.'</option>';
                 }
             }
 			//dd($output);

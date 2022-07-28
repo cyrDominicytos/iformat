@@ -123,9 +123,9 @@
 	<!--end::Page Custom Javascript-->
 
 	<!-- BEGIN THEME GLOBAL SCRIPTS -->
-	<script src="{{ asset('assets/global/scripts/app.min.js')}}" type="text/javascript"></script>
+	<script src="{{ asset('assets/global/scripts/app.min.j')}}" type="text/javascript"></script>
 	<!-- END THEME GLOBAL SCRIPTS -->
-	<script src="{{ asset('assets/global/scripts/bootstrap-tabdrop.js')}}" type="text/javascript"></script>
+	<script src="{{ asset('assets/global/scripts/bootstrap-tabdrop.j')}}" type="text/javascript"></script>
 	@yield('js')
 	<!--end::Javascript-->
 	<script type="text/javascript">

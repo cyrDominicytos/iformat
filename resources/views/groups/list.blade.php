@@ -133,8 +133,7 @@
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-bold">
                                 <!--begin::Table row-->
-                                <?= $i=1?>
-                                @foreach($groups as $group)
+                                @foreach($groups as $i=> $group)
                                     <!--begin::Table row-->
                                     <tr>
                                     @if(in_array(Auth::user()->user_role_id,[1,3]))
@@ -176,7 +175,7 @@
                                         <td><?= format_date($group->groups_created_at, "d/m/Y à H:i:s")?></td>
                                     </tr>
                                     <!--end::Table row-->	
-                                    <?= $i++?>
+                                  
                                 @endforeach								
                             </tbody>
                             <!--end::Table body-->

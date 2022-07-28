@@ -128,8 +128,8 @@
                         <!--begin::Table body-->
                         <tbody class="text-gray-600 fw-bold">
                             <!--begin::Table row-->
-                            <?= $i=1?>
-                            @foreach($rooms as $room)
+                            
+                            @foreach($rooms as $i=> $room)
                                 <!--begin::Table row-->
                                     <tr>
                                     <td class="text-cente">
@@ -145,7 +145,7 @@
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#create_modal" onclick="edit(<?= $room->classrooms_id .','. $room->classrooms_countries_id .','. $i?> )" class="menu-link px-3 text-primary"> Editer</a>
+                                                    <a href="" data-bs-toggle="modal" data-bs-target="#create_modal" onclick="edit(<?= $room->classrooms_id .','. $room->classrooms_countries_id .','. ($i+1) ?> )" class="menu-link px-3 text-primary"> Editer</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
@@ -177,7 +177,7 @@
                                         <td><?= format_date($room->created_at , "d/m/Y à H:i:s")  ?></td>
                                     </tr>
                                     <!--end::Table row-->	
-                                    <?= $i++?>
+                                   
                                 @endforeach						
                         </tbody>
                         <!--end::Table body-->
