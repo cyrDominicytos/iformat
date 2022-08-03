@@ -139,8 +139,8 @@
 						<div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
 						<!--begin::Links-->
 						<div class="d-flex flex-center fw-bold fs-6">
-							<a href="http://www.win-africa.com/htdocs/home/" class="text-muted text-hover-primary px-2" target="_blank">A propos</a>
-							<a href="http://www.win-africa.com/htdocs/contacts/" class="text-muted text-hover-primary px-2" target="_blank">Nous contacter</a>
+							<a href="https://win-africa.com/" class="text-muted text-hover-primary px-2" target="_blank">A propos</a>
+							<a href="https://win-africa.com/contact/" class="text-muted text-hover-primary px-2" target="_blank">Nous contacter</a>
 						</div>
 						<!--end::Links-->
 					</div>

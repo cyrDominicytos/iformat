@@ -5,6 +5,20 @@
     td {
         text-align: center;
     }
+
+    .acc-body {
+        margin: 10px;
+    }
+
+    .radio-title {
+        margin-top: 10px;
+    }
+
+    .radio {
+        margin: 10px;
+    }
+
+    .radio-label {}
 </style>
 @endsection()
 @section('content')
@@ -101,14 +115,14 @@
                                     <div class="col-md-6" _mstvisible="12">
                                         <div class="d-flex flex-column mb-5 fv-row  text-dark">
                                             <label class="form-label fw-bolder text-dark fs-6 required">Formation</label>
-                                            <select name="assessments_learning_id" data-control="select2" data-placeholder="Choisissez la formation..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="assessments_learning_id">
+                                            <select name="evaluations_learning_id" data-control="select2" data-placeholder="Choisissez la formation..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="assessments_learning_id">
                                                 @foreach($learning_list as $key=> $list)
-                                                <option value="{{$list->learnings_id}}" <?= old('plannings_learning_id') !== null ? ($list->learnings_id == old('plannings_learning_id') ? 'selected' : '') : '' ?> title="{{$list->learnings_code}} : {{$list->learnings_title2}}">{{$list->learnings_title}}</option>
+                                                <option value="{{$list->learnings_id}}" <?= old('plannings_learning_id') !== null ? ($list->learnings_id == old('evaluations_learning_id') ? 'selected' : '') : '' ?> title="{{$list->learnings_code}} : {{$list->learnings_title2}}">{{$list->learnings_title}}</option>
                                                 @endforeach
                                             </select>
-                                            @if($errors->has('assessments_learning_id'))
+                                            @if($errors->has('evaluations_learning_id'))
                                             <div class="fv-plugins-message-container invalid-feedback">
-                                                <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('assessments_learning_id')}}</div>
+                                                <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_learning_id')}}</div>
                                             </div>
                                             @endif
                                         </div>
@@ -142,7 +156,6 @@
                                     </div>
                                 </div>
                                 <div class="row fv-row fv-plugins-icon-container" _mstvisible="11">
-
                                     <div class="accordion" id="accordionExample">
                                         <div class="accordion-item custom-accordion-item ">
                                             <h2 class="accordion-header " id="headingOne">
@@ -152,124 +165,189 @@
                                             </h2>
                                             <div id="mark_a" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
-                                                    <div class="row" style="padding:20px">
-                                                        <div class="col-md-3">
-                                                            <strong class="radio-title">Atteinte des objectifs</strong>
+                                                    <div class="row acc-body">
+                                                        <div class="col-md-7">
+                                                            <strong class="radio-title">Atteinte des objectifs 
+                                                                @if($errors->has('evaluations_goal_mark'))
+                                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                                    <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_goal_mark')}}</div>
+                                                                </div>
+                                                                @endif
+                                                            </strong>
                                                         </div>
-                                                        <div class="col-md-9">
-                                                            <input type="radio" id="contactChoice1" name="evaluations_goal_mark" value="1" class="radio">
-                                                            <label for="contactChoice1" class="radio-label">Mauvais</label>
+                                                        <div class="col-md-5">
+                                                            <input type="radio" id="evaluations_goal_mark1" name="evaluations_goal_mark" value="1" class="radio">
+                                                            <label for="evaluations_goal_mark1" class="radio-label">Mauvais</label>
 
-                                                            <input type="radio" id="contactChoice1" name="evaluations_goal_mark" value="2"  class="radio">
-                                                            <label for="contactChoice1" class="radio-label">Moyen</label>
+                                                            <input type="radio" id="evaluations_goal_mark2" name="evaluations_goal_mark" value="2" class="radio">
+                                                            <label for="evaluations_goal_mark2" class="radio-label">Moyen</label>
 
-                                                            <input type="radio" id="contactChoice2" name="evaluations_goal_mark" value="3"  class="radio">
-                                                            <label for="contactChoice2" class="radio-label">Bien</label>
+                                                            <input type="radio" id="evaluations_goal_mark3" name="evaluations_goal_mark" value="3" class="radio">
+                                                            <label for="evaluations_goal_mark3" class="radio-label">Bien</label>
 
-                                                            <input type="radio" id="contactChoice3" name="evaluations_goal_mark" value="4"  class="radio">
-                                                            <label for="contactChoice3" class="radio-label">Excellent</label>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <strong class="radio-title">Progression pédagogique</strong>
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <input type="radio" id="contactChoice1" name="evaluations_goal_mark" value="1" class="radio">
-                                                            <label for="contactChoice1" class="radio-label">Mauvais</label>
-
-                                                            <input type="radio" id="contactChoice1" name="evaluations_goal_mark" value="2"  class="radio">
-                                                            <label for="contactChoice1" class="radio-label">Moyen</label>
-
-                                                            <input type="radio" id="contactChoice2" name="evaluations_goal_mark" value="3"  class="radio">
-                                                            <label for="contactChoice2" class="radio-label">Bien</label>
-
-                                                            <input type="radio" id="contactChoice3" name="evaluations_goal_mark" value="4"  class="radio">
-                                                            <label for="contactChoice3" class="radio-label">Excellent</label>
+                                                            <input type="radio" id="evaluations_goal_mark4" name="evaluations_goal_mark" value="4" class="radio">
+                                                            <label for="evaluations_goal_mark4" class="radio-label">Excellent</label>
                                                         </div>
 
-                                                        <div class="col-md-3">
-                                                            <strong class="radio-title">Méthodes d'animation</strong>
+                                                        <div class="col-md-7">
+                                                            <strong class="radio-title">Progression pédagogique
+                                                            @if($errors->has('evaluations_progression_mark'))
+                                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                                    <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_progression_mark')}}</div>
+                                                                </div>
+                                                                @endif
+                                                            </strong>
                                                         </div>
-                                                        <div class="col-md-9">
-                                                            <input type="radio" id="contactChoice1" name="evaluations_goal_mark" value="1" class="radio">
-                                                            <label for="contactChoice1" class="radio-label">Mauvais</label>
+                                                        <div class="col-md-5">
+                                                            <input type="radio" id="evaluations_progression_mark1" name="evaluations_progression_mark" value="1" class="radio">
+                                                            <label for="evaluations_progression_mark1" class="radio-label">Mauvais</label>
 
-                                                            <input type="radio" id="contactChoice1" name="evaluations_goal_mark" value="2"  class="radio">
-                                                            <label for="contactChoice1" class="radio-label">Moyen</label>
+                                                            <input type="radio" id="evaluations_progression_mark2" name="evaluations_progression_mark" value="2" class="radio">
+                                                            <label for="evaluations_progression_mark2" class="radio-label">Moyen</label>
 
-                                                            <input type="radio" id="contactChoice2" name="evaluations_goal_mark" value="3"  class="radio">
-                                                            <label for="contactChoice2" class="radio-label">Bien</label>
+                                                            <input type="radio" id="evaluations_progression_mark3" name="evaluations_progression_mark" value="3" class="radio">
+                                                            <label for="evaluations_progression_mark3" class="radio-label">Bien</label>
 
-                                                            <input type="radio" id="contactChoice3" name="evaluations_goal_mark" value="4"  class="radio">
-                                                            <label for="contactChoice3" class="radio-label">Excellent</label>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <strong class="radio-title">Conditions matérielles</strong>
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <input type="radio" id="contactChoice1" name="evaluations_goal_mark" value="1" class="radio">
-                                                            <label for="contactChoice1" class="radio-label">Mauvais</label>
-
-                                                            <input type="radio" id="contactChoice1" name="evaluations_goal_mark" value="2"  class="radio">
-                                                            <label for="contactChoice1" class="radio-label">Moyen</label>
-
-                                                            <input type="radio" id="contactChoice2" name="evaluations_goal_mark" value="3"  class="radio">
-                                                            <label for="contactChoice2" class="radio-label">Bien</label>
-
-                                                            <input type="radio" id="contactChoice3" name="evaluations_goal_mark" value="4"  class="radio">
-                                                            <label for="contactChoice3" class="radio-label">Excellent</label>
+                                                            <input type="radio" id="evaluations_progression_mark4" name="evaluations_progression_mark" value="4" class="radio">
+                                                            <label for="evaluations_progression_mark4" class="radio-label">Excellent</label>
                                                         </div>
 
-                                                        <div class="col-md-3">
-                                                            <strong class="radio-title">Satisfaction des attentes</strong>
+                                                        <div class="col-md-7">
+                                                            <strong class="radio-title">Méthodes d'animation
+                                                            @if($errors->has('evaluations_method_mark'))
+                                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                                    <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_method_mark')}}</div>
+                                                                </div>
+                                                                @endif
+                                                            </strong>
                                                         </div>
-                                                        <div class="col-md-9">
-                                                            <input type="radio" id="contactChoice1" name="evaluations_goal_mark" value="1" class="radio">
-                                                            <label for="contactChoice1" class="radio-label">Mauvais</label>
+                                                        <div class="col-md-5">
+                                                            <input type="radio" id="evaluations_method_mark1" name="evaluations_method_mark" value="1" class="radio">
+                                                            <label for="evaluations_method_mark1" class="radio-label">Mauvais</label>
 
-                                                            <input type="radio" id="contactChoice1" name="evaluations_goal_mark" value="2"  class="radio">
-                                                            <label for="contactChoice1" class="radio-label">Moyen</label>
+                                                            <input type="radio" id="evaluations_method_mark2" name="evaluations_method_mark" value="2" class="radio">
+                                                            <label for="evaluations_method_mark2" class="radio-label">Moyen</label>
 
-                                                            <input type="radio" id="contactChoice2" name="evaluations_goal_mark" value="3"  class="radio">
-                                                            <label for="contactChoice2" class="radio-label">Bien</label>
+                                                            <input type="radio" id="evaluations_method_mark3" name="evaluations_method_mark" value="3" class="radio">
+                                                            <label for="evaluations_method_mark3" class="radio-label">Bien</label>
 
-                                                            <input type="radio" id="contactChoice3" name="evaluations_goal_mark" value="4"  class="radio">
-                                                            <label for="contactChoice3" class="radio-label">Excellent</label>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <strong class="radio-title">Gestion du temps</strong>
-                                                        </div>
-                                                        <div class="col-md-9">
-                                                            <input type="radio" id="contactChoice1" name="evaluations_goal_mark" value="1" class="radio">
-                                                            <label for="contactChoice1" class="radio-label">Mauvais</label>
-
-                                                            <input type="radio" id="contactChoice1" name="evaluations_goal_mark" value="2"  class="radio">
-                                                            <label for="contactChoice1" class="radio-label">Moyen</label>
-
-                                                            <input type="radio" id="contactChoice2" name="evaluations_goal_mark" value="3"  class="radio">
-                                                            <label for="contactChoice2" class="radio-label">Bien</label>
-
-                                                            <input type="radio" id="contactChoice3" name="evaluations_goal_mark" value="4"  class="radio">
-                                                            <label for="contactChoice3" class="radio-label">Excellent</label>
+                                                            <input type="radio" id="evaluations_method_mark4" name="evaluations_method_mark" value="4" class="radio">
+                                                            <label for="evaluations_method_mark4" class="radio-label">Excellent</label>
                                                         </div>
 
-                                                        <div class="col-md-3">
-                                                            <strong class="radio-title">Climat relationnel</strong>
+                                                        <div class="col-md-7">
+                                                            <strong class="radio-title">Conditions matérielles
+                                                            @if($errors->has('evaluations_material_condition_mark'))
+                                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                                    <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_material_condition_mark')}}</div>
+                                                                </div>
+                                                                @endif
+                                                            </strong>
                                                         </div>
-                                                        <div class="col-md-9">
-                                                            <input type="radio" id="contactChoice1" name="evaluations_goal_mark" value="1" class="radio">
-                                                            <label for="contactChoice1" class="radio-label">Mauvais</label>
+                                                        <div class="col-md-5">
+                                                            <input type="radio" id="evaluations_material_condition_mark1" name="evaluations_material_condition_mark" value="1" class="radio">
+                                                            <label for="evaluations_material_condition_mark1" class="radio-label">Mauvais</label>
 
-                                                            <input type="radio" id="contactChoice1" name="evaluations_goal_mark" value="2"  class="radio">
-                                                            <label for="contactChoice1" class="radio-label">Moyen</label>
+                                                            <input type="radio" id="evaluations_material_condition_mark2" name="evaluations_material_condition_mark" value="2" class="radio">
+                                                            <label for="evaluations_material_condition_mark2" class="radio-label">Moyen</label>
 
-                                                            <input type="radio" id="contactChoice2" name="evaluations_goal_mark" value="3"  class="radio">
-                                                            <label for="contactChoice2" class="radio-label">Bien</label>
+                                                            <input type="radio" id="evaluations_material_condition_mark3" name="evaluations_material_condition_mark" value="3" class="radio">
+                                                            <label for="evaluations_material_condition_mark3" class="radio-label">Bien</label>
 
-                                                            <input type="radio" id="contactChoice3" name="evaluations_goal_mark" value="4"  class="radio">
-                                                            <label for="contactChoice3" class="radio-label">Excellent</label>
+                                                            <input type="radio" id="evaluations_material_condition_mark4" name="evaluations_material_condition_mark" value="4" class="radio">
+                                                            <label for="evaluations_material_condition_mark4" class="radio-label">Excellent</label>
+                                                        </div>
+
+                                                        <div class="col-md-7">
+                                                            <strong class="radio-title">Satisfaction des attentes
+                                                            @if($errors->has('evaluations_satisfaction_mark'))
+                                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                                    <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_satisfaction_mark')}}</div>
+                                                                </div>
+                                                                @endif
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input type="radio" id="evaluations_satisfaction_mark1" name="evaluations_satisfaction_mark" value="1" class="radio">
+                                                            <label for="evaluations_satisfaction_mark1" class="radio-label">Mauvais</label>
+
+                                                            <input type="radio" id="evaluations_satisfaction_mark2" name="evaluations_satisfaction_mark" value="2" class="radio">
+                                                            <label for="evaluations_satisfaction_mark2" class="radio-label">Moyen</label>
+
+                                                            <input type="radio" id="evaluations_satisfaction_mark3" name="evaluations_satisfaction_mark" value="3" class="radio">
+                                                            <label for="evaluations_satisfaction_mark3" class="radio-label">Bien</label>
+
+                                                            <input type="radio" id="evaluations_satisfaction_mark4" name="evaluations_satisfaction_mark" value="4" class="radio">
+                                                            <label for="evaluations_satisfaction_mark4" class="radio-label">Excellent</label>
+                                                        </div>
+
+                                                        <div class="col-md-7">
+                                                            <strong class="radio-title">Gestion du temps
+                                                            @if($errors->has('evaluations_time_managment_mark'))
+                                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                                    <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_time_managment_mark')}}</div>
+                                                                </div>
+                                                                @endif
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input type="radio" id="evaluations_time_managment_mark1" name="evaluations_time_managment_mark" value="1" class="radio">
+                                                            <label for="evaluations_time_managment_mark1" class="radio-label">Mauvais</label>
+
+                                                            <input type="radio" id="evaluations_time_managment_mark2" name="evaluations_time_managment_mark" value="2" class="radio">
+                                                            <label for="evaluations_time_managment_mark2" class="radio-label">Moyen</label>
+
+                                                            <input type="radio" id="evaluations_time_managment_mark3" name="evaluations_time_managment_mark" value="3" class="radio">
+                                                            <label for="evaluations_time_managment_mark3" class="radio-label">Bien</label>
+
+                                                            <input type="radio" id="evaluations_time_managment_mark4" name="evaluations_time_managment_mark" value="4" class="radio">
+                                                            <label for="evaluations_time_managment_mark4" class="radio-label">Excellent</label>
+                                                        </div>
+
+                                                        <div class="col-md-7">
+                                                            <strong class="radio-title">Climat relationnel
+                                                            @if($errors->has('evaluations_relational_climat_mark'))
+                                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                                    <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_relational_climat_mark')}}</div>
+                                                                </div>
+                                                                @endif
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input type="radio" id="evaluations_relational_climat_mark1" name="evaluations_relational_climat_mark" value="1" class="radio">
+                                                            <label for="evaluations_relational_climat_mark1" class="radio-label">Mauvais</label>
+
+                                                            <input type="radio" id="evaluations_relational_climat_mark2" name="evaluations_relational_climat_mark" value="2" class="radio">
+                                                            <label for="evaluations_relational_climat_mark2" class="radio-label">Moyen</label>
+
+                                                            <input type="radio" id="evaluations_relational_climat_mark3" name="evaluations_relational_climat_mark" value="3" class="radio">
+                                                            <label for="evaluations_relational_climat_mark3" class="radio-label">Bien</label>
+
+                                                            <input type="radio" id="evaluations_relational_climat_mark4" name="evaluations_relational_climat_mark" value="4" class="radio">
+                                                            <label for="evaluations_relational_climat_mark4" class="radio-label">Excellent</label>
+                                                        </div>
+
+                                                        <div class="col-md-7">
+                                                            <strong class="radio-title">Supports
+                                                            @if($errors->has('evaluations_support_mark'))
+                                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                                    <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_support_mark')}}</div>
+                                                                </div>
+                                                                @endif
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input type="radio" id="evaluations_support_mark1" name="evaluations_support_mark" value="1" class="radio">
+                                                            <label for="evaluations_support_mark1" class="radio-label">Mauvais</label>
+
+                                                            <input type="radio" id="evaluations_support_mark2" name="evaluations_support_mark" value="2" class="radio">
+                                                            <label for="evaluations_support_mark2" class="radio-label">Moyen</label>
+
+                                                            <input type="radio" id="evaluations_support_mark3" name="evaluations_support_mark" value="3" class="radio">
+                                                            <label for="evaluations_support_mark3" class="radio-label">Bien</label>
+
+                                                            <input type="radio" id="evaluations_support_mark4" name="evaluations_support_mark" value="4" class="radio">
+                                                            <label for="evaluations_support_mark4" class="radio-label">Excellent</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -278,20 +356,189 @@
                                         <div class="accordion-item  custom-accordion-item ">
                                             <h2 class="accordion-header" id="headingTwo">
                                                 <button class="accordion-button collapsed  custom-accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#mark_b" aria-expanded="false" aria-controls="mark_b">
-                                                    Accordion Item #2
+                                                    Pertinence de la formation
                                                 </button>
                                             </h2>
                                             <div id="mark_b" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
-                                                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                                    <div class="row acc-body">
+                                                        <div class="col-md-7">
+                                                            <strong class="radio-title">Le formateur maîtrisait son sujet
+                                                            @if($errors->has('evaluations_b1'))
+                                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                                    <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_b1')}}</div>
+                                                                </div>
+                                                                @endif
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input type="radio" id="evaluations_b11" name="evaluations_b1" value="1" class="radio">
+                                                            <label for="evaluations_b11" class="radio-label">Mauvais</label>
+
+                                                            <input type="radio" id="evaluations_b12" name="evaluations_b1" value="2" class="radio">
+                                                            <label for="evaluations_b12" class="radio-label">Moyen</label>
+
+                                                            <input type="radio" id="evaluations_b13" name="evaluations_b1" value="3" class="radio">
+                                                            <label for="evaluations_b13" class="radio-label">Bien</label>
+
+                                                            <input type="radio" id="evaluations_b14" name="evaluations_b1" value="4" class="radio">
+                                                            <label for="evaluations_b14" class="radio-label">Excellent</label>
+                                                        </div>
+
+                                                        <div class="col-md-7">
+                                                            <strong class="radio-title">Le formateur a été efficace et a répondu aux questions de manière satisfaisante
+                                                            @if($errors->has('evaluations_b2'))
+                                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                                    <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_b2')}}</div>
+                                                                </div>
+                                                                @endif
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input type="radio" id="evaluations_b21" name="evaluations_b2" value="1" class="radio">
+                                                            <label for="evaluations_b21" class="radio-label">Mauvais</label>
+
+                                                            <input type="radio" id="evaluations_b22" name="evaluations_b2" value="2" class="radio">
+                                                            <label for="evaluations_b22" class="radio-label">Moyen</label>
+
+                                                            <input type="radio" id="evaluations_b23" name="evaluations_b2" value="3" class="radio">
+                                                            <label for="evaluations_b23" class="radio-label">Bien</label>
+
+                                                            <input type="radio" id="evaluations_b24" name="evaluations_b2" value="4" class="radio">
+                                                            <label for="evaluations_b24" class="radio-label">Excellent</label>
+                                                        </div>
+
+                                                        <div class="col-md-7">
+                                                            <strong class="radio-title">Le formateur a respecté le rythme d’apprentissage des participants
+                                                            @if($errors->has('evaluations_b3'))
+                                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                                    <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_b3')}}</div>
+                                                                </div>
+                                                                @endif
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input type="radio" id="evaluations_b31" name="evaluations_b3" value="1" class="radio">
+                                                            <label for="evaluations_b21" class="radio-label">Mauvais</label>
+
+                                                            <input type="radio" id="evaluations_b32" name="evaluations_b3" value="2" class="radio">
+                                                            <label for="evaluations_b22" class="radio-label">Moyen</label>
+
+                                                            <input type="radio" id="evaluations_b33" name="evaluations_b3" value="3" class="radio">
+                                                            <label for="evaluations_b23" class="radio-label">Bien</label>
+
+                                                            <input type="radio" id="evaluations_b34" name="evaluations_b3" value="4" class="radio">
+                                                            <label for="evaluations_b24" class="radio-label">Excellent</label>
+                                                        </div>
+
+                                                        <div class="col-md-7">
+                                                            <strong class="radio-title">Cette formation m’a permis d’augmenter mon niveau de connaissance 
+                                                            @if($errors->has('evaluations_b4'))
+                                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                                    <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_b4')}}</div>
+                                                                </div>
+                                                                @endif
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input type="radio" id="evaluations_b41" name="evaluations_b4" value="1" class="radio">
+                                                            <label for="evaluations_b41" class="radio-label">Mauvais</label>
+
+                                                            <input type="radio" id="evaluations_b42" name="evaluations_b4" value="2" class="radio">
+                                                            <label for="evaluations_b42" class="radio-label">Moyen</label>
+
+                                                            <input type="radio" id="evaluations_b43" name="evaluations_b4" value="3" class="radio">
+                                                            <label for="evaluations_b43" class="radio-label">Bien</label>
+
+                                                            <input type="radio" id="evaluations_b44" name="evaluations_b4" value="4" class="radio">
+                                                            <label for="evaluations_b44" class="radio-label">Excellent</label>
+                                                        </div>
+
+                                                        <div class="col-md-7">
+                                                            <strong class="radio-title">Je recommanderais cette formation à mes collègues de travail
+                                                            @if($errors->has('evaluations_b5'))
+                                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                                    <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_b5')}}</div>
+                                                                </div>
+                                                                @endif
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input type="radio" id="evaluations_b51" name="evaluations_b5" value="1" class="radio">
+                                                            <label for="evaluations_b51" class="radio-label">Mauvais</label>
+
+                                                            <input type="radio" id="evaluations_b52" name="evaluations_b5" value="2" class="radio">
+                                                            <label for="evaluations_b52" class="radio-label">Moyen</label>
+
+                                                            <input type="radio" id="evaluations_b53" name="evaluations_b5" value="3" class="radio">
+                                                            <label for="evaluations_b53" class="radio-label">Bien</label>
+
+                                                            <input type="radio" id="evaluations_b54" name="evaluations_b5" value="4" class="radio">
+                                                            <label for="evaluations_b54" class="radio-label">Excellent</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item  custom-accordion-item ">
+                                            <h2 class="accordion-header" id="headingThree">
+                                                <button class="accordion-button collapsed  custom-accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#mark_c" aria-expanded="false" aria-controls="mark_b">
+                                                    Note globale de la formation
+                                                </button>
+                                            </h2>
+                                            <div id="mark_c" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    <div class="row acc-body">
+                                                        <div class="col-md-7">
+                                                            <strong class="radio-title">Veuillez noter cette formation
+                                                            @if($errors->has('evaluations_c1'))
+                                                                <div class="fv-plugins-message-container invalid-feedback">
+                                                                    <div data-field="assessments_learning_id" data-validator="notEmpty">{{$errors->first('evaluations_c1')}}</div>
+                                                                </div>
+                                                                @endif
+                                                            </strong>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input type="radio" id="evaluations_c11" name="evaluations_c1" value="1" class="radio">
+                                                            <label for="evaluations_c11" class="radio-label">Mauvais</label>
+
+                                                            <input type="radio" id="evaluations_c12" name="evaluations_c1" value="2" class="radio">
+                                                            <label for="evaluations_c12" class="radio-label">Moyen</label>
+
+                                                            <input type="radio" id="evaluations_c13" name="evaluations_c1" value="3" class="radio">
+                                                            <label for="evaluations_c13" class="radio-label">Bien</label>
+
+                                                            <input type="radio" id="evaluations_c14" name="evaluations_c1" value="4" class="radio">
+                                                            <label for="evaluations_c14" class="radio-label">Excellent</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item  custom-accordion-item ">
+                                            <h2 class="accordion-header" id="headingFour">
+                                                <button class="accordion-button collapsed  custom-accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#mark_d" aria-expanded="false" aria-controls="mark_b">
+                                                    Appréciations complémentaires et remarques particulières :
+                                                </button>
+                                            </h2>
+                                            <div id="mark_d" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    <div class="row acc-body">
+                                                        <div class="d-flex flex-column mb-5 fv-row  text-dark">
+                                                            <!--end::Label-->
+                                                            <label class="fw-bolder text-dark fs-6 mb-2">Appréciations/Remarques</label>
+                                                            <!--end::Label-->
+                                                            <!--end::Input-->
+                                                            <textarea class="form-control form-control-solid" placeholder="Brève description ici..." name="evaluations_d1" id="evaluations_d1"><?= isset($old_evaluation) ? $old_evaluation->evaluations_d1 : old("evaluations_d1") ?></textarea>
+                                                            <!--end::Input-->
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
-
-
 
                                 <!--begin::Modal footer-->
                                 <div class="modal-footer flex-center" style="margin-top: 10px">

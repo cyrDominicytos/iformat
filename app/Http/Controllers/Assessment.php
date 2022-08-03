@@ -23,6 +23,7 @@ class Assessment extends Controller
     protected $modelLearning = null;
     protected $modelUser = null;
     protected $modelGroup = null;
+    protected $modelAssessment = null;
 
     public function __construct(){
         $this->modelRoom = new ClassRoomModel();
@@ -30,6 +31,7 @@ class Assessment extends Controller
         $this->modelLearning = new LearningModel();
         $this->modelUser = new User();
         $this->modelGroup = new GroupModel();
+        $this->modelAssessment = new AssessmentModel();
 
     }
 
@@ -56,10 +58,9 @@ class Assessment extends Controller
 
     public function list()
     {
-        $data['planning'] = $this->modelplanning->get_plannings_list(1);
-       // dd($data['planning']);
-        $data['countries_list'] = countries_list();
-        return view('plannings.list', $data);
+        $data['evaluation'] = $this->modelAssessment->get_teachers_learnings_assessments(Auth::user()->id, 4);
+       //dd($data['evaluation']);
+        return view('assessment.list', $data);
     }
 
     //learning_time_slot
@@ -109,19 +110,50 @@ class Assessment extends Controller
     {
         //dd($request->all());
         $validator = Validator::make($request->all(), [
-            'assessments_learning_id' => 'required',
-            'assessments_value' => 'required|numeric|max:20|min:0',
-            
+            'evaluations_learning_id' => 'required',
+            'evaluations_goal_mark' => 'required',
+            'evaluations_progression_mark' => 'required',
+            'evaluations_method_mark' => 'required',
+            'evaluations_material_condition_mark' => 'required',
+            'evaluations_satisfaction_mark' => 'required',
+            'evaluations_time_managment_mark' => 'required',
+            'evaluations_relational_climat_mark' => 'required',
+            'evaluations_support_mark' => 'required',
+
+            'evaluations_b1' => 'required',
+            'evaluations_b2' => 'required',
+            'evaluations_b3' => 'required',
+            'evaluations_b4' => 'required',
+            'evaluations_b5' => 'required',
+
+            'evaluations_c1' => 'required',            
             
         ],[
-            'assessments_learning_id.required' => 'Choisissez une formation',
-            'assessments_value.required' => 'Notez cette formation',
-            'assessments_value.numeric' => 'La note doit être un chiffre',
-            'assessments_value.max' => 'La note ne doit pas être supérieure à 20',
-            'assessments_value.min' => 'La note ne doit pas être inférieure à 0',
+            'evaluations_learning_id.required' => 'Choisissez une formation',
+            'evaluations_goal_mark.required' => 'Veuillez noter l\'atteinte des objectifs',
+            'evaluations_progression_mark.required' => 'Veuillez noter la progression pédagogique',
+            'evaluations_method_mark.required' => 'Veuillez noter la méthodologie d\'animation',
+            'evaluations_material_condition_mark.required' => 'Veuillez noter les conditions matérielles',
+            'evaluations_satisfaction_mark.required' => 'Veuillez noter la satisfaction des attentes',
+            'evaluations_time_managment_mark.required' => 'Veuillez noter la gestion du temps',
+            'evaluations_relational_climat_mark.required' => 'Veuillez noter le climat relationnel',
+            'evaluations_support_mark.required' => 'Veuillez noter le support',
+            
+            'evaluations_b1.required' => 'Veuillez noter la maitrise du sujet par le formateur',
+            'evaluations_b2.required' => 'Veuillez noter l\'éfficacité du formateur',
+            'evaluations_b3.required' => 'Veuillez noter le respect du rythme d\'apprentissage par le formateur',
+            'evaluations_b4.required' => 'Veuillez noter la pertinence de la formation',
+            'evaluations_b5.required' => 'Veuillez noter votre recommandation de cette formation',
+           
+            'evaluations_c1.required' => 'Veuillez noter la formation dans son ensemble',
+
+
+            
         ]);
  
         if ($validator->fails()) {
+
+            dd($validator->messages());
             return redirect('/addAssessment')
                         ->withErrors($validator)
                         ->withInput()
@@ -130,9 +162,26 @@ class Assessment extends Controller
             //validation okay
           //  dd( $request);
             $planning = AssessmentModel::create([
-                'assessments_learning_id' => $request->assessments_learning_id,
-                'assessments_value' => $request->assessments_value,
-                'assessments_participant_id' => Auth::user()->id,
+                'evaluations_learning_id' => $request->evaluations_learning_id,
+                'evaluations_goal_mark' => $request->evaluations_goal_mark,
+                'evaluations_progression_mark' => $request->evaluations_progression_mark,
+                'evaluations_method_mark' => $request->evaluations_method_mark,
+                'evaluations_material_condition_mark' => $request->evaluations_method_mark,
+                'evaluations_satisfaction_mark' => $request->evaluations_satisfaction_mark, 
+                'evaluations_time_managment_mark' => $request->evaluations_time_managment_mark, 
+                'evaluations_relational_climat_mark' => $request->evaluations_relational_climat_mark, 
+                'evaluations_support_mark' => $request->evaluations_support_mark, 
+
+                'evaluations_b1' => $request->evaluations_b1, 
+                'evaluations_b2' => $request->evaluations_b2, 
+                'evaluations_b3' => $request->evaluations_b3, 
+                'evaluations_b4' => $request->evaluations_b4, 
+                'evaluations_b5' => $request->evaluations_b5, 
+
+                'evaluations_c1' => $request->evaluations_c1, 
+                'evaluations_d1' => $request->evaluations_d1, 
+
+                'evaluations_user_id' => Auth::user()->id,
             ]);
             return redirect('/addAssessment')->with('success_message', "Votre évaluation est enregistrée avec succès. Merci de votre collaboration !!!");
         }

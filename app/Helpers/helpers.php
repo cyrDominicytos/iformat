@@ -608,6 +608,23 @@ if (!function_exists("status")) {
 		}
 	}
 }
+// Function: used to convert a string to revese in order
+if (!function_exists("evaluation_status")) {
+	function evaluation_status($statusId)
+	{
+        if($statusId<2){
+            return ("<div class='badge badge-danger fw-bolder'>Mauvais : ".round($statusId,2)."/4</div>"); 
+        }else if($statusId <3){
+            return ("<div class='badge badge-danger fw-bolder'>Moyen : ".round($statusId,2)."/4</div>"); 
+        }else if($statusId<4)
+        {
+            return ("<div class='badge badge-info fw-bolder'>Bien : ".round($statusId,2)."/4</div>"); 
+        }else{
+            return  ("<div class='badge badge-success fw-bolder'>Excellent : ".round($statusId,2)."/4</div>"); 
+        }
+		
+	}
+}
 
 if (!function_exists('teachers_list')) {
     function teachers_list($list) {
@@ -700,7 +717,8 @@ if (!function_exists("mark_honors")) {
         }
     }
 
-if (!function_exists('disponibilite')) {
+
+    if (!function_exists('disponibilite')) {
 
     function  disponibilite( $dispo=0)
      {  

@@ -43,7 +43,7 @@
                     
                 </div>
                 <!--end::Wrapper-->
-                <span class="total">Total : {{$learns!=null ? count($learns) : 0}}</span>
+                <span class="total">Total : {{$evaluation!=null ? count($evaluation) : 0}}</span>
             </div>
             <!--end::Actions-->
         </div>
@@ -101,12 +101,11 @@
                         <thead>
                             <!--begin::Table row-->
                             <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
-                                <th class="min-w-125px">Code</th>
-                                <th class="min-w-125px">Formation</th>
-                                <th class="min-w-125px">Formation</th>
-                                <th class="min-w-125px">Note</th>
-                                <th class="min-w-125px">Mention</th>
-                                <th class="min-w-125px">Participant</th>
+                                <th class="min-w-125px">A</th>
+                                <th class="min-w-125px">B</th>
+                                <th class="min-w-125px">C</th>
+                                <th class="min-w-125px">D</th>
+                                <th class="min-w-125px">Date</th>
                             </tr>
                             <!--end::Table row-->
                         </thead>
@@ -114,27 +113,24 @@
                         <!--begin::Table body-->
                         <tbody class="text-gray-600 fw-bold">
                             <!--begin::Table row-->
-                            @foreach($learns as $learn)
+                            @foreach($evaluation as $learn)
                                 <!--begin::Table row-->
                                     <tr>
                                         <td class="">
-                                           {{ $learn->learnings_code }}
+                                        <?= evaluation_status($learn->a)  ?>
+
                                         </td>
                                         <td class="">
-                                           {{ $learn->learnings_title }}
+                                        <?= evaluation_status($learn->b)  ?>
                                         </td>
                                         <td class="">
-                                           {{ $learn->learnings_title2 }}
-                                        </td>
-                                       
-                                        <td class="">
-                                        {{  round($learn->mark, 2) }}
+                                        <?= evaluation_status($learn->evaluations_c1)  ?>
                                         </td>
                                         <td class="">
-                                        {{ mark_honors($learn->mark)  }}
+                                        <?= $learn->evaluations_d1  ?>
                                         </td>
                                         <td class="">
-                                        {{  $learn->total_agent }}
+                                        {{  $learn->evaluations_created_at }}
                                         </td>                                                                     
                                     </tr>
                                     <!--end::Table row-->	
