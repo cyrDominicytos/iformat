@@ -74,5 +74,21 @@ class AssessmentModel extends Model
                  )");
  
      }
+     // evaluation list
+    public function get_learnings_assessments_all($learning){ 
+             return DB::select(
+                 "select 
+                 ((evaluations_goal_mark +evaluations_progression_mark+ evaluations_method_mark + evaluations_material_condition_mark+ evaluations_satisfaction_mark+ evaluations_time_managment_mark + evaluations_relational_climat_mark + evaluations_support_mark) / 8)  as a, 
+                 ((evaluations_b1+ evaluations_b2 + evaluations_b3 +evaluations_b4 + evaluations_b5)/5) as b, 
+                 evaluations_c1, evaluations_d1,evaluations_created_at, evaluations_updated_at, users.*
+                 FROM evaluations, learnings, users
+
+                 WHERE  learnings_id = evaluations_learning_id
+                 AND users.id =evaluations_user_id
+                 AND evaluations_learning_id =".$learning."
+                 AND learnings_status != -1 
+                ");
+ 
+     }
  
 }

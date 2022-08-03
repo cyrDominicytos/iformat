@@ -56,9 +56,21 @@ class Assessment extends Controller
         
     }
 
-    public function list()
+    public function list(Request $request)
     {
-        $data['evaluation'] = $this->modelAssessment->get_teachers_learnings_assessments(Auth::user()->id, 4);
+        $group = $this->modelGroup->get_user_group(Auth::user()->id);
+        $userRole = Auth::user()->user_role_id;
+        if($userRole == 3)
+        {
+            $data['evaluation'] = $this->modelAssessment->get_teachers_learnings_assessments(Auth::user()->id, $request->data ? $request->data : 0);
+            $data['learning_list'] = $this->modelLearning->get_learnings_by_teachers(Auth::user()->id);
+        }
+        else{
+            $data['evaluation'] = $this->modelAssessment->get_learnings_assessments_all($request->data ? $request->data : 0);
+            $data['learning_list'] = $this->modelLearning->get_learnings_list([-1]);
+
+        }
+            
        //dd($data['evaluation']);
         return view('assessment.list', $data);
     }
