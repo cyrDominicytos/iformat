@@ -134,10 +134,10 @@
                             <!--begin::Table row-->
                             <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                                 <th class="maw-w-1">Agents</th>
-                                <th class="min-w-125px">Cadre - Méthodologie - Timing</th>
-                                <th class="min-w-125px"> Evaluation des formateurs</th>
-                                <th class="min-w-125px"> Note globale de la formation</th>
-                                <th class="min-w-125px">Appréciations/Remarques</th>
+                                <th class="min-w-250px">Cadre - Méthodologie - Timing</th>
+                                <th class="min-w-250"> Evaluation des formateurs</th>
+                                <th class="min-w-250"> Note globale de la formation</th>
+                                <th class="min-w-250">Appréciations/Remarques</th>
                                 <th class="min-w-125px">Date</th>
                             </tr>
                             <!--end::Table row-->

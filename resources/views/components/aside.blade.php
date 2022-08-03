@@ -169,6 +169,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="menu-item menu-accordion">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <i class="bi bi-cash-coin fs-3"></i>
+                        </span>
+                        <a class="" href="{{route('getAssessments')}}">
+                        <span class="menu-title">Evaluations</span>
+                        </a>
+                    </span>
+                </div>
 
                 <!-- Certification des participants -->
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">

@@ -49,7 +49,7 @@ class Assessment extends Controller
             $data['learning_list'] = $this->modelLearning->get_participant_learnings_list($group[0]->groups_id, Auth::user()->id);
             if($data['learning_list'])
                 return view('assessment.create', $data);
-            return redirect('/home')->with('error_message', "Vous n'avez aucune évaluation en attente !!!"); 
+            return redirect('/home')->with('error_message', "Vous n'avez plus aucune évaluation en attente !!!"); 
         }else{
             return redirect()->back()->with('error_message', "Vous n'appartenez à aucun groupe !!!"); 
         }
