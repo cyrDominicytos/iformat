@@ -68,6 +68,7 @@ class PresenceModel extends Model
             }
 
     }
+
     public function get_evaluated_agent_count(){ 
         $temp =  DB::select(
             "   select  certifications_participant
@@ -103,4 +104,52 @@ class PresenceModel extends Model
     }
    
 
+    //rate queries
+    public function get_agent_rate(){ 
+        $temp =  DB::select(
+            "   select  learnings_id,learnings_code,learnings_title,learnings_title2,learnings_goal,learnings_target,learnings_duration,learnings_infos, IFNULL(SUM(JSON_LENGTH(presences_participant)),0) as total_participant,  IFNULL(SUM(JSON_LENGTH(presences_participant_list)),0) as total_presence
+                from learnings 
+                LEFT JOIN plannings ON learnings_id = plannings_learning_id
+                LEFT JOIN presences ON plannings_id = presences_planning_id
+
+                AND learnings_status != -1   
+                AND plannings_status != -1 
+                AND presences_status != -1   
+
+                GROUP BY learnings_id,learnings_code,learnings_title,learnings_title2,learnings_goal,learnings_target,learnings_duration,learnings_infos
+            ");
+
+           return $temp;
+
+
+    }
+
+
+    //rate queries
+    public function get_global_execution_rate(){ 
+        $temp =  DB::select(
+            "   select  IFNULL(SUM(JSON_LENGTH(presences_participant)),0) as total_participant, IFNULL(SUM(JSON_LENGTH(presences_participant_list)),0) as total_presence
+                from learnings 
+                LEFT JOIN plannings ON learnings_id = plannings_learning_id
+                LEFT JOIN presences ON plannings_id = presences_planning_id
+
+                AND learnings_status != -1   
+                AND plannings_status != -1 
+                AND presences_status != -1   
+
+            ");
+
+           return $temp;
+    }
+
+    public function get_global_learning_processing_rate(){ 
+        return  DB::select(
+            "   select  COUNT(DISTINCT learnings_id ) as learning_count
+                from plannings, learnings
+                WHERE learnings_id = plannings_learning_id
+                AND learnings_status != -1   
+                AND plannings_status = 1 
+            ")[0]->learning_count;
+
+    }
 }

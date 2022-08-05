@@ -97,14 +97,10 @@
                 <!--begin::Card body-->
                 <div class="card-body py-4">
                     <div class="row">
-                        <div class="col-sm-8">
-
-                        </div>
-
-                        <div class="col-sm-4">
+                        
+                        <div class="col-sm-12 d-flex justify-content-end">
                             <form action="" method="get" enctype="">
-
-                                <div class="form-group">
+                                <div class="form-group justify-content-end">
                                     <label class="form-label fw-bolder text-dark fs-6 ">Filtrer le résultat</label>
                                     <div class="input-group">
                                         <div class="d-flex flex-column mb-5 fv-row  text-dark">

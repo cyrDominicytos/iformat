@@ -196,10 +196,16 @@ class HomeController extends Controller
         $data['certify_count'] = $this->modelPresence->get_certify_count();
         $data['learning_count'] = $this->modelPresence->get_learning_count();
         $data['tested_agent_count'] = $this->modelPresence->get_evaluated_agent_count();
+        
+        $data['global_planning_learning'] = $this->modelPresence->get_global_learning_processing_rate();
+        $data['global_execution_rate'] = $this->modelPresence->get_global_execution_rate()[0];
+
+        $data['agent_rates'] = $this->modelPresence->get_agent_rate();
+
 
 
         
-      //  dd($data['certify_count']);
+       //dd($data['global_execution_rate']);
         return view('dashboard/dashboard', $data);
     }
 }

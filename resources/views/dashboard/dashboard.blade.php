@@ -5,8 +5,8 @@
 <div class="post d-flex flex-column-fluid" id="kt_post">
     <!--begin::Container-->
     <div id="kt_content_container" class="container-xxl">
-          <!--begin::Row users-->
-          <div class="row g-5 g-xl-8">
+        <!--begin::Row users-->
+        <div class="row g-5 g-xl-8">
             <div class="col-xl-3">
                 <!--begin::Statistics Widget 5-->
                 <a href="#" class="card hoverable card-xl-stretch mb-xl-8" style=" background-image: linear-gradient(to bottom right,#005AAB, #F36F21);">
@@ -93,7 +93,7 @@
             </div>
         </div>
         <!--end::Row-->
-        
+
         <!--begin::Row project processing-->
         <div class="row g-5 g-xl-8">
             <div class="col-xl-3">
@@ -101,13 +101,13 @@
                 <div class="card bg-light-primary card-xl-stretch mb-xl-8">
                     <!--begin::Body-->
                     <div class="card-body my-3">
-                        <a href="#" class="card-title fw-bolder text-primary fs-5 mb-3 d-block">Taux d’exécution</a>
+                        <a href="#" class="card-title fw-bolder text-primary fs-5 mb-3 d-block">Taux d’exécution de session</a>
                         <div class="py-1">
-                            <span class="text-dark fs-1 fw-bolder me-2">0</span>
-                            <span class="fw-bold text-muted fs-7">sur 0</span>
+                            <span class="text-dark fs-1 fw-bolder me-2">{{$learning_count}}</span>
+                            <span class="fw-bold text-muted fs-7">sur {{$global_planning_learning}}</span>
                         </div>
                         <div class="progress h-7px bg-primary bg-opacity-50 mt-7">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="<?=$learning_count/$global_planning_learning*100?>" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                     <!--end:: Body-->
@@ -119,13 +119,13 @@
                 <div class="card bg-light-danger card-xl-stretch mb-xl-8">
                     <!--begin::Body-->
                     <div class="card-body my-3">
-                        <a href="#" class="card-title fw-bolder text-danger fs-5 mb-3 d-block">Taux d’exécution attendu</a>
+                        <a href="#" class="card-title fw-bolder text-danger fs-5 mb-3 d-block">Taux d’exécution</a>
                         <div class="py-1">
-                            <span class="text-dark fs-1 fw-bolder me-2">0</span>
-                            <span class="fw-bold text-muted fs-7">sur 0</span>
+                            <span class="text-dark fs-1 fw-bolder me-2">{{$global_execution_rate->total_presence}}</span>
+                            <span class="fw-bold text-muted fs-7">sur {{$global_execution_rate->total_participant }}</span>
                         </div>
                         <div class="progress h-7px bg-danger bg-opacity-50 mt-7">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 60%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 60%" aria-valuenow="<?= ($global_execution_rate->total_presence / $global_execution_rate->total_participant) * 100 ?>" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                     <!--end:: Body-->
@@ -168,6 +168,148 @@
                 </div>
                 <!--end: Statistics Widget 6-->
             </div>
+        </div>
+        <!--end::Row-->
+        <!--begin::Row project processing-->
+        <div class="row g-5 g-xl-8">
+            <!--begin::Col-->
+            <div class="col-xl-6">
+                <!--begin::Tables Widget 9-->
+                <div class="card card-xl-stretch mb-5 mb-xl-8">
+                    <!--begin::Header-->
+                    <div class="card-header border-0 pt-5">
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="card-label fw-bolder text-dark fs-3 mb-1">Taux de participation par module</span>
+                        </h3>
+                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Click to add a user">
+
+                        </div>
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Body-->
+                    <div class="card-body py-3">
+                        <!--begin::Table container-->
+                        <div class="table-responsive">
+                            <!--begin::Table-->
+                            <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                <!--begin::Table head-->
+                                <thead>
+                                    <tr class="fw-bolder text-muted">
+                                        <th class="min-w-150px">Modules</th>
+                                        <th class="min-w-140px">Présent/Inscrit</th>
+                                        <th class="min-w-120px">Taux</th>
+                                    </tr>
+                                </thead>
+                                <!--end::Table head-->
+                                <!--begin::Table body-->
+                                <tbody>agent_rate
+                                    @foreach ($agent_rates as $key=> $agent_rate)
+                                    <?= $rate = ($agent_rate->total_presence / $agent_rate->total_participant) * 100 ?>
+                                    <tr>
+
+
+                                        <td>
+                                            <a href="#" class="text-dark fw-bolder text-hover-primary d-block fs-6">{{$agent_rate->learnings_title}}</a>
+                                            <span class="text-muted fw-bold text-muted d-block fs-7">{{$agent_rate->learnings_title2}}</span>
+                                        </td>
+                                        <td class="text-cente">
+                                            <div class="d-flex flex-column w-100 me-2">
+                                                {{$agent_rate->total_presence."/".$agent_rate->total_participant }}
+                                            </div>
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="d-flex flex-column w-100 me-2">
+                                                <div class="d-flex flex-stack mb-2">
+                                                    <span class="text-muted me-2 fs-7 fw-bold">{{$rate}}%</span>
+                                                </div>
+                                                <div class="progress h-6px w-100">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="<?= $rate ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        @endforeach
+                                </tbody>
+                                <!--end::Table body-->
+                            </table>
+                            <!--end::Table-->
+                        </div>
+                        <!--end::Table container-->
+                    </div>
+                    <!--begin::Body-->
+                </div>
+                <!--end::Tables Widget 9-->
+            </div>
+            <!--end::Col-->
+            <!--begin::Col-->
+            <div class="col-xl-6">
+                <!--begin::Tables Widget 9-->
+                <div class="card card-xl-stretch mb-5 mb-xl-8">
+                    <!--begin::Header-->
+                    <div class="card-header border-0 pt-5">
+                        <h3 class="card-title align-items-start flex-column">
+                            <span class="card-label fw-bolder text-dark fs-3 mb-1">Taux de certifier ICDL par module</span>
+                        </h3>
+                        <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Click to add a user">
+
+                        </div>
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Body-->
+                    <div class="card-body py-3">
+                        <!--begin::Table container-->
+                        <div class="table-responsive">
+                            <!--begin::Table-->
+                            <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                                <!--begin::Table head-->
+                                <thead>
+                                    <tr class="fw-bolder text-muted">
+                                        <th class="min-w-150px">Module</th>
+                                        <th class="min-w-140px">Participants/Certifier</th>
+                                        <th class="min-w-120px">Taux</th>
+                                    </tr>
+                                </thead>
+                                <!--end::Table head-->
+                                <!--begin::Table body-->
+                                <tbody>
+                                    <!-- <tr>
+
+
+                                        <td>
+                                            <a href="#" class="text-dark fw-bolder text-hover-primary d-block fs-6">Intertico</a>
+                                            <span class="text-muted fw-bold text-muted d-block fs-7">Web, UI/UX Design</span>
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="d-flex flex-column w-100 me-2">
+                                                <div class="d-flex flex-stack mb-2">
+                                                    <span class="text-muted me-2 fs-7 fw-bold">50%</span>
+                                                </div>
+                                                <div class="progress h-6px w-100">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="d-flex flex-column w-100 me-2">
+                                                <div class="d-flex flex-stack mb-2">
+                                                    <span class="text-muted me-2 fs-7 fw-bold">50%</span>
+                                                </div>
+                                                <div class="progress h-6px w-100">
+                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </td> </tr>-->
+                                </tbody>
+                                <!--end::Table body-->
+                            </table>
+                            <!--end::Table-->
+                        </div>
+                        <!--end::Table container-->
+                    </div>
+                    <!--begin::Body-->
+                </div>
+                <!--end::Tables Widget 9-->
+            </div>
+            <!--end::Col-->
         </div>
         <!--end::Row-->
     </div>
