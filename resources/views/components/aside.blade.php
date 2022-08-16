@@ -458,6 +458,7 @@
                                 </a>
                         </div>
                     </div>
+                </div>
                 <!-- Groups -->
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                         <span class="menu-link">
