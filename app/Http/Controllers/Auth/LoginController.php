@@ -39,6 +39,7 @@ class LoginController extends Controller
         if($user->user_role_id==4){
             $request->session()->put('userGroup', get_participant_group($user->id));
         }
+        //dd(            $request->session()->get('userGroup'));
     }
 
     /**

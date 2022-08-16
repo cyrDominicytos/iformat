@@ -56,6 +56,17 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/listPresence/update', [Planning::class, 'presence_update'])->name('listPresence.update');
     Route::get('/listPresence', [Planning::class, 'listPresence'])->name('listPresence');
     Route::post('/listPresence/print', [Planning::class, 'presence_print'])->name('listPresence.print');
+    
+    //Exam Presence                                                                                  
+    Route::get('/addExamPresence/{code?}', [Planning::class, 'exam_presence'])->name('addExamPresence');
+    Route::post('/listExamPresence/get_learning_groups', [Planning::class, 'get_learning_groups'])->name('listExamPresence.get_learning_groups');
+    Route::post('/listExamPresence/get_exam_group_participant_list', [Planning::class, 'get_exam_group_participant_list'])->name('listExamPresence.get_exam_group_participant_list');
+    Route::post('/listExamPresence/store', [Planning::class, 'exam_presence_store'])->name('listExamPresence.store');
+    Route::post('/listExamPresence/update', [Planning::class, 'exam_presence_update'])->name('listExamPresence.update');
+
+    Route::post('/listExamPresence/planning_list', [Planning::class, 'exam_planning_list'])->name('listExamPresence.planning_list');
+    Route::get('/listExamPresence', [Planning::class, 'exam_listPresence'])->name('listExamPresence');
+    Route::post('/listExamPresence/print', [Planning::class, 'exam_presence_print'])->name('listExamPresence.print');
    
     //Certification                                                                                  
     Route::get('/addCertification/{code?}', [Planning::class, 'certify'])->name('addCertification');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AssessmentModel;
 use App\Models\CertificationModel;
 use App\Models\ClassRoomModel;
+use App\Models\ExamPresenceModel;
 use App\Models\GroupModel;
 use App\Models\PlanningModel;
 use App\Models\LearningModel;
@@ -348,6 +349,31 @@ class planning extends Controller
         $data['cabinet_list'] = cabinet_list();
         return view('presence.create', $data);
     }
+    //EXAM PRESENCES
+    public function exam_presence($code=null)
+    {
+       //dd(planning_details_list("2")); 
+       //dd(planning_list(1));
+
+       $userRole = Auth::user()->user_role_id;
+       if(!in_array($userRole, [3,1,2]))
+            return redirect()->back()->with('error_message', "Vous n'êtes pas autorisés à accédéz à cette page !");
+
+       if ($userRole == 3) {
+            //formateur
+            $data['learning_list']=$this->modelLearning->get_learnings_by_teachers(Auth::user()->id);
+       }else{
+            $data['learning_list']=$this->modelLearning->where('learnings_status',1)->get();
+       }
+
+       //dd($data['learning_list']);
+       /* $data['teacher_list'] = $this->modelUser->where("user_role_id", 3)->where("status", 1)->get();
+        $data['group_list'] = $this->modelGroup->get_group_list(1);
+        $data['countries_list'] = countries_list();
+        $data['days_list'] = days_list();
+        $data['cabinet_list'] = cabinet_list();*/
+        return view('exam_presence.create', $data);
+    }
     public function listPresence($code=null)
     {
        $userRole = Auth::user()->user_role_id;
@@ -669,5 +695,133 @@ class planning extends Controller
 
         $events = get_events_list($result,$beginDate,$endDate);
 		return  response()->json($events);
+    }
+
+    //exam process
+    public function get_learning_groups(Request $request)
+    {
+       return  get_learning_groups($request->id);	
+    }
+
+    public function get_exam_group_participant_list(Request $request)
+    {
+       return  get_exam_group_participant_list($request->id, $request->group_id);	
+    }
+
+    public function exam_presence_store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'plannings_learning_id' => 'required',
+            'plannings_group' => 'required',
+            'participant' => [
+                'required',
+                'array',
+            ],
+            
+        ],[
+            'plannings_learning_id.required' => 'Choisissez une formation',
+            'plannings_group.required' => 'Choisissez un groupe de participant',
+            'participant.required' => 'Aucun participant trouvé',
+        ]);
+ 
+        if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput()
+                        ->with('error_message', "Une erreur est survenue lors de l'enregistrement de la présence des participants aux examens !");
+        }else{
+            //validation okay
+          //  dd( $request);
+          if($request->presences_participant==null)
+          return redirect()->back()->with('error_message', "Aucune présence  n'a été marquée !");
+
+            $old = ExamPresenceModel::where("exam_presences_learning_id", $request->plannings_learning_id)->where("exam_presences_group_id", $request->plannings_group)->first();
+            if($old){
+                ExamPresenceModel::where("exam_presences_id", $old->presences_id)->update(
+                    [
+                        'exam_presences_participant' => json_encode($request->participant),
+                        'exam_presences_participant_list' => json_encode($request->presences_participant),
+                        'exam_presences_user_updated_by' => Auth::user()->id,
+                    ]
+                );
+                return redirect()->back()->with('success_message', "La présence des participants est mise à jour avec succès !");
+            }else{
+               ExamPresenceModel::create([
+                    'exam_presences_learning_id' => $request->plannings_learning_id,
+                    'exam_presences_participant' => json_encode($request->participant),
+                    'exam_presences_participant_list' => json_encode($request->presences_participant),
+                    'exam_presences_group_id' => $request->plannings_group,
+                    'exam_presences_user_created_by' => Auth::user()->id,
+                ]);
+                return redirect()->back()->with('success_message', "La présence des participants est enregistrée avec succès !");
+            }            
+        }
+    }
+
+
+    public function exam_listPresence($code=null)
+    {
+       $userRole = Auth::user()->user_role_id;
+       if(!in_array($userRole, [3,1,2]))
+            return redirect()->back()->with('error_message', "Vous n'êtes pas autorisés à accédéz à cette page !");
+
+       if ($userRole == 3) {
+            //formateur
+            $data['learning_list']=$this->modelLearning->get_learnings_by_teachers(Auth::user()->id);
+       }else{
+            $data['learning_list']=$this->modelLearning->where('learnings_status',1)->get();
+       }
+
+        $data['group_list'] = $this->modelGroup->get_group_list(1);
+        $data['days_list'] = days_list();
+        return view('exam_presence.list', $data);
+    }
+
+    public function exam_presence_print(Request $request)
+    {
+        //dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'plannings_learning_id' => 'required',
+           
+            'participant' => [
+                'required',
+                'array',
+            ],
+            
+        ],[
+            'plannings_learning_id.required' => 'Choisissez une formation',
+            'participant.required' => 'Aucun participant trouvé',
+        ]);
+ 
+        if ($validator->fails()) {
+           // dd($validator);
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput()
+                        ->with('error_message', "Une erreur est survenue lors de l'affichage de la présence des participants !");
+        }else{
+            //validation okay
+          if($request->presences_participant==null)
+          return redirect()->back()->with('error_message', "Aucune présence  n'a été marquée !");
+
+            $old = ExamPresenceModel::where("exam_presences_group_id", $request->plannings_group)->first();
+            if($old){
+               
+                $old_presence = json_decode($old->exam_presences_participant_list);
+                    $user_list =[];
+                foreach ($old_presence  as  $result){
+                    $user = User::where("id", $result)->where("status", 1)->first();
+                    array_push($user_list,$user);
+                }  
+                    $data['users'] = $user_list;
+                    $data['learning'] = LearningModel::where("learnings_id", $request->plannings_learning_id)->first();
+                   
+                    $pdf = new PDFController();
+                    if($request->preview)
+                    return $pdf->certif_presence_pdf($data, 0);
+                    else
+                    return $pdf->certif_presence_pdf($data, 1);  
+            }else return redirect()->back()->with('error_message', "Aucune présence  n'a été marquée !");          
+        }
     }
 }

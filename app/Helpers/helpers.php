@@ -2,6 +2,7 @@
 use App\Mail\Contact;
 use App\Models\CertificationModel;
 use App\Models\Chambre;
+use App\Models\ExamPresenceModel;
 use App\Models\GroupModel;
 use App\Models\LearningModel;
 use App\Models\PlanningModel;
@@ -457,6 +458,19 @@ if (!function_exists('group_participant_list')) {
 
     }
 }
+
+//GetGroup list by learning
+
+if (!function_exists('get_learning_groups')) {
+    function get_learning_groups($id) {
+            $planning = LearningModel::join('plannings','plannings_learning_id', 'learnings_id')->join('groups','groups_id', 'plannings_user_groups')->where("learnings_id", $id)->where("plannings_status", 1)->where("groups_status", 1)->first();
+            $output = '';
+            if($planning){
+                $output .= '<option value="'.$planning->groups_id.'">'.$planning->groups_name.'</option>';
+            }
+			return  response()->json(['groups'=> $output]);
+    }
+}
 if (!function_exists('group_participant_list')) {
     function group_participant_list($id, $date_time) {
         $datetime = explode(' de ', $date_time);
@@ -467,6 +481,45 @@ if (!function_exists('group_participant_list')) {
                 $groups_participant =json_decode($planning->groups_participant);
                 if($old){
                     $old_presence = json_decode($old->presences_participant_list);
+                    foreach ($groups_participant  as  $result){
+                        $user = User::where("id", $result)->where("status", 1)->first();
+                        if($user){
+                            $output .= '<tr class="text-center">';
+                            $output .= '<td> <input class="participant_checkbox"  name="presences_participant[]"  type="checkbox" value="'.$user->id.'" '.(in_array($user->id,$old_presence) ? "checked" : "").'></td>';
+                            $output .= '<td><input hidden name="participant[]"  type="text" value="'.$user->id.'"> '.$user->first_name.' '.$user->last_name.'</td></tr>';
+                        }
+                    }
+                }else{
+                    foreach ($groups_participant  as  $result){
+                        $user = User::where("id", $result)->where("status", 1)->first();
+                        if($user){
+                            $output .= '<tr class="text-center">';
+                            $output .= '<td> <input class="participant_checkbox"  name="presences_participant[]"  type="checkbox" value="'.$user->id.'"></td>';
+                            $output .= '<td><input hidden name="participant[]"  type="text" value="'.$user->id.'"> '.$user->first_name.' '.$user->last_name.'</td></tr>';
+                        }
+                    }
+                }
+                
+             }
+			return  response()->json($output);
+
+    }
+}
+if (!function_exists('get_exam_group_participant_list')) {
+    function get_exam_group_participant_list($id, $group_id) {
+        $planning = LearningModel::join('plannings','plannings_learning_id', 'learnings_id')
+        ->join('groups','groups_id', 'plannings_user_groups')
+        ->where("learnings_id", $id)
+        ->where("groups_id", $group_id)
+        ->where("plannings_status", 1)
+        ->where("groups_status", 1)
+        ->first();
+        $output = '';
+            if($planning){
+                $old = ExamPresenceModel::where("exam_presences_learning_id", $id)->where("exam_presences_group_id",  $group_id)->first();
+                $groups_participant =json_decode($planning->groups_participant);
+                if($old){
+                    $old_presence = json_decode($old->exam_presences_participant_list);
                     foreach ($groups_participant  as  $result){
                         $user = User::where("id", $result)->where("status", 1)->first();
                         if($user){

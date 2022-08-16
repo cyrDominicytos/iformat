@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ExamPresenceModel;
 use App\Models\LearningModel;
 use App\Models\PresenceModel;
 use App\Models\User;
@@ -17,6 +18,7 @@ class HomeController extends Controller
 {
     protected $modelUser = null;
     protected $modelPresence = null;
+    protected $modelExamPresence = null;
 
     /**
      * Create a new controller instance.
@@ -28,6 +30,7 @@ class HomeController extends Controller
         $this->middleware('auth');
         $this->modelUser = new User();
         $this->modelPresence = new PresenceModel();
+        $this->modelExamPresence = new ExamPresenceModel();
     }
 
     /**
@@ -196,15 +199,14 @@ class HomeController extends Controller
         $data['certify_count'] = $this->modelPresence->get_certify_count();
         $data['learning_count'] = $this->modelPresence->get_learning_count();
         $data['tested_agent_count'] = $this->modelPresence->get_evaluated_agent_count();
-        
+        $data['certification_presence_count'] = $this->modelExamPresence->get_global_certification_presence_count()[0];
         $data['global_planning_learning'] = $this->modelPresence->get_global_learning_processing_rate();
         $data['global_execution_rate'] = $this->modelPresence->get_global_execution_rate()[0];
 
         $data['agent_rates'] = $this->modelPresence->get_agent_rate();
+        $data['certif_rates'] = $this->modelExamPresence->get_certif_rate();
 
 
-
-        
        //dd($data['global_execution_rate']);
         return view('dashboard/dashboard', $data);
     }

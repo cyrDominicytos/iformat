@@ -16,4 +16,13 @@ class PDFController extends Controller
             return $pdf->stream('presence.pdf');
 
     }
+    public function certif_presence_pdf($data, $download)
+    {     
+        $pdf = PDF::loadView('pdf/certif_presence', $data);
+        if($download==1)
+            return $pdf->download('presence.pdf');
+        else
+            return $pdf->stream('presence.pdf');
+
+    }
 }

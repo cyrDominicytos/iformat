@@ -102,7 +102,6 @@
 	</div>
 	<!--end::Root-->
 
-
 	<!--begin::Javascript-->
 	<!--begin::Global Javascript Bundle(used by all pages)-->
 	<script src="{{ asset('assets/plugins/global/plugins.bundle.js')}}"></script>
