@@ -48,6 +48,7 @@ class planning extends Controller
         $data['room_list'] =$this->modelRoom->where('classrooms_status',1)->get();
         $data['teacher_list'] = $this->modelUser->where("user_role_id", 3)->where("status", 1)->get();
         $data['group_list'] = $this->modelGroup->get_group_list(1);
+       // $data['group_list'] = [];
         return view('plannings.create', $data);
     }
 
@@ -174,6 +175,7 @@ class planning extends Controller
         ]);
  
         if ($validator->fails()) {
+           dd($request->all());
             return redirect('/addPlanning')
                         ->withErrors($validator)
                         ->withInput()

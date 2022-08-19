@@ -301,13 +301,14 @@ if (!function_exists('learning_available_groupe')) {
                    // $old_groups = array_merge($old_groups,json_decode($result->plannings_user_groups));
                     array_push($old_groups,$result->plannings_user_groups);
                 }
-                $learning_available_groupe = GroupModel::where("groups_status",1)->whereNotIn("groups_id",$old_groups)->get();
+                $learning_available_groupe = GroupModel::where("groups_status",1)->where("groups_learning_id", $id)->get();
                // $learnings_days = json_decode($learnings_days->learnings_days, true);
-                foreach ($learning_available_groupe as $result){
+              
+
+                foreach ($learning_available_groupe as $key =>$result){
                     $output .= '<option value="'.$result->groups_id.'">'.$result->groups_name.'</option>';
                 }
             }
-			//echo $output;
 			return  response()->json($output);
 
     }

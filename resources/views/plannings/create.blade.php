@@ -289,6 +289,10 @@
                             <td> <input hidden name="plannings_time_slot[]" type="text" value="{{$value}}"> {{ $value}}</td>
                         </tr>
                         @endforeach
+                        @else
+                         <input hidden name="plannings_date[]" type="text" >
+                        <input hidden name="plannings_time_slot[]" type="text">
+                       
                         @endif
                     </tbody>
                     <!--end::Table body-->
@@ -438,15 +442,20 @@
                 data: {
                     id: value,
                 },
-
                 success: function(result) {
                     $('#plannings_time_slot').html(result);
+                    document.getElementById("plannings_time_slot").dispatchEvent(new Event('change'));
+
                 }
             });
 
-            //load product code
-            if (old_planning != 0) {
-                console.log(value + ' ' + old_planning['plannings_learning_id'])
+
+
+
+
+
+             //load product code
+             if (old_planning != 0) {
                 // if(old_planning['plannings_learning_id'] == value){
                 $.ajax({
                     url: "<?= route('listPlannings.learning_available_groupe2') ?>",
@@ -461,26 +470,40 @@
                         // $('#plannings_user_groups').trigger('change');
                     }
                 });
-                console.log(value + ' ' + old_planning['plannings_id'])
 
             } else {
+                let temp_groups = "";
                 $.ajax({
                     url: "<?= route('listPlannings.learning_available_groupe') ?>",
                     type: "POST",
                     data: {
                         id: value,
                     },
-                    success: function(result) {
-                        $('#plannings_user_groups').html(result);
+                    success: function(temp_groups) {
+                        //$('#plannings_user_groups').html("");
+                        
+                        $('#plannings_user_groups').html(temp_groups);
+                    },
+                    fail: function(error) {
+                        //$('#plannings_user_groups').html("");
+                        
+                       
                     }
+                   
                 });
-                console.log(3)
+                $('#plannings_user_groups').html(temp_groups);
             }
-
 
 
         }
     });
+
+    $('#plannings_time_slot').change(function() {
+
+        
+           
+     });
+
 
     $("#plannings_begin").change(function(e) {
         val = e.currentTarget.value;
