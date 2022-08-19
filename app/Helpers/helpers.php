@@ -505,6 +505,58 @@ if (!function_exists('group_participant_list')) {
 
     }
 }
+
+
+if (!function_exists('get_learning_available_participant_list')) {
+    function get_learning_available_participant_list($id) {
+            $old_groups = GroupModel::where("groups_learning_id", $id)->where("groups_status", 1)->get();
+            $output = '';
+            $temp = array();
+            if($old_groups){
+                foreach ($old_groups  as  $result){
+                    $temp =  array_merge($temp, json_decode($result->groups_participant));
+                    }
+            }               
+             
+             $users = User::where("user_role_id", 4)->where("status", 1)->get();
+             if($users){
+                foreach ($users  as  $result){
+                        if(in_array($result->id,$temp)){
+                            //$output .= '<option value="'.$users->id.'" selected>'.$users->last_name.' '.$users->fist_name.'</option>';
+                        }else{
+                            $output .= '<option value="'.$result->id.'">'.$result->last_name.' '.$result->fist_name.'</option>';
+                        }
+                    }
+                }
+			return  response()->json($output);
+
+    }
+}
+if (!function_exists('get_learning_available_participant_list2')) {
+    function get_learning_available_participant_list2($id) {
+            $old_groups = GroupModel::where("groups_learning_id", $id)->where("groups_status", 1)->get();
+            $output = '';
+            $temp = array();
+            if($old_groups){
+                foreach ($old_groups  as  $result){
+                    $temp =  array_merge($temp, json_decode($result->groups_participant));
+                    }
+            }               
+             
+             $users = User::where("user_role_id", 4)->where("status", 1)->get();
+             if($users){
+                foreach ($users  as  $result){
+                        if(in_array($result->id,$temp)){
+                            $output .= '<option value="'.$result->id.'" selected>'.$result->last_name.' '.$result->fist_name.'</option>';
+                        }else{
+                            $output .= '<option value="'.$result->id.'">'.$result->last_name.' '.$result->fist_name.'</option>';
+                        }
+                    }
+                }
+			return  response()->json($output);
+
+    }
+}
 if (!function_exists('get_exam_group_participant_list')) {
     function get_exam_group_participant_list($id, $group_id) {
         $planning = LearningModel::join('plannings','plannings_learning_id', 'learnings_id')

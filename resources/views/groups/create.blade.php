@@ -67,7 +67,7 @@
                          <!--begin::Input group-->
                          <div class="d-flex flex-column mb-5 fv-row  text-dark">
                             <label class="form-label fw-bolder text-dark fs-6 required">Ajouter des participants</label>
-                            <select name="groups_participant[]" multiple aria-label="Selectionnez un profile" data-control="select2" data-placeholder="Attribuer un role..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="groups_participant">
+                            <select name="groups_participant[]" multiple aria-label="Selectionnez les participants" data-control="select2" data-placeholder="Ajouter les participants..." class="form-select form-select-solid form-select-lg fw-bold select2-hidden-accessible" data-select2-id="select2-data-10-02r3" tabindex="-1" aria-hidden="true" id="groups_participant">
                             @if(isset($old_group))
                                 @foreach($users as $key=> $user)
                                     @if(!in_array($user->id, $user_to_offset))

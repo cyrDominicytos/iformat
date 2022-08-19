@@ -824,4 +824,21 @@ class planning extends Controller
             }else return redirect()->back()->with('error_message', "Aucune présence  n'a été marquée !");          
         }
     }
+
+    public function get_learning_available_participant_list(Request $request)
+    {
+       /* if (!$request->isMethod('post'))
+		{
+			return redirect()->to('/');
+		}*/
+       return  get_learning_available_participant_list($request->id);	
+    }
+    public function get_learning_available_participant_list2(Request $request)
+    {
+       /* if (!$request->isMethod('post'))
+		{
+			return redirect()->to('/');
+		}*/
+       return  get_learning_available_participant_list2($request->id);	
+    }
 }

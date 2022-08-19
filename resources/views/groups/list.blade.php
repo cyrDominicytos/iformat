@@ -265,6 +265,11 @@
 <!--end::Content-->
 @section('js')
 <script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     var base_url = "<?= URL::to('/') ?>";
     var old_group = "<?= isset($old_group) ? 1 : 0 ?>";
     var add = "<?= $add ?>";
@@ -309,8 +314,40 @@
             $('#create_modal').modal('show');
         if (add == 1)
             $('#create_modal').modal('show');
+
+        document.getElementById("groups_learning_id").dispatchEvent(new Event('change'));
+
     });
     // var table = document.getElementById(#)
+    //learning change set time slot
+    $('#groups_learning_id').change(function() {
+        let learning_id = $(this).val();
+        console.log(learning_id);
+
+        if (old_group == 1) {
+            $.ajax({
+                url: "<?= route('listPlannings.get_learning_available_participant_list2') ?>",
+                type: "POST",
+                data: {
+                    id: learning_id,
+                },
+                success: function(result) {
+                    $('#groups_participant').html(result);
+                }
+            });
+        } else {
+            $.ajax({
+                url: "<?= route('listPlannings.get_learning_available_participant_list') ?>",
+                type: "POST",
+                data: {
+                    id: learning_id,
+                },
+                success: function(result) {
+                    $('#groups_participant').html(result);
+                }
+            });
+        }
+    });
 </script>
 @endsection
 @endsection
