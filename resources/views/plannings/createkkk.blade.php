@@ -198,7 +198,7 @@
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
-
+                                                            
 
                                 <!--begin::Row-->
                                 <div class="row fv-row " data-select2-id="select2-data-126-fvxd" id="plan_opt2">
@@ -267,7 +267,6 @@
                 <h4 class="fw-bolder text-dark text-center mt-5 mb-5">Liste des horaires ajoutés</h4>
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="table_slot">
                     <!--begin::Table head-->
-                    <thead>
                         <!--begin::Table row-->
                         <tr class="text-center text-muted fw-bolder fs-7 text-uppercase gs-0">
                             <th class="text-en min-w-100px">Actions</th>
@@ -275,10 +274,8 @@
                             <th class="min-w-125px">Heure</th>
                         </tr>
                         <!--end::Table row-->
-                    </thead>
                     <!--end::Table head-->
                     <!--begin::Table body-->
-                    <tbody class="text-gray-600 fw-bold">
                         @isset($old_time_slot)
                         <?php $old_table_data = []; ?>
                         @foreach($old_time_slot as $key=>$value)
@@ -288,11 +285,9 @@
                             <td> <input hidden name="plannings_date[]" type="text" value="{{$old_date[$key]}}"> {{ $old_date[$key] }}</td>
                             <td> <input hidden name="plannings_time_slot[]" type="text" value="{{$value}}"> {{ $value}}</td>
                         </tr>
-                        @endforeach
-
+                        @endforeach                       
+                       
                         @endif
-
-                    </tbody>
                     <!--end::Table body-->
                 </table>
                 <!--end::Table-->
@@ -318,9 +313,17 @@
     <!--end::Card-->
 </div>
 <!--end::Container-->
+</div>
+<!--end::Post-->
+</div>
+<!--end::Content-->
 @section('js')
 <script type="text/javascript">
-   
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     var showModal = "<?= Route::currentRouteName() == '' ? ('') : ('') ?>";
     var old_planning = <?php echo isset($old_planning) ? json_encode($old_planning) : (0); ?>;
@@ -343,36 +346,27 @@
         const d1 = new Date(plannings_begin.value);
         const d2 = new Date(plannings_end.value);
 
-        var dates = getDatesInRange(d1, d2);
-        dates.forEach(function(date) {
-            let month = date.getMonth() + 1;
-            month = month < 10 ? '0' + month : month
-            let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-            let currentDate = day + '-' + month + '-' + date.getFullYear();
-            // alert(currentDate)
-            // var indexId = plannings_date1.value + '' + plannings_time_slot1.value;
+        var dates = getDatesInRange(d1, d2);     
+        dates.forEach(function(date){
+            let month = date.getMonth() +1;
+             month = month < 10 ? '0'+month : month
+            let day = date.getDate() < 10 ? '0'+date.getDate() : date.getDate()
+            let currentDate =day+'-'+month+'-'+date.getFullYear();
+           // alert(currentDate)
+           // var indexId = plannings_date1.value + '' + plannings_time_slot1.value;
             var indexId = currentDate + '' + plannings_time_slot1.value;
             if (table_unique.includes(indexId)) {
                 //row already exists
             } else {
                 //new row
-               /* var html = '';
+                var html = '';
                 html += '<tr class="text-center">';
                 html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove" id="' + indexId + '"><span class="fa fa-minus"></span></button></td>';
-                html += '<td> <input hidden name="plannings_date[]"  type="text" value="' + currentDate + '">' + currentDate + '</td>';
-                html += '<td> <input hidden name="plannings_time_slot[]"  type="text" value="' + plannings_time_slot1.value + '">' + plannings_time_slot1.value + '</td></tr>';
+                html += '<td> <input type="text" hidden name="plannings_date[]" value="' + currentDate + '"/>' + currentDate + '</td>';
+                html += '<td> <input type="text" hidden name="plannings_time_slot[]"  value="' + plannings_time_slot1.value + '"/>' + plannings_time_slot1.value + '</td></tr>';
                 $('#table_slot').append(html);
                 table_unique[table_unique.length] = indexId;
-                checkForm()*/
-
-                var html = '';
-            html += '<tr class="text-center">';
-            html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove" id="'+indexId+'"><span class="fa fa-minus"></span></button></td>';
-            html += '<td> <input hidden name="plannings_date[]"  type="text" value="'+currentDate+'">'+currentDate+'</td>';
-            html += '<td> <input hidden name="plannings_time_slot[]"  type="text" value="'+plannings_time_slot1.value+'">'+plannings_time_slot1.value+'</td></tr>';
-            $('#table_slot').append(html);
-            table_unique[table_unique.length] = indexId;
-            checkForm()
+                checkForm()
             }
 
         });
@@ -391,7 +385,7 @@
     });
 
     function checkSelect() {
-        // if (plannings_date1.value !== "" && plannings_time_slot1.value !== "")
+       // if (plannings_date1.value !== "" && plannings_time_slot1.value !== "")
         if (plannings_begin.value !== "" && plannings_end.value !== "" && plannings_time_slot1.value !== "")
             return true;
         return false;
@@ -453,8 +447,8 @@
 
 
 
-            //load product code
-            if (old_planning != 0) {
+             //load product code
+             if (old_planning != 0) {
                 // if(old_planning['plannings_learning_id'] == value){
                 $.ajax({
                     url: "<?= route('listPlannings.learning_available_groupe2') ?>",
@@ -480,15 +474,15 @@
                     },
                     success: function(temp_groups) {
                         //$('#plannings_user_groups').html("");
-
+                        
                         $('#plannings_user_groups').html(temp_groups);
                     },
                     fail: function(error) {
                         //$('#plannings_user_groups').html("");
-
-
+                        
+                       
                     }
-
+                   
                 });
                 $('#plannings_user_groups').html(temp_groups);
             }
@@ -499,9 +493,9 @@
 
     $('#plannings_time_slot').change(function() {
 
-
-
-    });
+        
+           
+     });
 
 
     $("#plannings_begin").change(function(e) {
@@ -533,39 +527,41 @@
 
 
 
-    function getDatesInRange(startDate, endDate) {
-        const date = new Date(startDate.getTime());
+function getDatesInRange(startDate, endDate) {
+  const date = new Date(startDate.getTime());
 
-        const dates = [];
-        while (date <= endDate) {
-            dates.push(new Date(date));
-            date.setDate(date.getDate() + 1);
-        }
+  const dates = [];
 
-        return dates;
-    }
+  while (date <= endDate) {
+    dates.push(new Date(date));
+    date.setDate(date.getDate() + 1);
+  }
 
-
-    function padTo2Digits(num) {
-        return num.toString().padStart(2, '0');
-    }
-
-    function formatDate(date) {
-        return (
-            [
-                date.getFullYear(),
-                padTo2Digits(date.getMonth() + 1),
-                padTo2Digits(date.getDate()),
-            ].join('-')
-        );
-    }
+  return dates;
+}
 
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+function padTo2Digits(num) {
+  return num.toString().padStart(2, '0');
+}
+
+function formatDate(date) {
+  return (
+    [
+      date.getFullYear(),
+      padTo2Digits(date.getMonth() + 1),
+      padTo2Digits(date.getDate()),
+    ].join('-') 
+    
+    // +
+    // ' ' +
+    // [
+    //   padTo2Digits(date.getHours()),
+    //   padTo2Digits(date.getMinutes()),
+    //   // padTo2Digits(date.getSeconds()),  // 👈️ can also add seconds
+    // ].join(':')
+  );
+}
 </script>
 @endsection
 @endsection

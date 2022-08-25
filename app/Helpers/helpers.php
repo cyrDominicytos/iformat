@@ -407,7 +407,7 @@ if (!function_exists('planning_details_list')) {
 
             }*/
         
-            $planning = PlanningModel::join('groups','groups_id', 'plannings_user_groups')->where("plannings_id", $id)->where("plannings_status", 1)->where("groups_status", 1)->first();
+            $planning = PlanningModel::join('groups','groups_id','=', 'plannings_user_groups')->where("plannings_id", $id)->where("plannings_status", 1)->where("groups_status", 1)->first();
             $output = '';
             $output1 = '';
             if($planning){

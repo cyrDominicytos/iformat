@@ -70,7 +70,6 @@ class Learning extends Controller
      */
     public function store(Request $request)
     {
-       // dd($request->all());
         $validator = Validator::make($request->all(), [
             'learnings_author_id' => 'required|numeric',
             'learnings_title' => 'required',
@@ -161,7 +160,8 @@ class Learning extends Controller
      */
     public function update(Request $request)
     {
-        //dd($request);   
+        dd($request->all());
+ 
         $old_learning = $this->modelLearning->where("learnings_status", 1)->find($request->id);
         if(!$old_learning)
             return back()->with('error_message', "La formation que vous désirez éditer n'existe pas'!");

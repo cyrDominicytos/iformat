@@ -143,7 +143,7 @@ class planning extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        dd($request->all());
         $validator = Validator::make($request->all(), [
             'plannings_learning_id' => 'required',
             'plannings_classroom_id' => 'required',
@@ -152,10 +152,6 @@ class planning extends Controller
                 'required',
                 'array',
             ],
-            // 'plannings_user_groups' => [
-            //     'required',
-            //     'array',
-            // ],
             'plannings_date' => [
                 'required',
                 'array',
@@ -175,14 +171,15 @@ class planning extends Controller
         ]);
  
         if ($validator->fails()) {
-           dd($request->all());
+          // dd($request->all());
             return redirect('/addPlanning')
                         ->withErrors($validator)
                         ->withInput()
                         ->with('error_message', "Une erreur est survenue lors de l'enregistrement de la session de formation !");
         }else{
             //validation okay
-          //  dd( $request);
+        dd($request->all());
+
             $planning = planningModel::create([
                 'plannings_learning_id' => $request->plannings_learning_id,
                 'plannings_code' =>generate_planning_code(),
@@ -194,6 +191,8 @@ class planning extends Controller
                 'plannings_infos' => $request->plannings_infos,
                 'plannings_user_created_by' => Auth::user()->id,
             ]);
+
+           
             return redirect('/listPlannings')->with('success_message', "Une nouvelle session de formation est créée avec succès !");
         }
     }
@@ -428,7 +427,6 @@ class planning extends Controller
      */
     public function presence_store(Request $request)
     {
-        //dd($request->all());
         $validator = Validator::make($request->all(), [
             'plannings_learning_id' => 'required',
             'plannings_classroom_id' => 'required',
