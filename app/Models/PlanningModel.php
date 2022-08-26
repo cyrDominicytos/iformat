@@ -65,7 +65,6 @@ class PlanningModel extends Model
             AND groups_id = plannings_user_groups
             AND learnings_status != -1   
             AND plannings_user_groups = ".$group."
-            AND  plannings_created_at BETWEEN '".$beginDate."' AND '".$endDate."' 
             AND JSON_SEARCH(plannings_date , 'all', '".$YearMonth."%', NULL ) IS NOT NULL
             ");
         }
@@ -92,9 +91,11 @@ class PlanningModel extends Model
             AND groups_id = plannings_user_groups
             AND learnings_status = 1
             AND JSON_SEARCH(plannings_teachers, 'all', '".$user_id."', NULL ) IS NOT NULL
-            AND  plannings_created_at BETWEEN '".$beginDate."' AND '".$endDate."' 
             AND JSON_SEARCH(plannings_date , 'all', '".$YearMonth."%', NULL ) IS NOT NULL
             ");
+
+            //            AND  plannings_created_at BETWEEN '".$beginDate."' AND '".$endDate."' 
+
         }
 
     //Get planning program for teachers
@@ -144,9 +145,14 @@ class PlanningModel extends Model
             AND classrooms_id = plannings_classroom_id
             AND groups_id = plannings_user_groups
             AND learnings_status = 1
-            AND  plannings_created_at BETWEEN '".$beginDate."' AND '".$endDate."' 
             AND JSON_SEARCH(plannings_date , 'all', '".$YearMonth."%', NULL ) IS NOT NULL
             ");
+
+                       // AND  plannings_created_at BETWEEN '".$beginDate."' AND '".$endDate."' 
+                      // AND  plannings_date BETWEEN '".$beginDate."' AND '".$endDate."' 
+                      //AND JSON_SEARCH(plannings_date , 'all', '".$YearMonth."%', NULL ) IS NOT NULL
+
+
         }
 
     /**

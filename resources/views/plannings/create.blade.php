@@ -261,56 +261,57 @@
                             </div>
 
                             <!--end::Scroll-->
+                            <!--begin::Table-->
+                            <h4 class="fw-bolder text-dark text-center mt-5 mb-5">Liste des horaires ajoutés</h4>
+                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="table_slot">
+                                <!--begin::Table head-->
+                                <thead>
+                                    <!--begin::Table row-->
+                                    <tr class="text-center text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                        <th class="text-en min-w-100px">Actions</th>
+                                        <th class="min-w-125px">Date</th>
+                                        <th class="min-w-125px">Heure</th>
+                                    </tr>
+                                    <!--end::Table row-->
+                                </thead>
+                                <!--end::Table head-->
+                                <!--begin::Table body-->
+                                <tbody class="text-gray-600 fw-bold">
+                                    @isset($old_time_slot)
+                                    <?php $old_table_data = []; ?>
+                                    @foreach($old_time_slot as $key=>$value)
+                                    <?php $old_table_data[count($old_table_data)] = $old_date[$key] . '' . $value; ?>
+                                    <tr class="text-center">
+                                        <td><button type="button" name="remove" class="btn btn-danger btn-sm remove" id="{{$old_date[$key].''.$value}}"><span class="fa fa-minus"></span></button></td>
+                                        <td> <input hidden name="plannings_date[]" type="text" value="{{$old_date[$key]}}"> {{ $old_date[$key] }}</td>
+                                        <td> <input hidden name="plannings_time_slot[]" type="text" value="{{$value}}"> {{ $value}}</td>
+                                    </tr>
+                                    @endforeach
+
+                                    @endif
+
+                                </tbody>
+                                <!--end::Table body-->
+                            </table>
+                            <!--end::Table-->
+                            <!--begin::Modal footer-->
+                            <div class="modal-footer flex-center">
+                                <!--begin::Button-->
+                                <button type="reset" class="btn btn-danger me-3" onclick="history.go(-1)">Quitter</button>
+                                <!--end::Button-->
+                                <!--begin::Button-->
+                                <button type="submit" id="submit" class="btn btn-primary">
+                                    <span class="indicator-label" id="submitText">Enregistrer</span>
+                                    <span class="indicator-progress">Patientez...
+                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </button>
+                                <!--end::Button-->
+                            </div>
+                            <!--end::Modal footer-->
+                        </form>
                     </div>
                 </div>
-                <!--begin::Table-->
-                <h4 class="fw-bolder text-dark text-center mt-5 mb-5">Liste des horaires ajoutés</h4>
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="table_slot">
-                    <!--begin::Table head-->
-                    <thead>
-                        <!--begin::Table row-->
-                        <tr class="text-center text-muted fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="text-en min-w-100px">Actions</th>
-                            <th class="min-w-125px">Date</th>
-                            <th class="min-w-125px">Heure</th>
-                        </tr>
-                        <!--end::Table row-->
-                    </thead>
-                    <!--end::Table head-->
-                    <!--begin::Table body-->
-                    <tbody class="text-gray-600 fw-bold">
-                        @isset($old_time_slot)
-                        <?php $old_table_data = []; ?>
-                        @foreach($old_time_slot as $key=>$value)
-                        <?php $old_table_data[count($old_table_data)] = $old_date[$key] . '' . $value; ?>
-                        <tr class="text-center">
-                            <td><button type="button" name="remove" class="btn btn-danger btn-sm remove" id="{{$old_date[$key].''.$value}}"><span class="fa fa-minus"></span></button></td>
-                            <td> <input hidden name="plannings_date[]" type="text" value="{{$old_date[$key]}}"> {{ $old_date[$key] }}</td>
-                            <td> <input hidden name="plannings_time_slot[]" type="text" value="{{$value}}"> {{ $value}}</td>
-                        </tr>
-                        @endforeach
 
-                        @endif
-
-                    </tbody>
-                    <!--end::Table body-->
-                </table>
-                <!--end::Table-->
-                <!--begin::Modal footer-->
-                <div class="modal-footer flex-center">
-                    <!--begin::Button-->
-                    <button type="reset" class="btn btn-danger me-3" onclick="history.go(-1)">Quitter</button>
-                    <!--end::Button-->
-                    <!--begin::Button-->
-                    <button type="submit" id="submit" class="btn btn-primary">
-                        <span class="indicator-label" id="submitText">Enregistrer</span>
-                        <span class="indicator-progress">Patientez...
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                    </button>
-                    <!--end::Button-->
-                </div>
-                <!--end::Modal footer-->
-                </form>
             </div>
         </div>
         <!--end::Card body-->
@@ -320,15 +321,12 @@
 <!--end::Container-->
 @section('js')
 <script type="text/javascript">
-   
-
     var showModal = "<?= Route::currentRouteName() == '' ? ('') : ('') ?>";
     var old_planning = <?php echo isset($old_planning) ? json_encode($old_planning) : (0); ?>;
     var old_groups = <?php echo  isset($old_groups) ? json_encode($old_groups) : (0); ?>;
     var base_url = "<?= URL::to('/') ?>";
     var learning_time_slot_route = "<?= route('listPlannings.learning_time_slot') ?>";
     var plannings_time_slot1 = document.getElementById("plannings_time_slot");
-    var plannings_date1 = document.getElementById("plannings_date");
 
     var plannings_begin = document.getElementById("plannings_begin");
     var plannings_end = document.getElementById("plannings_end");
@@ -349,6 +347,7 @@
             month = month < 10 ? '0' + month : month
             let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
             let currentDate = day + '-' + month + '-' + date.getFullYear();
+            let currentDate2 = date.getFullYear()+ '-' + month + '-'+day;
             // alert(currentDate)
             // var indexId = plannings_date1.value + '' + plannings_time_slot1.value;
             var indexId = currentDate + '' + plannings_time_slot1.value;
@@ -356,23 +355,17 @@
                 //row already exists
             } else {
                 //new row
-               /* var html = '';
+                var html = '';
                 html += '<tr class="text-center">';
                 html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove" id="' + indexId + '"><span class="fa fa-minus"></span></button></td>';
-                html += '<td> <input hidden name="plannings_date[]"  type="text" value="' + currentDate + '">' + currentDate + '</td>';
+                html += '<td> <input hidden name="plannings_date[]"  type="text" value="' + currentDate2 + '">' + currentDate + '</td>';
                 html += '<td> <input hidden name="plannings_time_slot[]"  type="text" value="' + plannings_time_slot1.value + '">' + plannings_time_slot1.value + '</td></tr>';
                 $('#table_slot').append(html);
+                console.log($('#table_slot').html());
                 table_unique[table_unique.length] = indexId;
-                checkForm()*/
+                checkForm()
 
-                var html = '';
-            html += '<tr class="text-center">';
-            html += '<td><button type="button" name="remove" class="btn btn-danger btn-sm remove" id="'+indexId+'"><span class="fa fa-minus"></span></button></td>';
-            html += '<td> <input hidden name="plannings_date[]"  type="text" value="'+currentDate+'">'+currentDate+'</td>';
-            html += '<td> <input hidden name="plannings_time_slot[]"  type="text" value="'+plannings_time_slot1.value+'">'+plannings_time_slot1.value+'</td></tr>';
-            $('#table_slot').append(html);
-            table_unique[table_unique.length] = indexId;
-            checkForm()
+
             }
 
         });

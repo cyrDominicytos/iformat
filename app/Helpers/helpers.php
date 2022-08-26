@@ -325,7 +325,9 @@ if (!function_exists('learning_available_groupe2')) {
                     array_push($old_groups,$result->plannings_user_groups);
                     //$old_groups = array_merge($old_groups,json_decode($result->plannings_user_groups));
                 }
-                $learning_available_groupe = GroupModel::where("groups_status",1)->whereNotIn("groups_id",$old_groups)->get();
+                $learning_available_groupe = GroupModel::where("groups_status",1)->where("groups_learning_id", $id)->get();
+                //$learning_available_groupe = GroupModel::where("groups_status",1)->get();
+                //$learning_available_groupe = GroupModel::where("groups_status",1)->whereNotIn("groups_id",$old_groups)->get();
                // $learnings_days = json_decode($learnings_days->learnings_days, true);
               // var_dump($learning_available_groupe);
 
