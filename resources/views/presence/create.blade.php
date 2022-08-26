@@ -427,7 +427,7 @@
     //learning change set time slot
     $('#plannings_group').change(function() {
 
-        if ($(this).val() != '') {
+        if ($(this).val() != '' && $('#plannings_datetime').val() != '' && $('#plannings_datetime').val() != null ) {
             var value = $(this).val();
             //load product code
             //let date_time = $('#plannings_group').val().split(" de ");
