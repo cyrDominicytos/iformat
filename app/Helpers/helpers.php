@@ -414,10 +414,14 @@ if (!function_exists('planning_details_list')) {
             $output1 = '';
             if($planning){
                 $date =json_decode($planning->plannings_date);
-                $hour =json_decode($planning->plannings_time_slot);
+                $hours =json_decode($planning->plannings_time_slot);
                 foreach ($date  as $key => $result){
-                    if($result<= date('Y-m-d'))
-                        $output1 .= '<option value="'.$result.' de '.$hour[$key].'">'.format_date($result,"d-m-Y").' de '.$hour[$key].'</option>';
+                    if($result<= date('Y-m-d')){
+                        foreach ($hours  as $key => $hour){
+                            $output1 .= '<option value="'.$result.' de '.$hour.'">'.format_date($result,"d-m-Y").' de '.$hour.'</option>';
+
+                        }
+                    }
                 }
 
               
