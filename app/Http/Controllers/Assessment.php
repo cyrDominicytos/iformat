@@ -45,7 +45,7 @@ class Assessment extends Controller
     {
         //dd(get_learning_planning_by_group(1, get_participant_group(9)->groups_id)); 
         $group = $this->modelGroup->get_user_group(Auth::user()->id);
-        if(count($group) == 1){
+        if(count($group) > 0){
             $data['learning_list'] = $this->modelLearning->get_participant_learnings_list($group[0]->groups_id, Auth::user()->id);
             if($data['learning_list'])
                 return view('assessment.create', $data);

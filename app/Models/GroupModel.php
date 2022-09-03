@@ -44,6 +44,6 @@ class GroupModel extends Model
     }
 
     public function get_user_group($id){
-        return DB::select("select * from groups  WHERE JSON_SEARCH(groups_participant, 'all', '".$id."', NULL ) IS NOT NULL");
+        return DB::select("select * from groups  WHERE JSON_SEARCH(groups_participant, 'all', '".$id."', NULL ) IS NOT NULL AND groups_status =1");
     }
 }
